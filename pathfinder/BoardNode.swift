@@ -13,8 +13,8 @@ class BoardNode {
     var position: (Int,Int)
     var element: (Element?) = nil
     
-    init(x: Int, y: Int) {
+    init(x: Int, y: Int, elt: Element?) {
         position = (x,y)
-        
+        element = elt
     }
 }

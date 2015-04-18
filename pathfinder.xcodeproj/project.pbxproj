@@ -17,10 +17,9 @@
 		300015E01AE2EBC600870A05 /* pathfinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300015DF1AE2EBC600870A05 /* pathfinderTests.swift */; };
 		300015EA1AE2ECF300870A05 /* TODOs.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 300015E91AE2ECF300870A05 /* TODOs.rtf */; };
 		300015EC1AE2F15800870A05 /* DefaultBoardRaw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300015EB1AE2F15800870A05 /* DefaultBoardRaw.swift */; };
-		300015EE1AE2F2BC00870A05 /* BoardProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300015ED1AE2F2BC00870A05 /* BoardProtocol.swift */; };
 		300015F01AE2F5A100870A05 /* BoardGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300015EF1AE2F5A100870A05 /* BoardGenerator.swift */; };
 		300015F21AE2F73100870A05 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300015F11AE2F73100870A05 /* Board.swift */; };
-		300015F41AE2F83100870A05 /* BoardPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300015F31AE2F83100870A05 /* BoardPosition.swift */; };
+		300015F41AE2F83100870A05 /* BoardNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300015F31AE2F83100870A05 /* BoardNode.swift */; };
 		300015F61AE301A400870A05 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300015F51AE301A400870A05 /* Element.swift */; };
 /* End PBXBuildFile section */
 
@@ -49,10 +48,9 @@
 		300015DF1AE2EBC600870A05 /* pathfinderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pathfinderTests.swift; sourceTree = "<group>"; };
 		300015E91AE2ECF300870A05 /* TODOs.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = TODOs.rtf; sourceTree = "<group>"; };
 		300015EB1AE2F15800870A05 /* DefaultBoardRaw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultBoardRaw.swift; sourceTree = "<group>"; };
-		300015ED1AE2F2BC00870A05 /* BoardProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BoardProtocol.swift; path = ../BoardProtocol.swift; sourceTree = "<group>"; };
 		300015EF1AE2F5A100870A05 /* BoardGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardGenerator.swift; sourceTree = "<group>"; };
 		300015F11AE2F73100870A05 /* Board.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
-		300015F31AE2F83100870A05 /* BoardPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardPosition.swift; sourceTree = "<group>"; };
+		300015F31AE2F83100870A05 /* BoardNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardNode.swift; sourceTree = "<group>"; };
 		300015F51AE301A400870A05 /* Element.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,11 +95,10 @@
 			children = (
 				300015E91AE2ECF300870A05 /* TODOs.rtf */,
 				300015F51AE301A400870A05 /* Element.swift */,
-				300015F31AE2F83100870A05 /* BoardPosition.swift */,
+				300015F31AE2F83100870A05 /* BoardNode.swift */,
 				300015F11AE2F73100870A05 /* Board.swift */,
 				300015EF1AE2F5A100870A05 /* BoardGenerator.swift */,
 				300015EB1AE2F15800870A05 /* DefaultBoardRaw.swift */,
-				300015ED1AE2F2BC00870A05 /* BoardProtocol.swift */,
 				300015C51AE2EBC500870A05 /* AppDelegate.swift */,
 				300015C71AE2EBC500870A05 /* GameScene.sks */,
 				300015C91AE2EBC500870A05 /* GameScene.swift */,
@@ -245,11 +242,10 @@
 				300015CC1AE2EBC500870A05 /* GameViewController.swift in Sources */,
 				300015F61AE301A400870A05 /* Element.swift in Sources */,
 				300015F01AE2F5A100870A05 /* BoardGenerator.swift in Sources */,
-				300015F41AE2F83100870A05 /* BoardPosition.swift in Sources */,
+				300015F41AE2F83100870A05 /* BoardNode.swift in Sources */,
 				300015EC1AE2F15800870A05 /* DefaultBoardRaw.swift in Sources */,
 				300015F21AE2F73100870A05 /* Board.swift in Sources */,
 				300015C61AE2EBC500870A05 /* AppDelegate.swift in Sources */,
-				300015EE1AE2F2BC00870A05 /* BoardProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,6 +437,7 @@
 				300015E51AE2EBC600870A05 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		300015E61AE2EBC600870A05 /* Build configuration list for PBXNativeTarget "pathfinderTests" */ = {
 			isa = XCConfigurationList;
@@ -449,6 +446,7 @@
 				300015E81AE2EBC600870A05 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
