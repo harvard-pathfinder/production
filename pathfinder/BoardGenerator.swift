@@ -15,4 +15,4 @@ class BoardGenerator {
     func getRandomBoard() -> [[BoardNode]] {
         return defaultBoard
     }
-}
+} 
