@@ -15,6 +15,7 @@
 		300015D11AE2EBC600870A05 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 300015D01AE2EBC600870A05 /* Images.xcassets */; };
 		300015D41AE2EBC600870A05 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 300015D21AE2EBC600870A05 /* LaunchScreen.xib */; };
 		300015E01AE2EBC600870A05 /* pathfinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300015DF1AE2EBC600870A05 /* pathfinderTests.swift */; };
+		300015EA1AE2ECF300870A05 /* TODOs.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 300015E91AE2ECF300870A05 /* TODOs.rtf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		300015D91AE2EBC600870A05 /* pathfinderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pathfinderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		300015DE1AE2EBC600870A05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		300015DF1AE2EBC600870A05 /* pathfinderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pathfinderTests.swift; sourceTree = "<group>"; };
+		300015E91AE2ECF300870A05 /* TODOs.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = TODOs.rtf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 				300015D01AE2EBC600870A05 /* Images.xcassets */,
 				300015D21AE2EBC600870A05 /* LaunchScreen.xib */,
 				300015C31AE2EBC500870A05 /* Supporting Files */,
+				300015E91AE2ECF300870A05 /* TODOs.rtf */,
 			);
 			path = pathfinder;
 			sourceTree = "<group>";
@@ -199,6 +202,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				300015D41AE2EBC600870A05 /* LaunchScreen.xib in Resources */,
+				300015EA1AE2ECF300870A05 /* TODOs.rtf in Resources */,
 				300015D11AE2EBC600870A05 /* Images.xcassets in Resources */,
 				300015C81AE2EBC500870A05 /* GameScene.sks in Resources */,
 				300015CF1AE2EBC500870A05 /* Main.storyboard in Resources */,
