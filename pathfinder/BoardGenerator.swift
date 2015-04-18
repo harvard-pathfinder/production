@@ -20,23 +20,23 @@ class BoardGenerator {
         var row = 0
         return intBoard.map({
             (let iList) -> [BoardNode] in
-                let boardRow = iList.map({
-                    (let i) -> BoardNode in
-                        // Holder for column
-                        let colHolder = col
-                        col = col + 1
-                        // If there is an element in a location
-                        if i > 0 {
-                            return BoardNode(x: row, y: colHolder, elt: Element(pos: (row, colHolder)))
-                        }
-                        // If there is not an element in a location
-                        else {
-                            return BoardNode(x: row, y: colHolder, elt: nil)
-                        }
-                })
-                col = 0
-                row = row + 1
-                return boardRow 
+            let boardRow = iList.map({
+                (let i) -> BoardNode in
+                // Holder for column
+                let colHolder = col
+                col = col + 1
+                // If there is an element in a location
+                if i > 0 {
+                    return BoardNode(x: row, y: colHolder, elt: Element(pos: (row, colHolder)))
+                }
+                    // If there is not an element in a location
+                else {
+                    return BoardNode(x: row, y: colHolder, elt: nil)
+                }
+            })
+            col = 0
+            row = row + 1
+            return boardRow
         })
     }
     
