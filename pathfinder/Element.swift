@@ -16,7 +16,7 @@ enum Direction {
 }
 
 // includes Players, Obstacles, and Flags
-class Element: SKNode {
+class Element: SKSpriteNode {
     var pos: (Int, Int)
     var invSpeed: Int {
         return 0
@@ -33,31 +33,30 @@ class Element: SKNode {
         // Essentially erase the object at its previous location and add it to its new location
         // Should be a quick fix
     // move the element around the board
-//    func move (invSpeed: Int) -> () {
-//        // if the element does not move
-//        if self.nextDirection() == nil || invSpeed == 0 {
-//            return
-//        }
-//        // update the position otherwise, Direction must contain a value
-//        else {
-//            let (x,y) = pos
-//            switch self.nextDirection()! {
-//            case Direction.North:pos = (x,y+1)
-//            case Direction.NorthEast: pos = (x+1,y+1)
-//            case Direction.East: pos = (x+1,y)
-//            case Direction.SouthEast: pos = (x+1,y-1)
-//            case Direction.South: pos = (x, y-1)
-//            case Direction.SouthWest: pos = (x-1, y-1)
-//            case Direction.West: pos = (x-1,y)
-//            case Direction.NorthWest: pos = (x-1, y+1)
-//            default : pos = (x,y)
-//            }
-//            return
-//        }
-//    }
+    //    func move (invSpeed: Int) -> () {
+    //        // if the element does not move
+    //        if self.nextDirection() == nil || invSpeed == 0 {
+    //            return
+    //        }
+    //        // update the position otherwise, Direction must contain a value
+    //        else {
+    //            let (x,y) = pos
+    //            switch self.nextDirection()! {
+    //            case Direction.North:pos = (x,y+1)
+    //            case Direction.NorthEast: pos = (x+1,y+1)
+    //            case Direction.East: pos = (x+1,y)
+    //            case Direction.SouthEast: pos = (x+1,y-1)
+    //            case Direction.South: pos = (x, y-1)
+    //            case Direction.SouthWest: pos = (x-1, y-1)
+    //            case Direction.West: pos = (x-1,y)
+    //            case Direction.NorthWest: pos = (x-1, y+1)
+    //            default : pos = (x,y)
+    //            }
+    //            return
+    //        }
+    //    }
     
-    // allows us to decide which direction to travel
-    // implemented similiar to pset7
+
     func nextDirection () -> Direction? {
         return nil
     }

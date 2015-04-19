@@ -18,9 +18,11 @@ class BoardNode: SKNode {
     init(x: Int, y: Int, elts: [Element]?) {
         pos = (x,y)
         elements = elts
+        let node = SKSpriteNode(imageNamed: "Element")
         super.init()
+        self.addChild(node)
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
