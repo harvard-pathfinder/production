@@ -9,7 +9,7 @@
 import Foundation
 
 class Flag: Element {
-    
+    // Element methods
     override func isFlag() -> Bool {
         return true
     }

@@ -16,5 +16,7 @@ class Board {
     func pathFromTo (from: BoardNode, to: BoardNode) -> [BoardNode] {
         return [BoardNode(x: 0, y: 0, elt: nil)]
     }
+    
+    func 
 
 }

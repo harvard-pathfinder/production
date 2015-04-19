@@ -9,15 +9,20 @@
 import Foundation
 import SpriteKit
 
+// directional
 enum Direction {
     case North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest
 }
 
 // includes Players, Obstacles, and Flags
 class Element: SKNode {
-    var invSpeed: Int = 0
+    // instance variables
+    var invSpeed: Int {
+        return 0
+    }
     var pos: (Int, Int)
     
+    // initializer
     init (pos z: (Int,Int)) {
         pos = z
         super.init()

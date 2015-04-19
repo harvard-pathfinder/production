@@ -9,6 +9,7 @@
 import Foundation
 
 class Obstacle: Element {
+    // Element Methods
     override func isObstacle() -> Bool {
         return true
     }
