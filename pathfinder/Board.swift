@@ -8,70 +8,57 @@
 
 import Foundation
 
-func contains (arr: [BoardNode], bNode: BoardNode) -> Bool {
-    for node in arr {
-        // if the node in the array and our node refer to same instance of BoardNode Object
-        if bNode === node {
-            return true
-        }
-    }
-    // if there is no equality
-    return false
-}
-
 class Board {
     // creates 2D array of arrays of BoardNodes
-    var defaultBoard: [[[BoardNode]]] = BoardGenerator().defaultBoard()
+    private var gameBoard: [[BoardNode]] = BoardGenerator().defaultBoard()
     
     // return the path from one Position to another
     // will be implemented with A*
     func pathFromTo (from: BoardNode, to: BoardNode) -> [BoardNode] {
-        return [BoardNode(x: 0, y: 0, elt: nil)]
+        return [BoardNode(x: 0, y: 0, elts: nil)]
     }
     
     // "gets" array of Bnodes at point p
-     func get (point p: (Int, Int)) -> [BoardNode] {
+     func get (point p: (Int, Int)) -> BoardNode {
         let (x,y) = p
-        return defaultBoard[x][y]
+        return gameBoard[x][y]
     }
     
-    // "sets" array of BNodes at point p to be bNodes
-    private func set (point p: (Int, Int), bNodes: [BoardNode]) -> () {
+    // "sets" array of BNodes at point p to be bNode
+    func setBNode (atPoint p: (Int, Int), bNode: BoardNode) -> () {
         let (x,y) = p
-        defaultBoard[x][y] = bNodes
+        gameBoard[x][y] = bNode
         return
     }
     
     // "modifies" array of BNodes at point p with the function f
-    private func modify (point p: (Int, Int), function f: ([BoardNode] -> [BoardNode])) -> () {
-        self.set(point: p, bNodes: f(self.get(point: p)))
-        return
+    private func modify (point p: (Int, Int), function f: (BoardNode -> BoardNode)) -> () {
+        gameBoard[p.0][p.1] = f(self.get(point: p))
+       
     }
     
     // adds bNode to array of BNodes at point p
-    func add (point p: (Int, Int), bNode: BoardNode) -> () {
-        self.modify(point: p, function: {(var bNodeArray: [BoardNode]) -> [BoardNode] in
-            if contains(bNodeArray, bNode) {
-                return bNodeArray
+    func add (point p: (Int, Int), element e: Element) -> () {
+        self.modify(point: p, function: {(var currentBNode: BoardNode -> BoardNode in
+            if currentBNode.elements == nil {
+                return currentBNode.elements = [e]
             }
             else {
-                bNodeArray.append(bNode)
-                return bNodeArray
+                currentBNode.elements! += [e]
             }
+            
         })
-        
         return
     }
     
     // removes bNode at point b from array of BNodes
     func remove (point p: (Int, Int), bNode: BoardNode) -> () {
-        self.modify(point: p, function: {(var bNodeArray: [BoardNode]) -> [BoardNode] in
-            // filter out bNodes which are equal to bNode
-            bNodeArray.filter({(node: BoardNode) -> Bool
-                in node !== bNode
-            })
+        self.modify(point: p, function: {(var curbNode: BoardNode) -> BoardNode in
+            
+    
         })
     }
-    
 }
+
+
 

@@ -7,15 +7,21 @@
 //
 
 import Foundation
+import SpriteKit
 
 // Ints for now
-class BoardNode {
-    var position: (Int,Int)
+class BoardNode: SKNode {
+    var pos: (Int,Int)
     // (array of elements) option
-    var elements: Element? = nil
+    var elements: [Element]? = nil
     
-    init(x: Int, y: Int, elt: Element?) {
-        position = (x,y)
-        elements = elt
+    init(x: Int, y: Int, elts: [Element]?) {
+        pos = (x,y)
+        elements = elts
+        super.init()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
