@@ -12,10 +12,10 @@ import Foundation
 class BoardNode {
     var position: (Int,Int)
     // (array of elements) option
-    var elements: Element? = nil
+    var elements: [Element]? = nil
     
-    init(x: Int, y: Int, elt: Element?) {
+    init(x: Int, y: Int, elts: [Element]?) {
         position = (x,y)
-        elements = elt
+        elements = elts
     }
 }

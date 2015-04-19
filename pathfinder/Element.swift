@@ -9,6 +9,7 @@
 import Foundation
 import SpriteKit
 
+
 // directional
 enum Direction {
     case North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest

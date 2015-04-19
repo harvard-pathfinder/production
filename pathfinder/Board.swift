@@ -30,7 +30,7 @@ class Board {
     }
     
     // "gets" array of Bnodes at point p
-    private func get (point p: (Int, Int)) -> [BoardNode] {
+     func get (point p: (Int, Int)) -> [BoardNode] {
         let (x,y) = p
         return defaultBoard[x][y]
     }
