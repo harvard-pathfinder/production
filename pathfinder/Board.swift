@@ -35,29 +35,32 @@ class Board {
     
     // adds element BNodes at point p
     func addElement (atpoint p: (Int, Int), eltToAdd e: Element) -> () {
-        self.modifyBNode(atPoint: p, function:
-            {(var currentBNode: BoardNode) -> () in
+        self.modifyBNode(atPoint: p,
+            function: {(var currentBNode: BoardNode) -> () in
                 if currentBNode.elements == nil {
                     currentBNode.elements = [e]
                 }
                 else {
                     currentBNode.elements! += [e]
                 }
-        })
+            }
+        )
     }
     
     // removes element at point p
     func removeElement (atPoint p: (Int, Int), eltToRemove: Element) -> () {
-        self.modifyBNode(atPoint: p, function: {(var currentBNode: BoardNode) -> () in
-            if var elementArray = currentBNode.elements {
-                for var index = 0; index < elementArray.count; ++index {
-                    if elementArray[index] === eltToRemove {
-                        elementArray.removeAtIndex(index)
-                        currentBNode.elements = elementArray
+        self.modifyBNode(atPoint: p,
+            function: {(var currentBNode: BoardNode) -> () in
+                if var elementArray = currentBNode.elements {
+                    for var index = 0; index < elementArray.count; ++index {
+                        if elementArray[index] === eltToRemove {
+                            elementArray.removeAtIndex(index)
+                            currentBNode.elements = elementArray
+                        }
                     }
                 }
             }
-        })
+        )
     }
     
     // checks if element exists at point
