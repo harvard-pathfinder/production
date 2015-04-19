@@ -27,35 +27,6 @@ class Element: SKSpriteNode {
         pos = z
         super.init()
     }
-    
-    // TODO: make the change on the Board as well this only alters the variable inside Elemetn
-        // SEE World_Object Line 32 from PSET 7 for how to do this
-        // Essentially erase the object at its previous location and add it to its new location
-        // Should be a quick fix
-    // move the element around the board
-    //    func move (invSpeed: Int) -> () {
-    //        // if the element does not move
-    //        if self.nextDirection() == nil || invSpeed == 0 {
-    //            return
-    //        }
-    //        // update the position otherwise, Direction must contain a value
-    //        else {
-    //            let (x,y) = pos
-    //            switch self.nextDirection()! {
-    //            case Direction.North:pos = (x,y+1)
-    //            case Direction.NorthEast: pos = (x+1,y+1)
-    //            case Direction.East: pos = (x+1,y)
-    //            case Direction.SouthEast: pos = (x+1,y-1)
-    //            case Direction.South: pos = (x, y-1)
-    //            case Direction.SouthWest: pos = (x-1, y-1)
-    //            case Direction.West: pos = (x-1,y)
-    //            case Direction.NorthWest: pos = (x-1, y+1)
-    //            default : pos = (x,y)
-    //            }
-    //            return
-    //        }
-    //    }
-    
 
     func nextDirection () -> Direction? {
         return nil
