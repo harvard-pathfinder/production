@@ -11,7 +11,7 @@ import SpriteKit
 
 // Ints for now
 class BoardNode: SKNode {
-    var pos: (Int,Int)
+    var pos: (x: Int, y: Int)
     // (array of elements) option
     var elements: [Element]? = nil
     
