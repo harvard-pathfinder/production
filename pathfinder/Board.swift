@@ -17,6 +17,6 @@ class Board {
         return [BoardNode(x: 0, y: 0, elt: nil)]
     }
     
-    func 
+    func
 
 }

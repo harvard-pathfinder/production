@@ -103,10 +103,10 @@
 			children = (
 				300015E91AE2ECF300870A05 /* TODOs.rtf */,
 				300015F51AE301A400870A05 /* Element.swift */,
-				9FF5E34A1AE3FC8400279394 /* Hero.swift */,
-				9FF5E3441AE3689100279394 /* Player.swift */,
-				9FF5E3461AE368A000279394 /* Flag.swift */,
 				9FF5E3481AE368AA00279394 /* Obstacle.swift */,
+				9FF5E3461AE368A000279394 /* Flag.swift */,
+				9FF5E3441AE3689100279394 /* Player.swift */,
+				9FF5E34A1AE3FC8400279394 /* Hero.swift */,
 				300015EF1AE2F5A100870A05 /* BoardGenerator.swift */,
 				300015F31AE2F83100870A05 /* BoardNode.swift */,
 				300015F11AE2F73100870A05 /* Board.swift */,

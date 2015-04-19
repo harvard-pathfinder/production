@@ -16,11 +16,10 @@ enum Direction {
 
 // includes Players, Obstacles, and Flags
 class Element: SKNode {
-    // instance variables
+    var pos: (Int, Int)
     var invSpeed: Int {
         return 0
     }
-    var pos: (Int, Int)
     
     // initializer
     init (pos z: (Int,Int)) {
