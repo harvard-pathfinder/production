@@ -42,7 +42,9 @@ class Element: SKNode {
         else {
             let (x,y) = pos
             switch self.nextDirection()! {
-            case Direction.North: pos = (x,y+1)
+            case Direction.North:
+    
+                pos = (x,y+1)
             case Direction.NorthEast: pos = (x+1,y+1)
             case Direction.East: pos = (x+1,y)
             case Direction.SouthEast: pos = (x+1,y-1)
