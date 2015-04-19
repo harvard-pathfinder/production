@@ -8,42 +8,70 @@
 
 import Foundation
 
+func contains (arr: [BoardNode], bNode: BoardNode) -> Bool {
+    for node in arr {
+        // if the node in the array and our node refer to same instance of BoardNode Object
+        if bNode === node {
+            return true
+        }
+    }
+    // if there is no equality
+    return false
+}
+
 class Board {
-    var defaultBoard: [[BoardNode]] = BoardGenerator().defaultBoard()
+    // creates 2D array of arrays of BoardNodes
+    var defaultBoard: [[[BoardNode]]] = BoardGenerator().defaultBoard()
     
     // return the path from one Position to another
     // will be implemented with A*
     func pathFromTo (from: BoardNode, to: BoardNode) -> [BoardNode] {
-        return [BoardNode(x: 0, y: 0, elts: nil)]
+        return [BoardNode(x: 0, y: 0, elt: nil)]
     }
     
-    func set (point p: (Int, Int), bNode: BoardNode) -> () {
+    // "gets" array of Bnodes at point p
+    private func get (point p: (Int, Int)) -> [BoardNode] {
         let (x,y) = p
-        defaultBoard[x][y].append(bNode)
+        return defaultBoard[x][y]
     }
-    func modify (point p: (Int, Int), function f: (BoardNode -> BoardNode)) {
     
+    // "sets" array of BNodes at point p to be bNodes
+    private func set (point p: (Int, Int), bNodes: [BoardNode]) -> () {
+        let (x,y) = p
+        defaultBoard[x][y] = bNodes
+        return
     }
+    
+    // "modifies" array of BNodes at point p with the function f
+    private func modify (point p: (Int, Int), function f: ([BoardNode] -> [BoardNode])) -> () {
+        self.set(point: p, bNodes: f(self.get(point: p)))
+        return
+    }
+    
+    // adds bNode to array of BNodes at point p
+    func add (point p: (Int, Int), bNode: BoardNode) -> () {
+        self.modify(point: p, function: {(var bNodeArray: [BoardNode]) -> [BoardNode] in
+            if contains(bNodeArray, bNode) {
+                return bNodeArray
+            }
+            else {
+                bNodeArray.append(bNode)
+                return bNodeArray
+            }
+        })
+        
+        return
+    }
+    
+    // removes bNode at point b from array of BNodes
+    func remove (point p: (Int, Int), bNode: BoardNode) -> () {
+        self.modify(point: p, function: {(var bNodeArray: [BoardNode]) -> [BoardNode] in
+            // filter out bNodes which are equal to bNode
+            bNodeArray.filter({(node: BoardNode) -> Bool
+                in node !== bNode
+            })
+        })
+    }
+    
 }
 
-
-//* Set a location in the world to contain a new list of objects. *)
-
-//let set ((x,y):int*int) (wos:world_object_i list) : unit =
-
-//world.(x).(y) <- wos
-
-//(** Modify a location in the world with value os to contain (f os). *)
-//48
-//let modify (p:int*int) (f:world_object_i list -> world_object_i list) : unit =
-//49
-//set p (f (get p))
-//50
-//51
-//(** Add an object to the list of world objects at a location. *)
-//52
-//let add (p:int*int) (w:world_object_i) : unit =
-//53
-//modify p (fun wos -> if List.mem w wos then wos else w::wos)
-//54
-//55
