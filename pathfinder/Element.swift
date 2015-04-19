@@ -40,7 +40,7 @@ class Element: SKNode {
         }
         // update the position otherwise, Direction must contain a value
         else {
-            let (x,y) =  pos;
+            let (x,y) = pos
             switch self.nextDirection()! {
             case Direction.North: pos = (x,y+1)
             case Direction.NorthEast: pos = (x+1,y+1)
