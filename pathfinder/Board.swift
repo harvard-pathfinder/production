@@ -18,6 +18,14 @@ class Board {
         return [BoardNode(x: 0, y: 0, elts: nil)]
     }
     
+    func mapGameBoard (function f: (BoardNode -> ())) -> () {
+        gameBoard.map({(rowList: [BoardNode]) -> BoardNode in
+            rowList.map({(bNode: BoardNode) -> () in
+                f(bNode)
+            })
+        })
+    }
+    
     // "gets" Bnode at point p
     func getBNode (atPoint p: (Int, Int)) -> BoardNode {
         return gameBoard[p.0][p.1]
