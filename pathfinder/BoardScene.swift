@@ -10,7 +10,16 @@ import Foundation
 import SpriteKit
 
 class BoardScene: SKScene {
+    let gameBoard = Board()
+    
     override func didMoveToView(view: SKView) {
+        
+        func whatever (bNode: BoardNode) -> () {
+            let node = SKSpriteNode(imageNamed: "none")
+            node.position = CGPointMake(CGFloat(bNode.pos.x), CGFloat(bNode.pos.y))
+            self.addChild(node)
+        }
+        gameBoard.mapGameBoard(whatever)
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
