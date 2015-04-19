@@ -17,11 +17,12 @@ class Board {
         return [BoardNode(x: 0, y: 0, elts: nil)]
     }
     
-//    func set (point p: (Int, Int), (bNode: BoardNode) -> () {
-//        defaultBoard[x].[y] =
-//    }
-//    func modify (point p: (Int, Int), function f: (BoardNode -> BoardNode)) {
-//        
+    func set (point p: (Int, Int), bNode: BoardNode) -> () {
+        let (x,y) = p
+        defaultBoard[x][y].append(bNode)
+    }
+    func modify (point p: (Int, Int), function f: (BoardNode -> BoardNode)) {
+    
     }
 }
 
