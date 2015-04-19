@@ -19,7 +19,7 @@ class Board {
     }
     
     // "gets" Bnode at point p
-     func getBNode (atPoint p: (Int, Int)) -> BoardNode {
+    func getBNode (atPoint p: (Int, Int)) -> BoardNode {
         return gameBoard[p.0][p.1]
     }
     
@@ -34,19 +34,19 @@ class Board {
     }
     
     // adds element BNodes at point p
-    func addElement (atpoint p: (Int, Int), element e: Element) -> () {
+    func addElement (atpoint p: (Int, Int), eltToAdd e: Element) -> () {
         self.modifyBNode(atPoint: p, function:
-        {(var currentBNode: BoardNode) -> () in
-            if currentBNode.elements == nil {
-                currentBNode.elements = [e]
-            }
-            else {
-                currentBNode.elements! += [e]
-            }
+            {(var currentBNode: BoardNode) -> () in
+                if currentBNode.elements == nil {
+                    currentBNode.elements = [e]
+                }
+                else {
+                    currentBNode.elements! += [e]
+                }
         })
     }
     
-    // removes element at point b from array of BNodes
+    // removes element at point p
     func removeElement (atPoint p: (Int, Int), eltToRemove: Element) -> () {
         self.modifyBNode(atPoint: p, function: {(var currentBNode: BoardNode) -> () in
             if var elementArray = currentBNode.elements {
@@ -58,6 +58,29 @@ class Board {
                 }
             }
         })
+    }
+    
+    // checks if element exists at point
+    func elementExists (atPoint p: (Int, Int), eltToCheck: Element) -> Bool {
+        if let eltArray = self.getBNode(atPoint: p).elements {
+            for elt in eltArray {
+                if elt === eltToCheck {
+                    return true
+                }
+            }
+        }
+        return false
+    }
+    
+    // moves element from point 1 to point 2
+    func moveElement (fromPoint p1: (Int, Int), toPoint p2: (Int, Int), eltToMove: Element) -> () {
+        if self.elementExists(atPoint: p1, eltToCheck: eltToMove) {
+            self.removeElement(atPoint: p1, eltToRemove: eltToMove)
+            self.addElement(atpoint: p2, eltToAdd: eltToMove)
+        }
+        else {
+            return
+        }
     }
 }
 
