@@ -31,17 +31,17 @@ class Board {
         return
     }
     
-    // "modifies" array of BNodes at point p with the function f
-    private func modify (point p: (Int, Int), function f: (BoardNode -> BoardNode)) -> () {
-        gameBoard[p.0][p.1] = f(self.get(point: p))
+    // performs a function on a BNode atpoint
+    func modifyBNode (atPoint p: (Int, Int), function f: (BoardNode -> ())) -> () {
+        f(self.get(point: p))
        
     }
     
-    // adds bNode to array of BNodes at point p
-    func add (point p: (Int, Int), element e: Element) -> () {
-        self.modify(point: p, function: {(var currentBNode: BoardNode -> BoardNode in
+    // adds element BNodes at point p
+    func addElement (atpoint p: (Int, Int), element e: Element) -> () {
+        self.modifyBNode(atPoint: p, function: {(var currentBNode: BoardNode) -> () in
             if currentBNode.elements == nil {
-                return currentBNode.elements = [e]
+                currentBNode.elements = [e]
             }
             else {
                 currentBNode.elements! += [e]
@@ -51,11 +51,17 @@ class Board {
         return
     }
     
-    // removes bNode at point b from array of BNodes
-    func remove (point p: (Int, Int), bNode: BoardNode) -> () {
-        self.modify(point: p, function: {(var curbNode: BoardNode) -> BoardNode in
-            
-    
+    // removes element at point b from array of BNodes
+    func removeElement (atPoint p: (Int, Int), eltToRemove: Element) -> () {
+        self.modifyBNode(atPoint: p, function: {(var currentBNode: BoardNode) -> () in
+            if var elementArray = currentBNode.elements {
+                for var index = 0; index < elementArray.count; ++index {
+                    if elementArray[index] === eltToRemove {
+                        elementArray.removeAtIndex(index)
+                        currentBNode.elements = elementArray
+                    }
+                }
+            }
         })
     }
 }
