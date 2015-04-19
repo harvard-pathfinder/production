@@ -1,5 +1,5 @@
 //
-//  Direction.swift
+//  Obstacle.swift
 //  pathfinder
 //
 //  Created by Robert Shaw on 4/19/15.
@@ -8,3 +8,8 @@
 
 import Foundation
 
+class Obstacle: Element {
+    override func isObstacle() -> Bool {
+        return true
+    }
+}

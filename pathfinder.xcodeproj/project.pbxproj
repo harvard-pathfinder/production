@@ -21,7 +21,9 @@
 		300015F21AE2F73100870A05 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300015F11AE2F73100870A05 /* Board.swift */; };
 		300015F41AE2F83100870A05 /* BoardNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300015F31AE2F83100870A05 /* BoardNode.swift */; };
 		300015F61AE301A400870A05 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300015F51AE301A400870A05 /* Element.swift */; };
-		9FF5E3431AE360E900279394 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF5E3421AE360E900279394 /* Direction.swift */; };
+		9FF5E3451AE3689100279394 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF5E3441AE3689100279394 /* Player.swift */; };
+		9FF5E3471AE368A000279394 /* Flag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF5E3461AE368A000279394 /* Flag.swift */; };
+		9FF5E3491AE368AB00279394 /* Obstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF5E3481AE368AA00279394 /* Obstacle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,7 +55,9 @@
 		300015F11AE2F73100870A05 /* Board.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		300015F31AE2F83100870A05 /* BoardNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardNode.swift; sourceTree = "<group>"; };
 		300015F51AE301A400870A05 /* Element.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
-		9FF5E3421AE360E900279394 /* Direction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
+		9FF5E3441AE3689100279394 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		9FF5E3461AE368A000279394 /* Flag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flag.swift; sourceTree = "<group>"; };
+		9FF5E3481AE368AA00279394 /* Obstacle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Obstacle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,14 +101,16 @@
 			children = (
 				300015E91AE2ECF300870A05 /* TODOs.rtf */,
 				300015F51AE301A400870A05 /* Element.swift */,
-				9FF5E3421AE360E900279394 /* Direction.swift */,
+				9FF5E3441AE3689100279394 /* Player.swift */,
 				300015F31AE2F83100870A05 /* BoardNode.swift */,
 				300015F11AE2F73100870A05 /* Board.swift */,
 				300015EF1AE2F5A100870A05 /* BoardGenerator.swift */,
 				300015EB1AE2F15800870A05 /* DefaultBoardRaw.swift */,
 				300015C51AE2EBC500870A05 /* AppDelegate.swift */,
+				9FF5E3481AE368AA00279394 /* Obstacle.swift */,
 				300015C71AE2EBC500870A05 /* GameScene.sks */,
 				300015C91AE2EBC500870A05 /* GameScene.swift */,
+				9FF5E3461AE368A000279394 /* Flag.swift */,
 				300015CB1AE2EBC500870A05 /* GameViewController.swift */,
 				300015CD1AE2EBC500870A05 /* Main.storyboard */,
 				300015D21AE2EBC600870A05 /* LaunchScreen.xib */,
@@ -243,13 +249,15 @@
 			files = (
 				300015CA1AE2EBC500870A05 /* GameScene.swift in Sources */,
 				300015CC1AE2EBC500870A05 /* GameViewController.swift in Sources */,
+				9FF5E3491AE368AB00279394 /* Obstacle.swift in Sources */,
 				300015F61AE301A400870A05 /* Element.swift in Sources */,
 				300015F01AE2F5A100870A05 /* BoardGenerator.swift in Sources */,
 				300015F41AE2F83100870A05 /* BoardNode.swift in Sources */,
 				300015EC1AE2F15800870A05 /* DefaultBoardRaw.swift in Sources */,
+				9FF5E3471AE368A000279394 /* Flag.swift in Sources */,
 				300015F21AE2F73100870A05 /* Board.swift in Sources */,
 				300015C61AE2EBC500870A05 /* AppDelegate.swift in Sources */,
-				9FF5E3431AE360E900279394 /* Direction.swift in Sources */,
+				9FF5E3451AE3689100279394 /* Player.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
