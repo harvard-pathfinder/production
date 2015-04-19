@@ -27,7 +27,11 @@ class Element: SKNode {
         super.init()
     }
     
-    // move the element around the map
+    // TODO: make the change on the Board as well this only alters the variable inside Elemetn
+        // SEE World_Object Line 32 from PSET 7 for how to do this
+        // Essentially erase the object at its previous location and add it to its new location
+        // Should be a quick fix
+    // move the element around the board
     func move (invSpeed: Int) -> () {
         // if the element does not move
         if self.nextDirection() == nil || invSpeed == 0 {

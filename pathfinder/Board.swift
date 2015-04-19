@@ -14,9 +14,8 @@ class Board {
     // return the path from one Position to another
     // will be implemented with A*
     func pathFromTo (from: BoardNode, to: BoardNode) -> [BoardNode] {
-        return [BoardNode(x: 0, y: 0, elt: nil)]
+        return [BoardNode(x: 0, y: 0, elts: nil)]
     }
     
-    func
 
 }
