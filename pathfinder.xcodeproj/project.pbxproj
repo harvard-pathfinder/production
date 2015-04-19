@@ -13,7 +13,6 @@
 		300015CC1AE2EBC500870A05 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300015CB1AE2EBC500870A05 /* GameViewController.swift */; };
 		300015CF1AE2EBC500870A05 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 300015CD1AE2EBC500870A05 /* Main.storyboard */; };
 		300015D11AE2EBC600870A05 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 300015D01AE2EBC600870A05 /* Images.xcassets */; };
-		300015D41AE2EBC600870A05 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 300015D21AE2EBC600870A05 /* LaunchScreen.xib */; };
 		300015E01AE2EBC600870A05 /* pathfinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300015DF1AE2EBC600870A05 /* pathfinderTests.swift */; };
 		300015EA1AE2ECF300870A05 /* TODOs.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 300015E91AE2ECF300870A05 /* TODOs.rtf */; };
 		300015EC1AE2F15800870A05 /* DefaultBoardRaw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300015EB1AE2F15800870A05 /* DefaultBoardRaw.swift */; };
@@ -47,7 +46,6 @@
 		300015CB1AE2EBC500870A05 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		300015CE1AE2EBC500870A05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		300015D01AE2EBC600870A05 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		300015D31AE2EBC600870A05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		300015D91AE2EBC600870A05 /* pathfinderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pathfinderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		300015DE1AE2EBC600870A05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		300015DF1AE2EBC600870A05 /* pathfinderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pathfinderTests.swift; sourceTree = "<group>"; };
@@ -119,7 +117,6 @@
 				300015C71AE2EBC500870A05 /* GameScene.sks */,
 				300015CB1AE2EBC500870A05 /* GameViewController.swift */,
 				300015CD1AE2EBC500870A05 /* Main.storyboard */,
-				300015D21AE2EBC600870A05 /* LaunchScreen.xib */,
 				300015D01AE2EBC600870A05 /* Images.xcassets */,
 				300015C31AE2EBC500870A05 /* Supporting Files */,
 			);
@@ -231,7 +228,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				300015D41AE2EBC600870A05 /* LaunchScreen.xib in Resources */,
 				300015EA1AE2ECF300870A05 /* TODOs.rtf in Resources */,
 				300015D11AE2EBC600870A05 /* Images.xcassets in Resources */,
 				300015C81AE2EBC500870A05 /* GameScene.sks in Resources */,
@@ -294,14 +290,6 @@
 				300015CE1AE2EBC500870A05 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		300015D21AE2EBC600870A05 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				300015D31AE2EBC600870A05 /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
