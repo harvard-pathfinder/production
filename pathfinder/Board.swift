@@ -18,17 +18,14 @@ class Board {
         return [BoardNode(x: 0, y: 0, elts: nil)]
     }
     
-    // "gets" array of Bnodes at point p
-     func get (point p: (Int, Int)) -> BoardNode {
-        let (x,y) = p
-        return gameBoard[x][y]
+    // "gets" Bnode at point p
+     func getBNode (atPoint p: (Int, Int)) -> BoardNode {
+        return gameBoard[p.0][p.1]
     }
     
     // "sets" array of BNodes at point p to be bNode
     func setBNode (atPoint p: (Int, Int), bNode: BoardNode) -> () {
-        let (x,y) = p
-        gameBoard[x][y] = bNode
-        return
+        gameBoard[p.0][p.1] = bNode
     }
     
     // performs a function on a BNode atpoint
