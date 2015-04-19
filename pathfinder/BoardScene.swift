@@ -14,12 +14,12 @@ class BoardScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         
-        func whatever (bNode: BoardNode) -> () {
+        func insertNode (bNode: BoardNode) -> () {
             let node = SKSpriteNode(imageNamed: "none")
             node.position = CGPointMake(CGFloat(bNode.pos.x), CGFloat(bNode.pos.y))
             self.addChild(node)
         }
-        gameBoard.mapGameBoard(whatever)
+        gameBoard.iterBoardNodes(function: insertNode)
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {

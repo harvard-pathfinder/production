@@ -18,12 +18,21 @@ class Board {
         return [BoardNode(x: 0, y: 0, elts: nil)]
     }
     
-    func mapGameBoard (function f: (BoardNode -> ())) -> () {
-        gameBoard.map({(rowList: [BoardNode]) -> BoardNode in
-            rowList.map({(bNode: BoardNode) -> () in
-                f(bNode)
-            })
-        })
+//    func mapBoardNodes (function f: (BoardNode -> BoardNode)) -> [[BoardNode]] {
+//        let a = gameBoard.map({(rowList: [BoardNode]) -> [BoardNode] in
+//            rowList.map({(bNode: BoardNode) -> BoardNode in
+//                return f(bNode)
+//            })
+//        })
+//        return a
+//    }
+    
+    func iterBoardNodes (function f: (BoardNode -> ())) -> () {
+        for row in gameBoard {
+            for node in row {
+                f(node)
+            }
+        }
     }
     
     // "gets" Bnode at point p
@@ -60,8 +69,8 @@ class Board {
         self.modifyBNode(atPoint: p,
             function: {(var currentBNode: BoardNode) -> () in
                 if var elementArray = currentBNode.elements {
-                    for var index = 0; index < elementArray.count; ++index {
-                        if elementArray[index] === eltToRemove {
+                    for (index, element) in enumerate(elementArray) {
+                        if element === eltToRemove {
                             elementArray.removeAtIndex(index)
                             currentBNode.elements = elementArray
                         }

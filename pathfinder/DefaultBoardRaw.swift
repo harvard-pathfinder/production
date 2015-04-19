@@ -12,7 +12,13 @@ import Foundation
 // Stores the raw data for a game board, for now a 2D array
 // Manually create the game board here
 class DefaultBoardRaw {
-    let board:[[Int]] = [[0,1],[1,0]]
+    private let board:[[Int]] =
+        [
+            [1,1,1,1],
+            [1,1,1,1],
+            [1,1,1,1],
+            [1,1,1,1]
+        ]
     
     func getBoard () -> [[Int]] {
         return board
