@@ -1,0 +1,89 @@
+//
+//  Direction.swift
+//  pathfinder
+//
+//  Created by Robert Shaw on 4/19/15.
+//  Copyright (c) 2015 harvard-pathfinder. All rights reserved.
+//
+
+import Foundation
+
+enum Directions {
+    case North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest
+}
+
+// gives a random direction
+func randomDirection () -> Direction {
+    switch arc4random_uniform(7) {
+        case 0: return Direction.North
+        case 1: return Direction.NorthEast
+        case 2: return Direction.East
+        case 3: return Direction.SouthEast
+        case 4: return Direction.South
+        case 5: return Direction.SouthWest
+        case 6: return Direction.West
+        default: return Direction.NorthWest
+    }
+}
+
+// changes a direction into a vector quantity
+func directionToVector (d: Direction) -> (Int,Int) {
+    switch d {
+    case Direction.North: return (0,1)
+    case Direction.NorthEast: return (1,1)
+    case Direction.East: return (1,0)
+    case Direction.SouthEast: return (1,-1)
+    case Direction.South: return (-1,0)
+    case Direction.SouthWest: return (-1,-1)
+    case Direction.West: return (-1,0)
+    case Direction.NorthWest: return (-1,1)
+    }
+}
+
+// moves a point from p1 by a direction
+func movePoint (fromPoint p: (Int,Int), direction: Direction?) -> (Int, Int){
+    if let directionToMove = direction {
+        let (x,y) = directionToVector(directionToMove)
+        return(p.0 + x, p.1 + y)
+    }
+    else {
+        return p
+    }
+}
+
+// gets the natural direction between two points
+func naturalDirection (fromPoint p1: (Int, Int), toPoint p2: (Int, Int)) -> Direction? {
+    if p2.0 == p1.0 && p2.1 > p1.1 {
+        return Direction.North
+    } else if p2.0 > p1.0 && p2.1 > p1.1  {
+        return Direction.NorthEast
+    } else if p2.0 - p1.0 > 0 && p2.1 == p1.1 {
+        return Direction.East
+    } else if p2.0 > p1.0 && p2.1 < p1.1 {
+        return Direction.SouthEast
+    } else if p2.0 == p1.0 && p2.1 < p1.1 {
+        return Direction.South
+    } else if p2.0 < p1.0 && p2.1 < p1.1 {
+        return Direction.SouthWest
+    } else if p2.0 < p1.0 && p2.1 == p1.1 {
+        return Direction.West
+    } else if p2.0 < p1.0 && p2.1 > p1.1 {
+        return Direction.NorthWest
+    } else {
+        return nil
+    }
+}
+
+// move directly from one point to another without
+func directPath (fromPoint p1: (Int, Int), toPoint p2: (Int,Int), var path: [(Int,Int)])-> [(Int,Int)] {
+    if let dNatural = naturalDirection(fromPoint: p1, toPoint: p2) {
+        // updates pArray to include next step
+        path.append(movePoint(fromPoint: p1, dNatural))
+        // recursive call to direct patj
+        return directPath(fromPoint: (movePoint(fromPoint: p1, dNatural)), toPoint: p2, (path))
+    }
+    else {
+        return path
+    }
+}
+

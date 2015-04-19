@@ -18,15 +18,7 @@ class Board {
         return [BoardNode(x: 0, y: 0, elts: nil)]
     }
     
-//    func mapBoardNodes (function f: (BoardNode -> BoardNode)) -> [[BoardNode]] {
-//        let a = gameBoard.map({(rowList: [BoardNode]) -> [BoardNode] in
-//            rowList.map({(bNode: BoardNode) -> BoardNode in
-//                return f(bNode)
-//            })
-//        })
-//        return a
-//    }
-    
+    // apply a function to every BoardNode in the Board
     func iterBoardNodes (function f: (BoardNode -> ())) -> () {
         for row in gameBoard {
             for node in row {

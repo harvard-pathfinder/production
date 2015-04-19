@@ -21,6 +21,7 @@
 		300015F41AE2F83100870A05 /* BoardNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300015F31AE2F83100870A05 /* BoardNode.swift */; };
 		300015F61AE301A400870A05 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300015F51AE301A400870A05 /* Element.swift */; };
 		30C1B10B1AE44A4F0076BB43 /* BoardScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C1B10A1AE44A4F0076BB43 /* BoardScene.swift */; };
+		9F37AEDC1AE45D9800679927 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F37AEDB1AE45D9800679927 /* Direction.swift */; };
 		9FF5E3451AE3689100279394 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF5E3441AE3689100279394 /* Player.swift */; };
 		9FF5E3471AE368A000279394 /* Flag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF5E3461AE368A000279394 /* Flag.swift */; };
 		9FF5E3491AE368AB00279394 /* Obstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF5E3481AE368AA00279394 /* Obstacle.swift */; };
@@ -56,6 +57,7 @@
 		300015F31AE2F83100870A05 /* BoardNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardNode.swift; sourceTree = "<group>"; };
 		300015F51AE301A400870A05 /* Element.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		30C1B10A1AE44A4F0076BB43 /* BoardScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardScene.swift; sourceTree = "<group>"; };
+		9F37AEDB1AE45D9800679927 /* Direction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		9FF5E3441AE3689100279394 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		9FF5E3461AE368A000279394 /* Flag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flag.swift; sourceTree = "<group>"; };
 		9FF5E3481AE368AA00279394 /* Obstacle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Obstacle.swift; sourceTree = "<group>"; };
@@ -101,21 +103,15 @@
 		300015C21AE2EBC500870A05 /* pathfinder */ = {
 			isa = PBXGroup;
 			children = (
-				300015E91AE2ECF300870A05 /* TODOs.rtf */,
-				300015F51AE301A400870A05 /* Element.swift */,
-				9FF5E3481AE368AA00279394 /* Obstacle.swift */,
-				9FF5E3461AE368A000279394 /* Flag.swift */,
-				9FF5E3441AE3689100279394 /* Player.swift */,
-				9FF5E34A1AE3FC8400279394 /* Hero.swift */,
-				300015EF1AE2F5A100870A05 /* BoardGenerator.swift */,
-				300015F31AE2F83100870A05 /* BoardNode.swift */,
-				300015F11AE2F73100870A05 /* Board.swift */,
-				300015EB1AE2F15800870A05 /* DefaultBoardRaw.swift */,
+				9F37AEDD1AE46DC400679927 /* Elements */,
+				9F37AEDE1AE46DEF00679927 /* Board Creation */,
+				9F37AEDF1AE46E2E00679927 /* Helper Files */,
 				300015C51AE2EBC500870A05 /* AppDelegate.swift */,
 				300015C91AE2EBC500870A05 /* GameScene.swift */,
 				30C1B10A1AE44A4F0076BB43 /* BoardScene.swift */,
-				300015C71AE2EBC500870A05 /* GameScene.sks */,
 				300015CB1AE2EBC500870A05 /* GameViewController.swift */,
+				300015C71AE2EBC500870A05 /* GameScene.sks */,
+				300015E91AE2ECF300870A05 /* TODOs.rtf */,
 				300015CD1AE2EBC500870A05 /* Main.storyboard */,
 				300015D01AE2EBC600870A05 /* Images.xcassets */,
 				300015C31AE2EBC500870A05 /* Supporting Files */,
@@ -146,6 +142,37 @@
 				300015DE1AE2EBC600870A05 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9F37AEDD1AE46DC400679927 /* Elements */ = {
+			isa = PBXGroup;
+			children = (
+				300015F51AE301A400870A05 /* Element.swift */,
+				9FF5E34A1AE3FC8400279394 /* Hero.swift */,
+				9FF5E3441AE3689100279394 /* Player.swift */,
+				9FF5E3461AE368A000279394 /* Flag.swift */,
+				9FF5E3481AE368AA00279394 /* Obstacle.swift */,
+			);
+			name = Elements;
+			sourceTree = "<group>";
+		};
+		9F37AEDE1AE46DEF00679927 /* Board Creation */ = {
+			isa = PBXGroup;
+			children = (
+				300015EB1AE2F15800870A05 /* DefaultBoardRaw.swift */,
+				300015EF1AE2F5A100870A05 /* BoardGenerator.swift */,
+				300015F31AE2F83100870A05 /* BoardNode.swift */,
+				300015F11AE2F73100870A05 /* Board.swift */,
+			);
+			name = "Board Creation";
+			sourceTree = "<group>";
+		};
+		9F37AEDF1AE46E2E00679927 /* Helper Files */ = {
+			isa = PBXGroup;
+			children = (
+				9F37AEDB1AE45D9800679927 /* Direction.swift */,
+			);
+			name = "Helper Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,6 +283,7 @@
 				300015F01AE2F5A100870A05 /* BoardGenerator.swift in Sources */,
 				300015F41AE2F83100870A05 /* BoardNode.swift in Sources */,
 				300015EC1AE2F15800870A05 /* DefaultBoardRaw.swift in Sources */,
+				9F37AEDC1AE45D9800679927 /* Direction.swift in Sources */,
 				30C1B10B1AE44A4F0076BB43 /* BoardScene.swift in Sources */,
 				9FF5E3471AE368A000279394 /* Flag.swift in Sources */,
 				300015F21AE2F73100870A05 /* Board.swift in Sources */,
