@@ -30,22 +30,20 @@ class Board {
     
     // performs a function on a BNode atpoint
     func modifyBNode (atPoint p: (Int, Int), function f: (BoardNode -> ())) -> () {
-        f(self.get(point: p))
-       
+        f(self.getBNode(atPoint: p))
     }
     
     // adds element BNodes at point p
     func addElement (atpoint p: (Int, Int), element e: Element) -> () {
-        self.modifyBNode(atPoint: p, function: {(var currentBNode: BoardNode) -> () in
+        self.modifyBNode(atPoint: p, function:
+        {(var currentBNode: BoardNode) -> () in
             if currentBNode.elements == nil {
                 currentBNode.elements = [e]
             }
             else {
                 currentBNode.elements! += [e]
             }
-            
         })
-        return
     }
     
     // removes element at point b from array of BNodes
