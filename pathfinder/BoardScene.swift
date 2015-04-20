@@ -16,7 +16,7 @@ class BoardScene: SKScene {
         
         func insertNode (bNode: BoardNode) -> () {
             let node = SKSpriteNode(imageNamed: "none")
-            node.position = CGPointMake(CGFloat(bNode.pos.x), CGFloat(bNode.pos.y))
+            node.position = CGPointMake(CGFloat(bNode.pos.x * 10), CGFloat(bNode.pos.y * 10))
             self.addChild(node)
         }
         gameBoard.iterBoardNodes(function: insertNode)
