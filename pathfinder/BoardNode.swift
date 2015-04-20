@@ -22,6 +22,7 @@ class BoardNode: SKSpriteNode {
         if let elements = elts {
             for elt in elements {
                 self.addChild(elt)
+                elt.anchorPoint = CGPointMake(0.0, 0.0)
             }
         }
 //        let node = SKSpriteNode(imageNamed: "tile")
