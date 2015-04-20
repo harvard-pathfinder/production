@@ -16,7 +16,7 @@ class BoardScene: SKScene {
         
         func insertNode (bNode: BoardNode) -> () {
             // this inserts the array upside-down and flipped
-            bNode.position = CGPointMake(CGFloat(bNode.pos.x * 100), CGFloat(bNode.pos.y * 100))
+            bNode.position = CGPointMake(CGFloat(bNode.pos.x * 100 + 10), CGFloat(bNode.pos.y * 100 + 10))
             bNode.anchorPoint = CGPointMake(0.0, 0.0)
             if let a = bNode.elements {
                 bNode.addChild(a[0])
