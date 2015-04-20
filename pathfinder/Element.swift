@@ -25,7 +25,8 @@ class Element: SKSpriteNode {
     // initializer
     init (pos z: (Int,Int)) {
         pos = z
-        super.init()
+        let texture = SKTexture(imageNamed: "tile")
+        super.init(texture: texture, color: nil, size: texture.size())
     }
 
     func nextDirection () -> Direction? {
