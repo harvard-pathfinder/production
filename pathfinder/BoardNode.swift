@@ -10,14 +10,15 @@ import Foundation
 import SpriteKit
 
 // Ints for now
-class BoardNode: SKNode {
+class BoardNode: SKSpriteNode {
     var pos: (x: Int, y: Int)
     // (array of elements) option
     var elements: [Element]? = nil
     
     init(x: Int, y: Int, elts: [Element]?) {
         pos = (x,y)
-        super.init()
+        let texture = SKTexture(imageNamed: "tile")
+        super.init(texture: texture, color: nil, size: texture.size())
         if let elements = elts {
             for elt in elements {
                 self.addChild(elt)

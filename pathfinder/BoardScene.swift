@@ -15,9 +15,13 @@ class BoardScene: SKScene {
     override func didMoveToView(view: SKView) {
         
         func insertNode (bNode: BoardNode) -> () {
-            let node = SKSpriteNode(imageNamed: "tile")
-            node.position = CGPointMake(CGFloat(bNode.pos.x * 10), CGFloat(bNode.pos.y * 10))
-            self.addChild(node)
+            // this inserts the array upside-down and flipped
+            bNode.position = CGPointMake(CGFloat(bNode.pos.x * 100), CGFloat(bNode.pos.y * 100))
+            bNode.anchorPoint = CGPointMake(0.0, 0.0)
+            if let a = bNode.elements {
+                bNode.addChild(a[0])
+            }
+            self.addChild(bNode)
         }
         gameBoard.iterBoardNodes(function: insertNode)
     }
