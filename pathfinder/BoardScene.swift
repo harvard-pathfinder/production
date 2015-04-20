@@ -23,10 +23,12 @@ class BoardScene: SKScene {
         gameBoard.iterBoardNodes(function: insertNodeToBoardScene)
     }
     
-    
     // all of these below are tests that I commented out
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         
+        let eltarray = gameBoard.getElt(atPoint: (1,1))
+        gameBoard.moveElement(fromPoint: (1,1), toPoint: (2,2), eltToMove: eltarray![0])
+    
 //        let elt = Element()
 //        if (gameBoard.elementExists(atPoint: (1,1), eltToCheck: elt)) {
 //            print ("shoot")

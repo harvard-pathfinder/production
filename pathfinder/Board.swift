@@ -97,7 +97,7 @@ class Board {
         )
     }
     
-    
+    // CORRECT
     // checks if element exists at point
     func elementExists (atPoint p: (Int, Int), eltToCheck: Element) -> Bool {
         if let eltArray = self.getBNode(atPoint: p).elements {
@@ -110,6 +110,7 @@ class Board {
         return false
     }
     
+    // CORRECT
     // moves element from point 1 to point 2
     func moveElement (fromPoint p1: (Int, Int), toPoint p2: (Int, Int), eltToMove: Element) -> () {
         if self.elementExists(atPoint: p1, eltToCheck: eltToMove) {
