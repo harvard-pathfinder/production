@@ -35,8 +35,7 @@ class BoardScene: SKScene {
 //        }
 //        else {
 //            print ("google")
-//        }
-        
+//        }        
 //        let eltarray = gameBoard.getElt(atPoint: (1,1))
 //        if (gameBoard.elementExists(atPoint: (1,1), eltToCheck: eltarray![0])) {
 //            print("hi")
