@@ -29,7 +29,7 @@ class BoardGenerator {
                 col = col + 1
                 // If there is an element in a location
                 if i > 0 {
-                    return BoardNode(x: row, y: colHolder, elts: [Element(pos: (row, colHolder))])
+                    return BoardNode(x: row, y: colHolder, elts: [Element()])
                 }
                     // If there is not an element in a location
                 else {

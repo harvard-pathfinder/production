@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SpriteKit
 
 class Board {
     // creates 2D array of arrays of BoardNodes
@@ -18,6 +19,7 @@ class Board {
         return [BoardNode(x: 0, y: 0, elts: nil)]
     }
     
+    // CORRECT
     // apply a function to every BoardNode in the Board
     func iterBoardNodes (function f: (BoardNode -> ())) -> () {
         for row in gameBoard {
@@ -27,35 +29,55 @@ class Board {
         }
     }
     
+    // CORRECT
     // "gets" Bnode at point p
-    func getBNode (atPoint p: (Int, Int)) -> BoardNode {
+    func getBNode (atPoint p: (Int,Int)) -> BoardNode {
         return gameBoard[p.0][p.1]
     }
     
+    // CORRECT
+    // "gets" EltArray at point p
+    func getElt (atPoint p: (Int,Int)) -> [Element]? {
+        return gameBoard[p.0][p.1].elements
+    }
+    
+    // CORRECT
     // "sets" array of BNodes at point p to be bNode
     func setBNode (atPoint p: (Int, Int), bNode: BoardNode) -> () {
         gameBoard[p.0][p.1] = bNode
     }
     
+    // CORRECT
     // performs a function on a BNode atpoint
     func modifyBNode (atPoint p: (Int, Int), function f: (BoardNode -> ())) -> () {
         f(self.getBNode(atPoint: p))
     }
     
+    // CORRECT
     // adds element BNodes at point p
+    // adds element to SKSprite Tree
     func addElement (atpoint p: (Int, Int), eltToAdd e: Element) -> () {
         self.modifyBNode(atPoint: p,
             function: {(var currentBNode: BoardNode) -> () in
                 if currentBNode.elements == nil {
+                    // adds element to SpriteKit Tree
+                    currentBNode.addChild(e)
+                    e.anchorPoint = CGPointMake(0.0, 0.0)
+                    // adds element to datastructure
                     currentBNode.elements = [e]
                 }
                 else {
+                    // adds element to SpriteKit Tree
+                    currentBNode.addChild(e)
+                    e.anchorPoint = CGPointMake(0.0, 0.0)
+                    // adds element to datastructure
                     currentBNode.elements! += [e]
                 }
             }
         )
     }
     
+    // CORRECT
     // removes element at point p
     func removeElement (atPoint p: (Int, Int), eltToRemove: Element) -> () {
         self.modifyBNode(atPoint: p,
@@ -63,6 +85,9 @@ class Board {
                 if var elementArray = currentBNode.elements {
                     for (index, element) in enumerate(elementArray) {
                         if element === eltToRemove {
+                            // removes element from SpriteKit Tree
+                            eltToRemove.removeFromParent()
+                            // removes element from datastructure
                             elementArray.removeAtIndex(index)
                             currentBNode.elements = elementArray
                         }
@@ -71,6 +96,7 @@ class Board {
             }
         )
     }
+    
     
     // checks if element exists at point
     func elementExists (atPoint p: (Int, Int), eltToCheck: Element) -> Bool {

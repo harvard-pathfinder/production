@@ -13,19 +13,22 @@ import SpriteKit
 class BoardNode: SKSpriteNode {
     var pos: (x: Int, y: Int)
     // (array of elements) option
-    var elements: [Element]? = nil
+    var elements: [Element]?
     
-    init(x: Int, y: Int, elts: [Element]?) {
+    init(x: Int, y: Int, var elts: [Element]?) {
         pos = (x,y)
+        elements = elts
         let texture = SKTexture(imageNamed: "tile")
         super.init(texture: texture, color: nil, size: texture.size())
-        if let elements = elts {
-            for elt in elements {
+        
+        // iterates through added elements and adds to Sprite Tree
+        if let eltArray = elements {
+            for elt in eltArray {
                 self.addChild(elt)
                 elt.anchorPoint = CGPointMake(0.0, 0.0)
             }
         }
-//        let node = SKSpriteNode(imageNamed: "tile")
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

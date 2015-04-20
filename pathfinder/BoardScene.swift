@@ -12,29 +12,48 @@ import SpriteKit
 class BoardScene: SKScene {
     let gameBoard = Board()
     
-    override func didMoveToView(view: SKView) {
-        
-        func insertNode (bNode: BoardNode) -> () {
-            // this inserts the array upside-down and flipped
-            bNode.position = CGPointMake(CGFloat(bNode.pos.x * 100 + 10), CGFloat(bNode.pos.y * 100 + 10))
-            bNode.anchorPoint = CGPointMake(0.0, 0.0)
-            if let a = bNode.elements {
-                bNode.addChild(a[0])
-            }
-            self.addChild(bNode)
-        }
-        gameBoard.iterBoardNodes(function: insertNode)
+    private func insertNodeToBoardScene (bNode: BoardNode) -> () {
+        bNode.position = CGPointMake(CGFloat(bNode.pos.x * 100 + 10), CGFloat(bNode.pos.y * 100 + 10))
+        bNode.anchorPoint = CGPointMake(0.0, 0.0)
+        // adds BNode as a child of
+        self.addChild(bNode)
     }
     
+    override func didMoveToView(view: SKView) {
+        gameBoard.iterBoardNodes(function: insertNodeToBoardScene)
+    }
+    
+    
+    // all of these below are tests that I commented out
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        let b = gameBoard.getBNode(atPoint: (2,1))
-        print(b.elements)
         
-//        gameBoard.addElement(atpoint: (3,3), eltToAdd: elt)
+//        let elt = Element()
+//        if (gameBoard.elementExists(atPoint: (1,1), eltToCheck: elt)) {
+//            print ("shoot")
+//        }
+//        else {
+//            print ("google")
+//        }
+        
+//        let eltarray = gameBoard.getElt(atPoint: (1,1))
+//        if (gameBoard.elementExists(atPoint: (1,1), eltToCheck: eltarray![0])) {
+//            print("hi")
+//        }
+//        gameBoard.removeElement(atPoint: (1,1), eltToRemove: eltarray![0])
+//        gameBoard.removeElement(atPoint: (1,1), eltToRemove: bnode.elements![0])
+//        let elt = Element ()
+//        let bnode =  BoardNode(x: 2, y: 2, elts: [elt])
+//        self.insertNodeToBoardScene(bnode)
+//        gameBoard.setBNode(atPoint: (2,2), bNode: bnode)
+//        
+//        gameBoard.iterBoardNodes(function:
+//        {(bNode) -> () in bNode.position.x += CGFloat(1.0)})
+//        gameBoard.addElement(atpoint: (2,3), eltToAdd: elt)
 //        gameBoard.moveElement(fromPoint: (0,0), toPoint: (0,1), eltToMove: elt)
     }
     
     override func update(currentTime: CFTimeInterval) {
+        
     }
 
 }
