@@ -11,6 +11,7 @@ import Foundation
 enum Directions {
     case North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest
 }
+// These functions have not been tested
 
 // gives a random direction
 func randomDirection () -> Direction {
