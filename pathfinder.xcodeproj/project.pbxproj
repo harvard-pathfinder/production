@@ -104,7 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				9F37AEDD1AE46DC400679927 /* Elements */,
-				9F37AEDE1AE46DEF00679927 /* Board Creation */,
+				9F37AEDE1AE46DEF00679927 /* Board System */,
 				9F37AEDF1AE46E2E00679927 /* Helper Files */,
 				300015C51AE2EBC500870A05 /* AppDelegate.swift */,
 				300015C91AE2EBC500870A05 /* GameScene.swift */,
@@ -156,7 +156,7 @@
 			name = Elements;
 			sourceTree = "<group>";
 		};
-		9F37AEDE1AE46DEF00679927 /* Board Creation */ = {
+		9F37AEDE1AE46DEF00679927 /* Board System */ = {
 			isa = PBXGroup;
 			children = (
 				300015EB1AE2F15800870A05 /* DefaultBoardRaw.swift */,
@@ -164,7 +164,7 @@
 				300015F31AE2F83100870A05 /* BoardNode.swift */,
 				300015F11AE2F73100870A05 /* Board.swift */,
 			);
-			name = "Board Creation";
+			name = "Board System";
 			sourceTree = "<group>";
 		};
 		9F37AEDF1AE46E2E00679927 /* Helper Files */ = {

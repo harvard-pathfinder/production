@@ -25,7 +25,7 @@ class Element: SKSpriteNode {
     // initializer
     init (pos z: (Int,Int)) {
         pos = z
-        let texture = SKTexture(imageNamed: "tile")
+        let texture = SKTexture(imageNamed: "elt")
         super.init(texture: texture, color: nil, size: texture.size())
     }
 
