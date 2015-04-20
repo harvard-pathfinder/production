@@ -17,10 +17,13 @@ class BoardNode: SKNode {
     
     init(x: Int, y: Int, elts: [Element]?) {
         pos = (x,y)
-        elements = elts
-        let node = SKSpriteNode(imageNamed: "Element")
         super.init()
-        self.addChild(node)
+        if let elements = elts {
+            for elt in elements {
+                self.addChild(elt)
+            }
+        }
+//        let node = SKSpriteNode(imageNamed: "tile")
     }
     
     required init?(coder aDecoder: NSCoder) {

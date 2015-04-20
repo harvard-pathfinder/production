@@ -15,7 +15,7 @@ class BoardScene: SKScene {
     override func didMoveToView(view: SKView) {
         
         func insertNode (bNode: BoardNode) -> () {
-            let node = SKSpriteNode(imageNamed: "none")
+            let node = SKSpriteNode(imageNamed: "tile")
             node.position = CGPointMake(CGFloat(bNode.pos.x * 10), CGFloat(bNode.pos.y * 10))
             self.addChild(node)
         }
