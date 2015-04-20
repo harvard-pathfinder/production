@@ -27,6 +27,11 @@ class BoardScene: SKScene {
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        let b = gameBoard.getBNode(atPoint: (2,1))
+        print(b.elements)
+        
+//        gameBoard.addElement(atpoint: (3,3), eltToAdd: elt)
+//        gameBoard.moveElement(fromPoint: (0,0), toPoint: (0,1), eltToMove: elt)
     }
     
     override func update(currentTime: CFTimeInterval) {
