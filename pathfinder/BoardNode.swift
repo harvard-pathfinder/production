@@ -17,10 +17,15 @@ class BoardNode: SKNode {
     
     init(x: Int, y: Int, elts: [Element]?) {
         pos = (x,y)
-        elements = elts
         super.init()
+        if let elements = elts {
+            for elt in elements {
+                self.addChild(elt)
+            }
+        }
+//        let node = SKSpriteNode(imageNamed: "tile")
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
