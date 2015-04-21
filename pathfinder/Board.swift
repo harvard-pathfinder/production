@@ -9,6 +9,8 @@
 import Foundation
 import SpriteKit
 
+
+
 class Board {
     // creates 2D array of arrays of BoardNodes
     private var gameBoard: [[BoardNode]] = BoardGenerator().defaultBoard()
@@ -117,8 +119,15 @@ class Board {
             self.removeElement(atPoint: p1, eltToRemove: eltToMove)
             self.addElement(atpoint: p2, eltToAdd: eltToMove)
         }
-        else {
-            return
+    }
+    
+    
+    // moves element from point 1 by a directional
+    func moveElementByDirection (fromPoint p1: (Int,Int), toDirection direction: Direction, eltToMove: Element) -> () {
+        if self.elementExists(atPoint: p1, eltToCheck: eltToMove) {
+            self.removeElement(atPoint: p1, eltToRemove: eltToMove)
+            let p2 = movePoint(fromPoint: p1, direction)
+            self.addElement(atpoint: p2, eltToAdd: eltToMove)
         }
     }
 }

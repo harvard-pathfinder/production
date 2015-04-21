@@ -9,12 +9,6 @@
 import Foundation
 import SpriteKit
 
-
-// directional
-enum Direction {
-    case North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest
-}
-
 // includes Players, Obstacles, and Flags
 class Element: SKSpriteNode {
     var invSpeed: Int {                        
@@ -26,7 +20,7 @@ class Element: SKSpriteNode {
         let texture = SKTexture(imageNamed: textureName)
         super.init(texture: texture, color: nil, size: texture.size())
     }
-
+    
     func nextDirection () -> Direction? {
         return nil
     }

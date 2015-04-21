@@ -30,7 +30,8 @@ class BoardScene: SKScene {
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         
         let eltarray = gameBoard.getElt(atPoint: (1,1))
-        gameBoard.moveElement(fromPoint: (1,1), toPoint: (2,2), eltToMove: eltarray![0])
+        gameBoard.moveElementByDirection(fromPoint: (1,1), toDirection: Direction.SouthWest, eltToMove: eltarray![0])
+        
     
 //        let elt = Element()
 //        if (gameBoard.elementExists(atPoint: (1,1), eltToCheck: elt)) {
