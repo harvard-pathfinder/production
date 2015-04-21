@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SpriteKit
 
 class Hero: Player {
     // instance variables

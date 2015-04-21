@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SpriteKit
 
 // includes Heroes, Enemies
 class Player: Element {
@@ -15,6 +16,14 @@ class Player: Element {
     var life = 100
     var damage : Int {
         return 0
+    }
+    
+    override init (nameOfTexture: String) {
+        super.init(nameOfTexture)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     // attack function

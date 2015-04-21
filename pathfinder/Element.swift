@@ -17,13 +17,13 @@ enum Direction {
 
 // includes Players, Obstacles, and Flags
 class Element: SKSpriteNode {
-    var invSpeed: Int {
+    var invSpeed: Int {                        
         return 0
     }
     
     // initializer
-    override init () {
-        let texture = SKTexture(imageNamed: "elt")
+    init (textureName: String) {
+        let texture = SKTexture(imageNamed: textureName)
         super.init(texture: texture, color: nil, size: texture.size())
     }
 
