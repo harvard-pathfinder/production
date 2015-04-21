@@ -64,14 +64,14 @@ class Board {
                 if currentBNode.elements == nil {
                     // adds element to SpriteKit Tree
                     currentBNode.addChild(e)
-                    e.anchorPoint = CGPointMake(0.0, 0.0)
+                    e.anchorPoint = CGPointMake(0.0, 1.0)
                     // adds element to datastructure
                     currentBNode.elements = [e]
                 }
                 else {
                     // adds element to SpriteKit Tree
                     currentBNode.addChild(e)
-                    e.anchorPoint = CGPointMake(0.0, 0.0)
+                    e.anchorPoint = CGPointMake(0.0, 1.0)
                     // adds element to datastructure
                     currentBNode.elements! += [e]
                 }
