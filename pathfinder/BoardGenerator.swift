@@ -27,9 +27,12 @@ class BoardGenerator {
                 // Holder for column
                 let colHolder = col
                 col = col + 1
-                // If there is an element in a location
-                if i > 0 {
-                    return BoardNode(x: row, y: colHolder, elts: [Element()])
+                // If there is a hero in a location
+                if i == 1  {
+                    return BoardNode(x: row, y: colHolder, elts: [Hero()])
+                }
+                else if i == 2 {
+                    return BoardNode(x: row, y: colHolder, elts: [Enemy()])
                 }
                     // If there is not an element in a location
                 else {

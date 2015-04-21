@@ -18,8 +18,8 @@ class Player: Element {
         return 0
     }
     
-    override init (nameOfTexture: String) {
-        super.init(nameOfTexture)
+    init (nameOfTexture: String) {
+        super.init(textureName: nameOfTexture)
     }
 
     required init?(coder aDecoder: NSCoder) {
