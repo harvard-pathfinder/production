@@ -53,7 +53,7 @@ class BoardScene: SKScene {
         if let a = self.childNodeWithName("11") {
             a.zRotation += 0.01
         }
-    }
+    } 
 }
 
 //        let elt = Element()
