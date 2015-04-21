@@ -38,8 +38,10 @@ class BoardScene: SKScene {
             let node = nodeAtPoint(location)
             
             if node is Element {
-                let elt = node as? Element
+                var elt = node as? Element
+                print(elt)
                 gameBoard.moveElementByDirection(fromPoint: elt!.pos, toDirection: Direction.NorthEast, eltToMove: elt!)
+                print(elt)
                 
             }
             else if node is BoardNode {
