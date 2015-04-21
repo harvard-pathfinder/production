@@ -29,17 +29,36 @@ class BoardScene: SKScene {
     // all of these below are tests that I commented out
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         
-        let eltarray = gameBoard.getElt(atPoint: (1,1))
-        gameBoard.moveElementByDirection(fromPoint: (1,1), toDirection: (naturalDirection(fromPoint: (1,1), toPoint:(3,3))!), eltToMove: eltarray![0])
+//        let eltarray = gameBoard.getElt(atPoint: (1,1))
+//        gameBoard.moveElementByDirection(fromPoint: (1,1), toDirection: (naturalDirection(fromPoint: (1,1), toPoint:(3,3))!), eltToMove: eltarray![0])
         
+        for touch: AnyObject in touches {
+            let location = touch.locationInNode(self)
+            
+            // if the user touches the survival button, go to the survival explanation
+            let node = nodeAtPoint(location)
+            
+            if node is BoardNode {
+                node.alpha -= 0.2
+            }
+        }
+    }
     
+    override func update(currentTime: CFTimeInterval) {
+        if let a = self.childNodeWithName("11") {
+            a.zRotation += 0.01
+        }
+    }
+
+}
+
 //        let elt = Element()
 //        if (gameBoard.elementExists(atPoint: (1,1), eltToCheck: elt)) {
 //            print ("shoot")
 //        }
 //        else {
 //            print ("google")
-//        }        
+//        }
 //        let eltarray = gameBoard.getElt(atPoint: (1,1))
 //        if (gameBoard.elementExists(atPoint: (1,1), eltToCheck: eltarray![0])) {
 //            print("hi")
@@ -50,17 +69,8 @@ class BoardScene: SKScene {
 //        let bnode =  BoardNode(x: 2, y: 2, elts: [elt])
 //        self.insertNodeToBoardScene(bnode)
 //        gameBoard.setBNode(atPoint: (2,2), bNode: bnode)
-//        
+//
 //        gameBoard.iterBoardNodes(function:
 //        {(bNode) -> () in bNode.position.x += CGFloat(1.0)})
 //        gameBoard.addElement(atpoint: (2,3), eltToAdd: elt)
 //        gameBoard.moveElement(fromPoint: (0,0), toPoint: (0,1), eltToMove: elt)
-    }
-    
-    override func update(currentTime: CFTimeInterval) {
-        if let a = self.childNodeWithName("11") {
-            a.zRotation += 0.01
-        }
-    }
-
-}
