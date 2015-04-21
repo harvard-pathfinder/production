@@ -37,7 +37,12 @@ class BoardScene: SKScene {
             
             let node = nodeAtPoint(location)
             
-            if node is BoardNode {
+            if node is Element {
+                let elt = node as? Element
+                gameBoard.moveElementByDirection(fromPoint: elt!.pos, toDirection: Direction.South, eltToMove: elt!)
+                
+            }
+            else if node is BoardNode {
                 let bnode = node as? BoardNode
                 gameBoard.addElement(atpoint: bnode!.pos, eltToAdd: Enemy(position: bnode!.pos))
             }
