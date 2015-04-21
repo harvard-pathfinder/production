@@ -9,6 +9,13 @@
 import Foundation
 
 class Obstacle: Element {
+    init() {
+        super.init(textureName: "obstacle")
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     // Element Methods
     override func isObstacle() -> Bool {
         return true

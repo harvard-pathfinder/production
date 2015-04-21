@@ -34,6 +34,12 @@ class BoardGenerator {
                 else if i == 2 {
                     return BoardNode(x: row, y: colHolder, elts: [Enemy()])
                 }
+                else if i == 3 {
+                    return BoardNode(x: row, y: colHolder, elts: [Obstacle()])
+                }
+                else if i == 4 {
+                    return BoardNode(x: row, y: colHolder, elts: [Flag()])
+                }
                     // If there is not an element in a location
                 else {
                     return BoardNode(x: row, y: colHolder, elts: nil)
