@@ -17,8 +17,8 @@ class BoardScene: SKScene {
         
         // TODO: make positions percentages or fractions, based on the length of the array - maybe a gameboard.width element
         bNode.position = CGPointMake(CGFloat(bNode.pos.x * 100), CGFloat(max.y - CGFloat(bNode.pos.y * 100)))
-        
-        bNode.anchorPoint = CGPointMake(0.0, 0.0)
+        bNode.anchorPoint = CGPointMake(0.0, 1.0)
+        bNode.name = String(bNode.pos.x) + String(bNode.pos.y)
         self.addChild(bNode)
     }
     
@@ -57,7 +57,9 @@ class BoardScene: SKScene {
     }
     
     override func update(currentTime: CFTimeInterval) {
-        
+        if let a = self.childNodeWithName("11") {
+            a.zRotation += 0.01
+        }
     }
 
 }
