@@ -10,8 +10,8 @@ import Foundation
 
 class Flag: Element {
     // initializer
-    init() {
-        super.init(textureName: "flag")
+    init(position: (Int,Int)) {
+        super.init(textureName: "flag", position: position)
     }
 
     required init?(coder aDecoder: NSCoder) {

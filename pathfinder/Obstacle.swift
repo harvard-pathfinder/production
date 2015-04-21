@@ -9,8 +9,8 @@
 import Foundation
 
 class Obstacle: Element {
-    init() {
-        super.init(textureName: "obstacle")
+    init(position: (Int,Int)) {
+        super.init(textureName: "obstacle", position: position)
     }
 
     required init?(coder aDecoder: NSCoder) {

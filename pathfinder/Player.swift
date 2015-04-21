@@ -18,8 +18,8 @@ class Player: Element {
         return 0
     }
     
-    init (nameOfTexture: String) {
-        super.init(textureName: nameOfTexture)
+    init (nameOfTexture: String, position: (Int,Int)) {
+        super.init(textureName: nameOfTexture, position: position)
     }
 
     required init?(coder aDecoder: NSCoder) {
