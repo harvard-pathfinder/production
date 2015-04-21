@@ -20,7 +20,7 @@ class Element: SKSpriteNode {
         let texture = SKTexture(imageNamed: textureName)
         super.init(texture: texture, color: nil, size: texture.size())
     }
-
+    
     func nextDirection () -> Direction? {
         return nil
     }
