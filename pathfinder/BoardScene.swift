@@ -39,7 +39,7 @@ class BoardScene: SKScene {
             
             if node is Element {
                 let elt = node as? Element
-                gameBoard.moveElementByDirection(fromPoint: elt!.pos, toDirection: Direction.South, eltToMove: elt!)
+                gameBoard.moveElementByDirection(fromPoint: elt!.pos, toDirection: Direction.NorthEast, eltToMove: elt!)
                 
             }
             else if node is BoardNode {
@@ -54,7 +54,6 @@ class BoardScene: SKScene {
             a.zRotation += 0.01
         }
     }
-
 }
 
 //        let elt = Element()
