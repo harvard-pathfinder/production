@@ -11,7 +11,7 @@ import SpriteKit
 
 // includes Players, Obstacles, and Flags
 class Element: SKSpriteNode {
-    var invSpeed: Int {                        
+    var invSpeed: Int {
         return 0
     }
     
@@ -22,6 +22,24 @@ class Element: SKSpriteNode {
         pos = position
         let texture = SKTexture(imageNamed: textureName)
         super.init(texture: texture, color: nil, size: texture.size())
+    }
+    
+    //Doesn't work, but a decent representation of what we want
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        print(pos)
+        for touch in touches {
+            let location = touch.locationInNode(self)
+            
+            if nodeAtPoint(location) == self {
+                self.runAction(
+                    SKAction.sequence(
+                        [SKAction.fadeAlphaTo(0.25, duration: 0.05),
+                            SKAction.fadeAlphaTo(0.75, duration: 0.3)]
+                    )
+                )
+            }
+        }
+        super.touchesBegan(touches, withEvent: event)
     }
     
     func nextDirection () -> Direction? {
@@ -40,7 +58,7 @@ class Element: SKSpriteNode {
     func isFlag () -> Bool {
         return false
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
