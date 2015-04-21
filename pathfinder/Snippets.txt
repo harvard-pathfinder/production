@@ -1,0 +1,11 @@
+
+// a touch animation that looks aight
+if nodeAtPoint(location) == retryButton {
+    retryButton.runAction(
+        SKAction.sequence(
+            [SKAction.fadeAlphaTo(0.25, duration: 0.05),
+             SKAction.fadeAlphaTo(0.75, duration: 0.3)]
+        )
+    )
+}
+// CO: learned about sequences here: http://stackoverflow.com/questions/26047010/fading-a-shadow-together-with-the-skspritenode-that-casts-it
