@@ -8,10 +8,11 @@
 
 import Foundation
 
-enum Directions {
+
+// directional
+enum Direction {
     case North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest
 }
-// These functions have not been tested
 
 // gives a random direction
 func randomDirection () -> Direction {
@@ -55,21 +56,21 @@ func movePoint (fromPoint p: (Int,Int), direction: Direction?) -> (Int, Int){
 // gets the natural direction between two points
 func naturalDirection (fromPoint p1: (Int, Int), toPoint p2: (Int, Int)) -> Direction? {
     if p2.0 == p1.0 && p2.1 > p1.1 {
-        return Direction.North
+        return Direction.South
     } else if p2.0 > p1.0 && p2.1 > p1.1  {
-        return Direction.NorthEast
+        return Direction.SouthEast
     } else if p2.0 - p1.0 > 0 && p2.1 == p1.1 {
         return Direction.East
     } else if p2.0 > p1.0 && p2.1 < p1.1 {
-        return Direction.SouthEast
+        return Direction.NorthEast
     } else if p2.0 == p1.0 && p2.1 < p1.1 {
-        return Direction.South
+        return Direction.North
     } else if p2.0 < p1.0 && p2.1 < p1.1 {
-        return Direction.SouthWest
+        return Direction.NorthWest
     } else if p2.0 < p1.0 && p2.1 == p1.1 {
         return Direction.West
     } else if p2.0 < p1.0 && p2.1 > p1.1 {
-        return Direction.NorthWest
+        return Direction.SouthWest
     } else {
         return nil
     }
