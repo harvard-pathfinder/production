@@ -29,17 +29,14 @@ class BoardScene: SKScene {
     // all of these below are tests that I commented out
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         
-//        let eltarray = gameBoard.getElt(atPoint: (1,1))
-//        gameBoard.moveElementByDirection(fromPoint: (1,1), toDirection: (naturalDirection(fromPoint: (1,1), toPoint:(3,3))!), eltToMove: eltarray![0])
-        
         for touch: AnyObject in touches {
+            
             let location = touch.locationInNode(self)
             
-            // if the user touches the survival button, go to the survival explanation
             let node = nodeAtPoint(location)
             
             if node is BoardNode {
-                node.alpha -= 0.2
+                gameBoard.addElement(atpoint: (1,2), eltToAdd: Enemy(position: (1,2)))
             }
         }
     }
