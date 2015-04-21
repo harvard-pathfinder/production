@@ -29,16 +29,16 @@ class BoardGenerator {
                 col = col + 1
                 // If there is a hero in a location
                 if i == 1  {
-                    return BoardNode(x: row, y: colHolder, elts: [Hero()])
+                    return BoardNode(x: row, y: colHolder, elts: [Hero(position: (row,colHolder))])
                 }
                 else if i == 2 {
-                    return BoardNode(x: row, y: colHolder, elts: [Enemy()])
+                    return BoardNode(x: row, y: colHolder, elts: [Enemy(position: (row,colHolder))])
                 }
                 else if i == 3 {
-                    return BoardNode(x: row, y: colHolder, elts: [Obstacle()])
+                    return BoardNode(x: row, y: colHolder, elts: [Obstacle(position: (row,colHolder))])
                 }
                 else if i == 4 {
-                    return BoardNode(x: row, y: colHolder, elts: [Flag()])
+                    return BoardNode(x: row, y: colHolder, elts: [Flag(position: (row,colHolder))])
                 }
                     // If there is not an element in a location
                 else {

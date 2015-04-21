@@ -15,8 +15,11 @@ class Element: SKSpriteNode {
         return 0
     }
     
+    var pos: (Int, Int)
+    
     // initializer
-    init (textureName: String) {
+    init (textureName: String, position: (Int,Int)) {
+        pos = position
         let texture = SKTexture(imageNamed: textureName)
         super.init(texture: texture, color: nil, size: texture.size())
     }

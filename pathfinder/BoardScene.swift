@@ -11,7 +11,7 @@ import SpriteKit
 
 class BoardScene: SKScene {
     let gameBoard = Board()
-    
+       
     private func insertNodeToBoardScene (bNode: BoardNode) -> () {
         let max = (x: self.frame.maxX, y: self.frame.maxY)
         

@@ -18,8 +18,8 @@ class Enemy: Player {
         return 1
     }
     
-    init() {
-        super.init(nameOfTexture: "enemy")
+    init(position: (Int,Int)) {
+        super.init(nameOfTexture: "enemy", position: position)
     }
     
     required init?(coder aDecoder: NSCoder) {
