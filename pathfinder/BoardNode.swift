@@ -28,7 +28,6 @@ class BoardNode: SKSpriteNode {
                 elt.anchorPoint = CGPointMake(0.0, 1.0)
             }
         }
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
