@@ -13,9 +13,12 @@ class BoardScene: SKScene {
     let gameBoard = Board()
     
     private func insertNodeToBoardScene (bNode: BoardNode) -> () {
-        bNode.position = CGPointMake(CGFloat(bNode.pos.x * 100 + 10), CGFloat(bNode.pos.y * 100 + 10))
-        bNode.anchorPoint = CGPointMake(0.0, 0.0)
-        // adds BNode as a child of
+        let max = (x: self.frame.maxX, y: self.frame.maxY)
+        
+        // TODO: make positions percentages or fractions, based on the length of the array - maybe a gameboard.width element
+        bNode.position = CGPointMake(CGFloat(bNode.pos.x * 100), CGFloat(max.y - CGFloat(bNode.pos.y * 100)))
+        bNode.anchorPoint = CGPointMake(0.0, 1.0)
+        bNode.name = String(bNode.pos.x) + String(bNode.pos.y)
         self.addChild(bNode)
     }
     
@@ -55,7 +58,9 @@ class BoardScene: SKScene {
     }
     
     override func update(currentTime: CFTimeInterval) {
-        
+        if let a = self.childNodeWithName("11") {
+            a.zRotation += 0.01
+        }
     }
 
 }

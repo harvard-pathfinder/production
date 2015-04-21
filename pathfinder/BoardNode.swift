@@ -25,7 +25,7 @@ class BoardNode: SKSpriteNode {
         if let eltArray = elements {
             for elt in eltArray {
                 self.addChild(elt)
-                elt.anchorPoint = CGPointMake(0.0, 0.0)
+                elt.anchorPoint = CGPointMake(0.0, 1.0)
             }
         }
         
