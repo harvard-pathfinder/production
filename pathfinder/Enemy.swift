@@ -12,7 +12,6 @@ import SpriteKit
 class Enemy: Player {
     // instance variables
     var EnemyLife = 25
-    var EnemyStatus = true
     
     override var damage: Int {
         return 50
@@ -40,7 +39,7 @@ class Enemy: Player {
             for touch: AnyObject in touches {
                 EnemyLife = EnemyLife - 5
                 if EnemyLife <= 0 {
-                    EnemyStatus = false
+                    
                 }
             }
         }
