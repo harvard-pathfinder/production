@@ -33,7 +33,7 @@ class BoardScene: SKScene {
     }
     
     // all of these below are tests that I commented out
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set <NSObject>, withEvent event: UIEvent) {
         
         for touch: AnyObject in touches {
             

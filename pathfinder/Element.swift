@@ -25,9 +25,9 @@ class Element: SKSpriteNode {
     }
     
     //Doesn't work, but a decent representation of what we want
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set <NSObject>, withEvent event: UIEvent) {
         print(pos)
-        for touch in touches {
+        for touch: AnyObject in touches {
             let location = touch.locationInNode(self)
             
             if nodeAtPoint(location) == self {
