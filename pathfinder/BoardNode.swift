@@ -30,7 +30,7 @@ class BoardNode: SKSpriteNode {
             }
         }
         
-        self.events.trigger("bNodecreated", information: pos)
+        self.events.trigger("created", information: pos)
     }
     
     required init?(coder aDecoder: NSCoder) {

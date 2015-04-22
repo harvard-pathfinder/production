@@ -44,6 +44,9 @@ class BoardScene: SKScene {
                 
             }
             else if node is BoardNode {
+                let bnode = node as? BoardNode
+                gameBoard.addElement(atpoint: bnode!.pos, eltToAdd: Enemy(position: bnode!.pos))
+                gameBoard.listenToBNode(bnode!)
                 let bNode = node as? BoardNode
                 gameBoard.addElement(atpoint: bNode!.pos, eltToAdd: Enemy(position: bNode!.pos))
             }
