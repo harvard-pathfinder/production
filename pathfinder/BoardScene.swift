@@ -26,6 +26,8 @@ class BoardScene: SKScene {
         bNode.anchorPoint = CGPointMake(0.0, 1.0)
         bNode.name = String(bNode.pos.x) + String(bNode.pos.y)
         self.addChild(bNode)
+        gameBoard.listenToBNode(bNode)
+
     }
 
     override func didMoveToView(view: SKView) {
@@ -50,7 +52,6 @@ class BoardScene: SKScene {
             else if node is BoardNode {
                 let bnode = node as? BoardNode
                 gameBoard.addElement(atpoint: bnode!.pos, eltToAdd: Enemy(position: bnode!.pos))
-                gameBoard.listenToBNode(bnode!)
                 let bNode = node as? BoardNode
                 gameBoard.addElement(atpoint: bNode!.pos, eltToAdd: Enemy(position: bNode!.pos))
             }

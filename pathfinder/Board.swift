@@ -139,7 +139,7 @@ class Board {
         node.events.listenTo("created", action: {
             (info: Any?) -> () in
                 if let i = info {
-                    print(i)
+                    print("bishes")
                 }
             }
         )
