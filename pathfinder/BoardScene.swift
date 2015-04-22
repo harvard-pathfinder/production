@@ -27,7 +27,7 @@ class BoardScene: SKScene {
         bNode.name = String(bNode.pos.x) + String(bNode.pos.y)
         self.addChild(bNode)
         gameBoard.listenToBNode(bNode)
-
+        bNode.testEvent()
     }
 
     override func didMoveToView(view: SKView) {
