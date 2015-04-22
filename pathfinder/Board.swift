@@ -142,10 +142,3 @@ class Board {
     }
     
 }
-
-/* {
-(info: Any?) -> () in
-if let i = info {
-print("bishes")
-}
-} */
