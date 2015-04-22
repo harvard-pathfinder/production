@@ -32,13 +32,12 @@ class BoardScene: SKScene {
         gameBoard.iterBoardNodes(function: insertNodeToBoardScene)
     }
     
+    
     // all of these below are tests that I commented out
     override func touchesBegan(touches: Set <NSObject>, withEvent event: UIEvent) {
         
         for touch: AnyObject in touches {
-            
             let location = touch.locationInNode(self)
-            
             let node = nodeAtPoint(location)
             
             if node is Element {
@@ -51,6 +50,7 @@ class BoardScene: SKScene {
             else if node is BoardNode {
                 let bnode = node as? BoardNode
                 gameBoard.addElement(atpoint: bnode!.pos, eltToAdd: Enemy(position: bnode!.pos))
+                gameBoard.listenToElement(named: bNode)
             }
         }
     }

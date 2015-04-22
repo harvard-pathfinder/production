@@ -134,7 +134,15 @@ class Board {
             self.addElement(atpoint: p2, eltToAdd: eltToMove)
         }
     }
+    
+    func listenToBNode(node: BoardNode) {
+        node.events.listenTo("created", action: {
+            (info: Any?) -> () in
+                if let i = info {
+                    print(i)
+                }
+            }
+        )
+    }
+    
 }
-
-
-
