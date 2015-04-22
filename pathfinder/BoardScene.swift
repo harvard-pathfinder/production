@@ -28,13 +28,12 @@ class BoardScene: SKScene {
         gameBoard.iterBoardNodes(function: insertNodeToBoardScene)
     }
     
+    
     // all of these below are tests that I commented out
     override func touchesBegan(touches: Set <NSObject>, withEvent event: UIEvent) {
         
         for touch: AnyObject in touches {
-            
             let location = touch.locationInNode(self)
-            
             let node = nodeAtPoint(location)
             
             if node is Element {
