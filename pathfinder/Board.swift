@@ -67,6 +67,8 @@ class Board {
                     e.anchorPoint = CGPointMake(0.0, 1.0)
                     // adds element to datastructure
                     currentBNode.elements = [e]
+                    // update pos in element
+                    e.pos = currentBNode.pos
                 }
                 else {
                     // adds element to SpriteKit Tree
@@ -74,6 +76,8 @@ class Board {
                     e.anchorPoint = CGPointMake(0.0, 1.0)
                     // adds element to datastructure
                     currentBNode.elements! += [e]
+                    // update pos in element
+                    e.pos = currentBNode.pos
                 }
             }
         )

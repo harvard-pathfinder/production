@@ -11,6 +11,10 @@ import SpriteKit
 
 class BoardScene: SKScene {
     let gameBoard = Board()
+    
+    func maxY () -> CGFloat {
+        return self.frame.maxY
+    }
        
     private func insertNodeToBoardScene (bNode: BoardNode) -> () {
         let max = (x: self.frame.maxX, y: self.frame.maxY)
@@ -23,7 +27,7 @@ class BoardScene: SKScene {
         bNode.name = String(bNode.pos.x) + String(bNode.pos.y)
         self.addChild(bNode)
     }
-    
+
     override func didMoveToView(view: SKView) {
         gameBoard.iterBoardNodes(function: insertNodeToBoardScene)
     }
@@ -39,9 +43,9 @@ class BoardScene: SKScene {
             
             if node is Element {
                 var elt = node as? Element
-                print(elt)
+                print(elt?.pos)
                 gameBoard.moveElementByDirection(fromPoint: elt!.pos, toDirection: Direction.NorthEast, eltToMove: elt!)
-                print(elt)
+                print(elt?.pos)
                 
             }
             else if node is BoardNode {
