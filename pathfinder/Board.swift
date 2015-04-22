@@ -137,12 +137,15 @@ class Board {
     
     func listenToBNode(node: BoardNode) {
         node.events.listenTo("created", action: {
-            (info: Any?) -> () in
-                if let i = info {
-                    print("bishes")
-                }
-            }
-        )
+            println("bishes")
+        })
     }
     
 }
+
+/* {
+(info: Any?) -> () in
+if let i = info {
+print("bishes")
+}
+} */
