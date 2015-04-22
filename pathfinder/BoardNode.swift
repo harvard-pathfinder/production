@@ -14,6 +14,7 @@ class BoardNode: SKSpriteNode {
     var pos: (x: Int, y: Int)
     // (array of elements) option
     var elements: [Element]?
+    var events = EventManager()
     
     init(x: Int, y: Int, var elts: [Element]?) {
         pos = (x,y)
@@ -28,6 +29,8 @@ class BoardNode: SKSpriteNode {
                 elt.anchorPoint = CGPointMake(0.0, 1.0)
             }
         }
+        
+        self.events.trigger("bNodecreated", information: pos)
     }
     
     required init?(coder aDecoder: NSCoder) {
