@@ -11,13 +11,15 @@ import SpriteKit
 
 class Enemy: Player {
     // instance variables
+    var EnemyLife = 25
+    var EnemyStatus = true
+    
     override var damage: Int {
         return 50
     }
     override var invSpeed: Int {
         return 1
     }
-    
     init(position: (Int,Int)) {
         super.init(nameOfTexture: "enemy", position: position)
     }
@@ -30,5 +32,17 @@ class Enemy: Player {
     // overrides NextDirection... will eventually be the accelerometer
     override func nextDirection() -> Direction? {
         return nil
+    }
+    // inflict damage on touch
+    func getHit () -> () {
+        func touchesBegan(touches: Set <NSObject>, withEvent event: UIEvent) {
+            
+            for touch: AnyObject in touches {
+                EnemyLife = EnemyLife - 5
+                if EnemyLife <= 0 {
+                    EnemyStatus = false
+                }
+            }
+        }
     }
 }
