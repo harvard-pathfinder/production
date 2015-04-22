@@ -26,8 +26,10 @@ class BoardScene: SKScene {
         bNode.anchorPoint = CGPointMake(0.0, 1.0)
         bNode.name = String(bNode.pos.x) + String(bNode.pos.y)
         self.addChild(bNode)
+        
+        // event handler
         gameBoard.listenToBNode(bNode)
-
+        bNode.testEvent()
     }
 
     override func didMoveToView(view: SKView) {
