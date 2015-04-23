@@ -28,7 +28,7 @@ class Element: SKSpriteNode {
     
     //Doesn't work, but a decent representation of what we want
     override func touchesBegan(touches: Set <NSObject>, withEvent event: UIEvent) {
-        print(pos)
+        //print(pos)
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self)
             

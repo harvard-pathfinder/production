@@ -28,7 +28,6 @@ class BoardScene: SKScene {
         gameBoard.iterElements(function: insertElementEventsToBoardScene, boardNode: bNode)
         
         // event handler for bNode events
-        // board node event handler
         gameBoard.listenToBNode(bNode)
         bNode.testEvent()
         
@@ -36,6 +35,9 @@ class BoardScene: SKScene {
     
     private func insertElementEventsToBoardScene (elt: Element) -> () {
         gameBoard.listenToElement(elt)
+        if let enemy = elt as? Enemy {
+            gameBoard.listenToEnemy(enemy)
+        }
     }
 
     override func didMoveToView(view: SKView) {
@@ -50,10 +52,9 @@ class BoardScene: SKScene {
             let location = touch.locationInNode(self)
             let node = nodeAtPoint(location)
             
-            if node is Element {
-                var elt = node as? Element
-                elt?.testMove()
-                
+            if node is Enemy {
+                let eNode = node as? Enemy
+                eNode!.getHit()
             }
             else if node is BoardNode {
                 let bnode = node as? BoardNode
@@ -61,16 +62,14 @@ class BoardScene: SKScene {
                 gameBoard.createNewElement(atPoint: bnode!.pos, eltToCreate: Enemy(position: bnode!.pos))
             }
                 
-            else if node is Enemy {
-                let eNode = node as? Enemy
-                gameBoard.listenToEnemy(eNode!)
-                eNode!.getHit()
-                }
+            else if node is Element {
+                let elt = node as? Element
+                elt!.testMove()
+                
             }
+        }
     }
-
-
-     override func update(currentTime: CFTimeInterval) {
+      override func update(currentTime: CFTimeInterval) {
         if let a = self.childNodeWithName("11") {
             a.zRotation += 0.01
         }
