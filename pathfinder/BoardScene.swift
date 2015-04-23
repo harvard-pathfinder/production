@@ -52,7 +52,6 @@ class BoardScene: SKScene {
         innerScene.name = "innerScene"
         self.addChild(innerScene)
         gameBoard.iterBoardNodes(function: insertNodeToBoardScene)
-        println(self.children)
     }
     
     
@@ -71,16 +70,13 @@ class BoardScene: SKScene {
                 gameBoard.createNewElement(atPoint: bnode!.pos, eltToCreate: Enemy(position: bnode!.pos))
             }
                 
-            else if node is Enemy {
-                let eNode = node as? Enemy
-                gameBoard.listenToEnemy(eNode!)
-                eNode!.getHit()
+            else if node is Element {
+                let elt = node as? Element
+                elt!.testMove()
             }
         }
     }
-    
-    
-    override func update(currentTime: CFTimeInterval) {
+      override func update(currentTime: CFTimeInterval) {
         if let a = self.childNodeWithName("11") {
             a.zRotation += 0.01
         }
