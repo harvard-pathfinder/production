@@ -32,8 +32,8 @@ class Player: Element {
     }
     
     // die function
-    func die() -> () {
-        return
+    func dieEvent() -> () {
+        self.events.trigger("die", information: self)
     }
     
     // regenerates health slowly
@@ -47,14 +47,11 @@ class Player: Element {
         }
     }
     
-    // if hurt by opponent, reduce life by "damage"
-    func hurt(damage x: Int) -> () {
-        if life - x <= 0 {
-            life = 0
-            self.die()
-        }
-        else {
-            life = life - x
+    // inflict damage on touch, fire die event if enemy has no health
+    func getHit (damage: Int) -> () {
+        life = life - damage
+        if life <= 0 {
+            dieEvent()
         }
     }
 }

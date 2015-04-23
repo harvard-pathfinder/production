@@ -194,6 +194,10 @@ class Board {
         if p1.0 >= 0 || p1.0 < widthOfBoard || p1.1 >= 0 || p1.1 < heightOfBoard {
             self.addElement(atpoint: p1, eltToAdd: eltToCreate)
             self.listenToElement(eltToCreate)
+            if eltToCreate is Player {
+                let player = eltToCreate as? Player
+                self.listenToPlayer(player!)
+            }
         }
     }
     
@@ -214,9 +218,9 @@ class Board {
     }
     
     // enemy listener
-    func listenToEnemy(enemy: Enemy) {
-        enemy.events.listenTo("enemyDeath", action: {
-            self.removeElement(atPoint: enemy.pos, eltToRemove: enemy);
+    func listenToPlayer(player: Player) {
+        player.events.listenTo("die", action: {
+            self.removeElement(atPoint: player.pos, eltToRemove: player);
         })
     }
     

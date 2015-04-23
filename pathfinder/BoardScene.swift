@@ -35,8 +35,8 @@ class BoardScene: SKScene {
     
     private func insertElementEventsToBoardScene (elt: Element) -> () {
         gameBoard.listenToElement(elt)
-        if let enemy = elt as? Enemy {
-            gameBoard.listenToEnemy(enemy)
+        if let player = elt as? Player {
+            gameBoard.listenToPlayer(player)
         }
     }
 
@@ -52,9 +52,9 @@ class BoardScene: SKScene {
             let location = touch.locationInNode(self)
             let node = nodeAtPoint(location)
             
-            if node is Enemy {
-                let eNode = node as? Enemy
-                eNode!.getHit()
+            if node is Player {
+                let player = node as? Player
+                player!.getHit(100)
             }
             else if node is BoardNode {
                 let bnode = node as? BoardNode
