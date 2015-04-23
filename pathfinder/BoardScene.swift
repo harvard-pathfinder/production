@@ -12,7 +12,7 @@ import SpriteKit
 class BoardScene: SKScene {
     let gameBoard = Board()
     let cropNode = SKCropNode()
-    let innerScene = SKSpriteNode()
+    //let innerScene = SKSpriteNode()
     
     override init (size: CGSize) {
         let innerScene = SKSpriteNode(imageNamed: "tile")
