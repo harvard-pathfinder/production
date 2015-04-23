@@ -17,12 +17,12 @@ class Board {
     
     // height of the gameBoard
     var heightOfBoard: Int {
-        return 5
+        return 6
     }
     
     // width of the gameBoard
     var widthOfBoard: Int {
-        return 5
+        return 6
     }
 
     // return the path from one Position to another
@@ -53,7 +53,7 @@ class Board {
     // CORRECT
     // "gets" Bnode at point p
     func getBNode (atPoint p: (Int,Int)) -> BoardNode? {
-        if p.0 > 0 && p.0 < widthOfBoard && p.1 > 0 && p.1 < heightOfBoard {
+        if p.0 >= 0 && p.0 < widthOfBoard && p.1 >= 0 && p.1 < heightOfBoard {
             return gameBoard[p.0][p.1]
         }
         return nil
@@ -62,7 +62,7 @@ class Board {
     // CORRECT
     // "gets" EltArray at point p
     func getElt (atPoint p: (Int,Int)) -> [Element]? {
-        if p.0 > 0 && p.0 < widthOfBoard && p.1 > 0 && p.1 < heightOfBoard {
+        if p.0 >= 0 && p.0 < widthOfBoard && p.1 >= 0 && p.1 < heightOfBoard {
             return gameBoard[p.0][p.1].elements
         }
         return nil
@@ -71,7 +71,7 @@ class Board {
     // CORRECT
     // "sets" array of BNodes at point p to be bNode
     func setBNode (atPoint p: (Int, Int), bNode: BoardNode) -> () {
-        if p.0 > 0 && p.0 < widthOfBoard && p.1 > 0 && p.1 < heightOfBoard {
+        if p.0 >= 0 && p.0 < widthOfBoard && p.1 >= 0 && p.1 < heightOfBoard {
             gameBoard[p.0][p.1] = bNode
         }
     }
@@ -154,7 +154,7 @@ class Board {
     // returns an option tuple (the location of the element after the function call)
     func moveElement (fromPoint p1: (Int, Int), toPoint p2: (Int, Int), eltToMove: Element) -> ((Int,Int)?) {
         // if the destination is outside the bounds of the array
-        if p2.0 < 0 || p2.0 > widthOfBoard || p2.1 < 0 || p2.1 > heightOfBoard {
+        if p2.0 <= 0 || p2.0 > widthOfBoard || p2.1 < 0 || p2.1 > heightOfBoard {
             return p1
         }
         if self.elementExists(atPoint: p1, eltToCheck: eltToMove) {
@@ -173,8 +173,8 @@ class Board {
             // destination
             let p2 = movePoint(fromPoint: p1, direction)
             // if the destination is outside the bounds of the array
-            print(widthOfBoard)
-            if p2.0 < 0 || p2.0 > widthOfBoard || p2.1 < 0 || p2.1 > heightOfBoard {
+            //print(widthOfBoard)
+            if p2.0 <= 0 || p2.0 > widthOfBoard || p2.1 < 0 || p2.1 > heightOfBoard {
                 return p1
             }
             // otherwise remove and add
@@ -191,7 +191,7 @@ class Board {
     // initializes listeners
     func createNewElement (atPoint p1: (Int,Int), eltToCreate: Element) -> () {
         // if the location is insdie the array, just return
-        if p1.0 > 0 || p1.0 < widthOfBoard || p1.1 > 0 || p1.1 < heightOfBoard {
+        if p1.0 >= 0 || p1.0 < widthOfBoard || p1.1 >= 0 || p1.1 < heightOfBoard {
             self.addElement(atpoint: p1, eltToAdd: eltToCreate)
             self.listenToElement(eltToCreate)
         }
@@ -200,7 +200,7 @@ class Board {
     // board node event listener
     func listenToBNode(node: BoardNode) {
         node.events.listenTo("created", action: {
-            println("bishes")
+            // TODO: actions
         })
     }
     
@@ -208,7 +208,7 @@ class Board {
     func listenToElement(elt: Element) {
         elt.events.listenTo("move", action: {
             if let nextDir = elt.nextDirection() {
-                print(self.moveElementByDirection(fromPoint: elt.pos, toDirection: nextDir, eltToMove: elt))
+                //print(self.moveElementByDirection(fromPoint: elt.pos, toDirection: nextDir, eltToMove: elt))
             }
         })
     }
