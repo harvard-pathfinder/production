@@ -35,8 +35,6 @@ class GameScene: SKScene {
                 skView.presentScene(scene)
             }
         }
-        
-        
     }
    
     override func update(currentTime: CFTimeInterval) {

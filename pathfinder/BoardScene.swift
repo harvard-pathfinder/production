@@ -11,6 +11,8 @@ import SpriteKit
 
 class BoardScene: SKScene {
     let gameBoard = Board()
+    let innerScene = SKSpriteNode()
+    
     
     private func insertNodeToBoardScene (bNode: BoardNode) -> () {
         let max = (x: self.frame.maxX, y: self.frame.maxY)
@@ -31,21 +33,28 @@ class BoardScene: SKScene {
         // board node event handler
         gameBoard.listenToBNode(bNode)
         bNode.testEvent()
-        
     }
     
     private func insertElementEventsToBoardScene (elt: Element) -> () {
         gameBoard.listenToElement(elt)
     }
-
+    
     override func didMoveToView(view: SKView) {
+        let innerScene = SKSpriteNode(imageNamed: "tile")
+        innerScene.anchorPoint = CGPointMake(0.5, 1.0)
+        innerScene.size.height = self.size.height
+        innerScene.size.height = self.size.width
+//        innerScene.alpha = 0.0
+        innerScene.position.x = CGRectGetMidX(self.frame)
+        innerScene.position.y = CGRectGetMaxY(self.frame)
+        innerScene.name = "innerScene"
+        self.addChild(innerScene)
         gameBoard.iterBoardNodes(function: insertNodeToBoardScene)
+        println(self.children)
     }
     
     
-    // all of these below are tests that I commented out
     override func touchesBegan(touches: Set <NSObject>, withEvent event: UIEvent) {
-        
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self)
             let node = nodeAtPoint(location)
@@ -65,12 +74,12 @@ class BoardScene: SKScene {
                 let eNode = node as? Enemy
                 gameBoard.listenToEnemy(eNode!)
                 eNode!.getHit()
-                }
             }
+        }
     }
-
-
-     override func update(currentTime: CFTimeInterval) {
+    
+    
+    override func update(currentTime: CFTimeInterval) {
         if let a = self.childNodeWithName("11") {
             a.zRotation += 0.01
         }
