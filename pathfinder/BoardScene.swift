@@ -38,7 +38,7 @@ class BoardScene: SKScene {
         // TODO: make positions percentages or fractions, based on the length of the array - maybe a gameboard.width element
         // TODO: possibly override this position variable in the BoardNode Class
         // Check pos.y + 1 - why are y values starting at 1?
-        bNode.position = CGPointMake(CGFloat(bNode.pos.x) * (offsetX + 1), CGFloat(max.y - CGFloat(bNode.pos.y + 1) * (offsetY + 1)))
+        bNode.position = CGPointMake(CGFloat(bNode.pos.x + 1) * (offsetX + 1), CGFloat(max.y - CGFloat(bNode.pos.y + 1) * (offsetY + 1)))
         bNode.anchorPoint = CGPointMake(0.0, 1.0)
         bNode.name = String(bNode.pos.x) + String(bNode.pos.y)
         //        innerScene.addChild(bNode)
