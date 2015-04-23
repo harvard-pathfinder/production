@@ -30,16 +30,19 @@ class BoardScene: SKScene {
     }
     
     private func insertNodeToBoardScene (bNode: BoardNode) -> () {
+//        let max = (x: innerScene.frame.maxX, y: innerScene.frame.maxY)
         let max = (x: self.frame.maxX, y: self.frame.maxY)
         let offsetX = bNode.frame.width
         let offsetY = bNode.frame.height
         
         // TODO: make positions percentages or fractions, based on the length of the array - maybe a gameboard.width element
         // TODO: possibly override this position variable in the BoardNode Class
-        bNode.position = CGPointMake(CGFloat(bNode.pos.x) * (offsetX + 1), CGFloat(max.y - CGFloat(bNode.pos.y) * (offsetY + 1)))
-        bNode.anchorPoint = CGPointMake(0.5, 0.5)
+        // Check pos.y + 1 - why are y values starting at 1?
+        bNode.position = CGPointMake(CGFloat(bNode.pos.x) * (offsetX + 1), CGFloat(max.y - CGFloat(bNode.pos.y + 1) * (offsetY + 1)))
+        bNode.anchorPoint = CGPointMake(0.0, 1.0)
         bNode.name = String(bNode.pos.x) + String(bNode.pos.y)
-        innerScene.addChild(bNode)
+//        innerScene.addChild(bNode)
+        self.addChild(bNode)
         
         // event handler for element events
         gameBoard.iterElements(function: insertElementEventsToBoardScene, boardNode: bNode)
@@ -63,7 +66,7 @@ class BoardScene: SKScene {
     }
     
     override func didMoveToView(view: SKView) {
-        println(innerScene.children)
+//        println(innerScene.children)
     }
     
     override func touchesBegan(touches: Set <NSObject>, withEvent event: UIEvent) {
