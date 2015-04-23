@@ -27,16 +27,13 @@ class GameScene: SKScene {
             if nodeAtPoint(location) == startButton {
                 
                 // create a new scene
-                var scene = BoardScene()
                 let skView = self.view as SKView!
-                scene.size = skView.bounds.size
+                var scene = BoardScene(size: skView.bounds.size)
                 
                 // go to the new scene
                 skView.presentScene(scene)
             }
         }
-        
-        
     }
    
     override func update(currentTime: CFTimeInterval) {
