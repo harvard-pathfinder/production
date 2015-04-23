@@ -12,7 +12,6 @@ import SpriteKit
 class Enemy: Player {
     // instance variables
     var EnemyLife = 25
-    var events = EventManager()
     
     override var damage: Int {
         return 50

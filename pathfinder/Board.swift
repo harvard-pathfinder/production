@@ -154,8 +154,15 @@ class Board {
     }
     
     func listenToElement(elt: Element) {
-        elt.events.listenTo("move", action: {
-            println("movingday")
+        elt.events.listenTo("move", action: {println("movingday") })
+    }
+    
+    // enemy death listener
+    func listenToEnemy(enemy: Enemy) {
+        enemy.events.listenTo("enemyDeath", action: {
+            self.removeElement(atPoint: enemy.pos, eltToRemove: enemy)
+            self.removeElement(atPoint: enemy.pos, eltToRemove: enemy)
         })
     }
+    
 }

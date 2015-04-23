@@ -28,6 +28,7 @@ class BoardScene: SKScene {
         gameBoard.iterElements(function: insertElementEventsToBoardScene, boardNode: bNode)
         
         // event handler for bNode events
+        // board node event handler
         gameBoard.listenToBNode(bNode)
         bNode.testEvent()
         
@@ -70,8 +71,11 @@ class BoardScene: SKScene {
                 }
             }
     }
-    
-    override func update(currentTime: CFTimeInterval) {
-        return
-    } 
+
+
+     override func update(currentTime: CFTimeInterval) {
+        if let a = self.childNodeWithName("11") {
+            a.zRotation += 0.01
+        }
+    }
 }
