@@ -81,6 +81,7 @@ class BoardScene: SKScene {
                 print("here")
                 let elt = node as? Element
                 elt!.testMove()
+                
             }
             else if node is BoardNode {
                 let bnode = node as? BoardNode
