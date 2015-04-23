@@ -12,7 +12,6 @@ import SpriteKit
 class Enemy: Player {
     // instance variables
     var EnemyLife = 25
-    var events = EventManager()
     
     override var damage: Int {
         return 50
@@ -31,7 +30,7 @@ class Enemy: Player {
     // Element Methods
     // overrides NextDirection... will eventually be the accelerometer
     override func nextDirection() -> Direction? {
-        return nil
+        return Direction.North
     }
     // inflict damage on touch, fire die event if enemy has no health
     func getHit () -> () {

@@ -29,6 +29,6 @@ class Hero: Player {
     // Element Methods
     // overrides NextDirection... will eventually be the accelerometer
     override func nextDirection() -> Direction? {
-        return nil
+        return Direction.North
     }
 }

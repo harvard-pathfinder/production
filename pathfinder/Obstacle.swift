@@ -16,6 +16,11 @@ class Obstacle: Element {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func nextDirection() -> Direction? {
+        return Direction.East
+    }
+    
     // Element Methods
     override func isObstacle() -> Bool {
         return true

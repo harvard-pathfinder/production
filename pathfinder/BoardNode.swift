@@ -14,6 +14,7 @@ class BoardNode: SKSpriteNode {
     var pos: (x: Int, y: Int)
     // (array of elements) option
     var elements: [Element]?
+    // event manager
     var events = EventManager()
     
     // initializer
@@ -33,7 +34,7 @@ class BoardNode: SKSpriteNode {
     }
     
     // event trigger
-    func testEvent () -> () {
+   func testEvent () -> () {
         self.events.trigger("created", information: pos)
     }
     

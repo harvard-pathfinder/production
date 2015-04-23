@@ -12,25 +12,30 @@ import SpriteKit
 class BoardScene: SKScene {
     let gameBoard = Board()
     
-    func maxY () -> CGFloat {
-        return self.frame.maxY
-    }
-       
     private func insertNodeToBoardScene (bNode: BoardNode) -> () {
         let max = (x: self.frame.maxX, y: self.frame.maxY)
         let offsetX = bNode.frame.width
         let offsetY = bNode.frame.height
         
         // TODO: make positions percentages or fractions, based on the length of the array - maybe a gameboard.width element
+        // TODO: possibly override this position variable in the BoardNode Class
         bNode.position = CGPointMake(CGFloat(bNode.pos.x) * (offsetX + 1), CGFloat(max.y - CGFloat(bNode.pos.y) * (offsetY + 1)))
         bNode.anchorPoint = CGPointMake(0.0, 1.0)
         bNode.name = String(bNode.pos.x) + String(bNode.pos.y)
         self.addChild(bNode)
         
+        // event handler for element events
+        gameBoard.iterElements(function: insertElementEventsToBoardScene, boardNode: bNode)
+        
+        // event handler for bNode events
         // board node event handler
         gameBoard.listenToBNode(bNode)
         bNode.testEvent()
         
+    }
+    
+    private func insertElementEventsToBoardScene (elt: Element) -> () {
+        gameBoard.listenToElement(elt)
     }
 
     override func didMoveToView(view: SKView) {
@@ -47,17 +52,15 @@ class BoardScene: SKScene {
             
             if node is Element {
                 var elt = node as? Element
-                print(elt?.pos)
-                gameBoard.moveElementByDirection(fromPoint: elt!.pos, toDirection: Direction.NorthEast, eltToMove: elt!)
-                print(elt?.pos)
+                elt?.testMove()
                 
             }
             else if node is BoardNode {
                 let bnode = node as? BoardNode
-                gameBoard.addElement(atpoint: bnode!.pos, eltToAdd: Enemy(position: bnode!.pos))
-                let bNode = node as? BoardNode
-                gameBoard.addElement(atpoint: bNode!.pos, eltToAdd: Enemy(position: bNode!.pos))
+                // adds a NEW element to the gameboard
+                gameBoard.createNewElement(atPoint: bnode!.pos, eltToCreate: Enemy(position: bnode!.pos))
             }
+                
             else if node is Enemy {
                 let eNode = node as? Enemy
                 gameBoard.listenToEnemy(eNode!)
@@ -73,26 +76,3 @@ class BoardScene: SKScene {
         }
     }
 }
-
-//        let elt = Element()
-//        if (gameBoard.elementExists(atPoint: (1,1), eltToCheck: elt)) {
-//            print ("shoot")
-//        }
-//        else {
-//            print ("google")
-//        }
-//        let eltarray = gameBoard.getElt(atPoint: (1,1))
-//        if (gameBoard.elementExists(atPoint: (1,1), eltToCheck: eltarray![0])) {
-//            print("hi")
-//        }
-//        gameBoard.removeElement(atPoint: (1,1), eltToRemove: eltarray![0])
-//        gameBoard.removeElement(atPoint: (1,1), eltToRemove: bnode.elements![0])
-//        let elt = Element ()
-//        let bnode =  BoardNode(x: 2, y: 2, elts: [elt])
-//        self.insertNodeToBoardScene(bnode)
-//        gameBoard.setBNode(atPoint: (2,2), bNode: bnode)
-//
-//        gameBoard.iterBoardNodes(function:
-//        {(bNode) -> () in bNode.position.x += CGFloat(1.0)})
-//        gameBoard.addElement(atpoint: (2,3), eltToAdd: elt)
-//        gameBoard.moveElement(fromPoint: (0,0), toPoint: (0,1), eltToMove: elt)

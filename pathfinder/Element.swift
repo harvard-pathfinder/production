@@ -11,11 +11,13 @@ import SpriteKit
 
 // includes Players, Obstacles, and Flags
 class Element: SKSpriteNode {
+    var pos: (Int, Int)
     var invSpeed: Int {
-        return 0
+        return 1
     }
     
-    var pos: (Int, Int)
+    // event manager
+    var events = EventManager()
     
     // initializer
     init (textureName: String, position: (Int,Int)) {
@@ -42,8 +44,14 @@ class Element: SKSpriteNode {
         super.touchesBegan(touches, withEvent: event)
     }
     
+    // event firing
+    func testMove () -> () {
+        self.events.trigger("move", information: nextDirection())
+    }
+    
+    // next direction of the object's motion
     func nextDirection () -> Direction? {
-        return nil
+        return Direction.North
     }
     
     // allows us to see which subclass of element it is
