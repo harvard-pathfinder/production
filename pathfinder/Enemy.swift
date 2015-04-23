@@ -37,12 +37,4 @@ class Enemy: Player {
     override func nextDirection() -> Direction? {
         return Direction.NorthEast
     }
-    // inflict damage on touch, fire die event if enemy has no health
-    func getHit () -> () {
-            self.events.trigger("enemyDeath", information: pos)
-        
-    }
 }
-//
-//EnemyLife = EnemyLife - 5
-//if EnemyLife <= 0 {
