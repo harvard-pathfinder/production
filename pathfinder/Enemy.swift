@@ -19,6 +19,7 @@ class Enemy: Player {
     override var invSpeed: Int {
         return 1
     }
+    
     init(position: (Int,Int)) {
         super.init(nameOfTexture: "enemy", position: position)
     }

@@ -60,7 +60,6 @@ class CustomBoard {
                 returnArray.append(0)
             }
         }
-        //print(returnArray)
         return returnArray
     }
     
@@ -68,7 +67,7 @@ class CustomBoard {
     // only allows 1 element at each point
     private func generator (width: Int, height: Int, hero: (Int,Int)?, enemies: [(Int,Int)]?, obstacles: [(Int, Int)]?, flag: (Int,Int)?) -> [[Int]] {
         
-        var boardArray = [[Int]()]
+        var boardArray = [[Int]]()
         // invalid size
         if width == 0 || height == 0 {
             return boardArray
@@ -79,6 +78,7 @@ class CustomBoard {
                 boardArray.append(self.processRow(indexY, w: width, heroAtP: hero, enemiesAtP: enemies, obstaclesAtP: obstacles, flagAtP: flag))
                 //print(indexY)
             }
+            print(boardArray)
             return boardArray
         }
     }
