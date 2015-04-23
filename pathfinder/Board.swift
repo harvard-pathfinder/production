@@ -15,6 +15,9 @@ class Board {
     // creates 2D array of arrays of BoardNodes
     private var gameBoard: [[BoardNode]] = BoardGenerator().defaultBoard()
     
+    // event system
+    var events = EventManager()
+    
     // return the path from one Position to another
     // will be implemented with A*
     func pathFromTo (from: BoardNode, to: BoardNode) -> [BoardNode] {
@@ -27,6 +30,14 @@ class Board {
         for row in gameBoard {
             for node in row {
                 f(node)
+            }
+        }
+    }
+    
+    func iterElements (function f: (Element -> ()), boardNode: BoardNode) -> () {
+        if let eltArr = boardNode.elements {
+            for elt in eltArr {
+                f(elt)
             }
         }
     }
@@ -142,4 +153,9 @@ class Board {
         })
     }
     
+    func listenToElement(elt: Element) {
+        elt.events.listenTo("move", action: {
+            println("movingday")
+        })
+    }
 }
