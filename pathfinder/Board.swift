@@ -216,8 +216,7 @@ class Board {
     // enemy listener
     func listenToEnemy(enemy: Enemy) {
         enemy.events.listenTo("enemyDeath", action: {
-            self.removeElement(atPoint: enemy.pos, eltToRemove: enemy)
-            self.removeElement(atPoint: enemy.pos, eltToRemove: enemy)
+            self.removeElement(atPoint: enemy.pos, eltToRemove: enemy);
         })
     }
     
