@@ -30,13 +30,15 @@ class BoardScene: SKScene {
         gameBoard.iterElements(function: insertElementEventsToBoardScene, boardNode: bNode)
         
         // event handler for bNode events
-        // board node event handler
         gameBoard.listenToBNode(bNode)
         bNode.testEvent()
     }
     
     private func insertElementEventsToBoardScene (elt: Element) -> () {
         gameBoard.listenToElement(elt)
+        if let player = elt as? Player {
+            gameBoard.listenToPlayer(player)
+        }
     }
     
     override func didMoveToView(view: SKView) {
@@ -59,10 +61,9 @@ class BoardScene: SKScene {
             let location = touch.locationInNode(self)
             let node = nodeAtPoint(location)
             
-            if node is Element {
-                var elt = node as? Element
-                elt?.testMove()
-                
+            if node is Player {
+                let player = node as? Player
+                player!.getHit(100)
             }
             else if node is BoardNode {
                 let bnode = node as? BoardNode

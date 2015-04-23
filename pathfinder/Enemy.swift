@@ -32,21 +32,4 @@ class Enemy: Player {
     override func nextDirection() -> Direction? {
         return Direction.North
     }
-    // inflict damage on touch, fire die event if enemy has no health
-    func getHit () -> () {
-        func touchesBegan(touches: Set <NSObject>, withEvent event: UIEvent) {
-            
-            for touch: AnyObject in touches {
-                EnemyLife = EnemyLife - 5
-                //println("hi")
-                if EnemyLife <= 0 {
-                    // fire event
-                    func testEnemy () -> () {
-                        self.events.trigger("enemyDeath", information: pos)
-                    }
-
-                }
-            }
-        }
-    }
 }
