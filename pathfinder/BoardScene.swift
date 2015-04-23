@@ -30,6 +30,7 @@ class BoardScene: SKScene {
         // event handler for bNode events
         gameBoard.listenToBNode(bNode)
         bNode.testEvent()
+        
     }
     
     private func insertElementEventsToBoardScene (elt: Element) -> () {
@@ -64,11 +65,10 @@ class BoardScene: SKScene {
                 
             else if node is Enemy {
                 let eNode = node as? Enemy
-                if eNode!.EnemyStatus == false {
-                    gameBoard.removeElement(atPoint: eNode!.pos, eltToRemove: eNode!)
+                gameBoard.listenToEnemy(eNode!)
+                eNode!.getHit()
                 }
             }
-        }
     }
     
     override func update(currentTime: CFTimeInterval) {

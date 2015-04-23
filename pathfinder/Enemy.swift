@@ -12,7 +12,7 @@ import SpriteKit
 class Enemy: Player {
     // instance variables
     var EnemyLife = 25
-    var EnemyStatus = true
+    var events = EventManager()
     
     override var damage: Int {
         return 50
@@ -33,14 +33,19 @@ class Enemy: Player {
     override func nextDirection() -> Direction? {
         return nil
     }
-    // inflict damage on touch
+    // inflict damage on touch, fire die event if enemy has no health
     func getHit () -> () {
         func touchesBegan(touches: Set <NSObject>, withEvent event: UIEvent) {
             
             for touch: AnyObject in touches {
                 EnemyLife = EnemyLife - 5
+                println("hi")
                 if EnemyLife <= 0 {
-                    EnemyStatus = false
+                    // fire event
+                    func testEnemy () -> () {
+                        self.events.trigger("enemyDeath", information: pos)
+                    }
+
                 }
             }
         }

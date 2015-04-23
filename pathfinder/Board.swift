@@ -146,7 +146,7 @@ class Board {
         }
     }
     
-    // event listener
+    // board node event listener
     func listenToBNode(node: BoardNode) {
         node.events.listenTo("created", action: {
             println("bishes")
