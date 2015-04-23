@@ -173,7 +173,7 @@ class Board {
             // destination
             let p2 = movePoint(fromPoint: p1, direction)
             // if the destination is outside the bounds of the array
-            print(widthOfBoard)
+            //print(widthOfBoard)
             if p2.0 <= 0 || p2.0 > widthOfBoard || p2.1 < 0 || p2.1 > heightOfBoard {
                 return p1
             }
@@ -200,7 +200,7 @@ class Board {
     // board node event listener
     func listenToBNode(node: BoardNode) {
         node.events.listenTo("created", action: {
-            println("bishes")
+            // TODO: actions
         })
     }
     
@@ -208,7 +208,7 @@ class Board {
     func listenToElement(elt: Element) {
         elt.events.listenTo("move", action: {
             if let nextDir = elt.nextDirection() {
-                print(self.moveElementByDirection(fromPoint: elt.pos, toDirection: nextDir, eltToMove: elt))
+                //print(self.moveElementByDirection(fromPoint: elt.pos, toDirection: nextDir, eltToMove: elt))
             }
         })
     }

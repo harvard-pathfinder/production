@@ -38,7 +38,7 @@ class Enemy: Player {
             
             for touch: AnyObject in touches {
                 EnemyLife = EnemyLife - 5
-                println("hi")
+                //println("hi")
                 if EnemyLife <= 0 {
                     // fire event
                     func testEnemy () -> () {
