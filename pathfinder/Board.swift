@@ -213,6 +213,15 @@ class Board {
         })
     }
     
+    // enemy listener2
+    func listenToEnemy2(enemy: Enemy) {
+        enemy.events.listenTo("attack", action: {(information: Any?) -> () in
+            if let hero = information as? Hero {
+                hero.getHit()
+            }
+        })
+    }
+    
     // enemy listener
     func listenToEnemy(enemy: Enemy) {
         enemy.events.listenTo("enemyDeath", action: {

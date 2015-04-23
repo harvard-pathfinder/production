@@ -18,7 +18,7 @@ class Obstacle: Element {
     }
     
     override func nextDirection() -> Direction? {
-        return Direction.North
+        return Direction.SouthWest
     }
     
     // Element Methods

@@ -27,10 +27,15 @@ class Enemy: Player {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // event trigger
+    func attackEvent (hero : Hero) -> () {
+        self.events.trigger("attack", information: hero)
+    }
+    
     // Element Methods
     // overrides NextDirection... will eventually be the accelerometer
     override func nextDirection() -> Direction? {
-        return Direction.North
+        return Direction.NorthEast
     }
     // inflict damage on touch, fire die event if enemy has no health
     func getHit () -> () {
