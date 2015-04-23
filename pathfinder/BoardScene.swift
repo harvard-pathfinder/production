@@ -30,7 +30,7 @@ class BoardScene: SKScene {
     }
     
     private func insertNodeToBoardScene (bNode: BoardNode) -> () {
-//        let max = (x: innerScene.frame.maxX, y: innerScene.frame.maxY)
+        //        let max = (x: innerScene.frame.maxX, y: innerScene.frame.maxY)
         let max = (x: self.frame.maxX, y: self.frame.maxY)
         let offsetX = bNode.frame.width
         let offsetY = bNode.frame.height
@@ -41,7 +41,7 @@ class BoardScene: SKScene {
         bNode.position = CGPointMake(CGFloat(bNode.pos.x) * (offsetX + 1), CGFloat(max.y - CGFloat(bNode.pos.y + 1) * (offsetY + 1)))
         bNode.anchorPoint = CGPointMake(0.0, 1.0)
         bNode.name = String(bNode.pos.x) + String(bNode.pos.y)
-//        innerScene.addChild(bNode)
+        //        innerScene.addChild(bNode)
         self.addChild(bNode)
         
         // event handler for element events
@@ -50,12 +50,6 @@ class BoardScene: SKScene {
         // event handler for bNode events
         gameBoard.listenToBNode(bNode)
         bNode.testEvent()
-        
-        //        bNode.anchorPoint = CGPointMake(0.0, 0.0)
-        //        bNode.position.x = CGFloat(0)
-        //        bNode.position.y = CGFloat(0)
-        //        //        self.addChild(bNode)
-        //        innerScene.addChild(bNode)
     }
     
     private func insertElementEventsToBoardScene (elt: Element) -> () {
@@ -66,7 +60,7 @@ class BoardScene: SKScene {
     }
     
     override func didMoveToView(view: SKView) {
-//        println(innerScene.children)
+        //        println(innerScene.children)
     }
     
     override func touchesBegan(touches: Set <NSObject>, withEvent event: UIEvent) {
@@ -89,7 +83,6 @@ class BoardScene: SKScene {
                 // adds a NEW element to the gameboard
                 gameBoard.createNewElement(atPoint: bnode!.pos, eltToCreate: Enemy(position: bnode!.pos))
             }
-            
         }
     }
     
