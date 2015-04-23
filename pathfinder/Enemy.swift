@@ -30,7 +30,7 @@ class Enemy: Player {
     // Element Methods
     // overrides NextDirection... will eventually be the accelerometer
     override func nextDirection() -> Direction? {
-        return nil
+        return Direction.North
     }
     // inflict damage on touch, fire die event if enemy has no health
     func getHit () -> () {
