@@ -78,16 +78,18 @@ class BoardScene: SKScene {
                 let player = node as? Player
                 player!.getHit(100)
             }
+            else if node is Element {
+                print("here")
+                let elt = node as? Element
+                elt!.testMove()
+                
+            }
             else if node is BoardNode {
                 let bnode = node as? BoardNode
                 // adds a NEW element to the gameboard
                 gameBoard.createNewElement(atPoint: bnode!.pos, eltToCreate: Enemy(position: bnode!.pos))
             }
-                
-            else if node is Element {
-                let elt = node as? Element
-                elt!.testMove()
-            }
+            
         }
     }
     

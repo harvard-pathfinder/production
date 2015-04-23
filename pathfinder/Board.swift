@@ -17,12 +17,12 @@ class Board {
     
     // height of the gameBoard
     var heightOfBoard: Int {
-        return 6
+        return 5
     }
     
     // width of the gameBoard
     var widthOfBoard: Int {
-        return 6
+        return 5
     }
 
     // return the path from one Position to another
@@ -154,7 +154,7 @@ class Board {
     // returns an option tuple (the location of the element after the function call)
     func moveElement (fromPoint p1: (Int, Int), toPoint p2: (Int, Int), eltToMove: Element) -> ((Int,Int)?) {
         // if the destination is outside the bounds of the array
-        if p2.0 <= 0 || p2.0 > widthOfBoard || p2.1 < 0 || p2.1 > heightOfBoard {
+        if p2.0 < 0 || p2.0 >= widthOfBoard || p2.1 < 0 || p2.1 >= heightOfBoard {
             return p1
         }
         if self.elementExists(atPoint: p1, eltToCheck: eltToMove) {
@@ -174,7 +174,7 @@ class Board {
             let p2 = movePoint(fromPoint: p1, direction)
             // if the destination is outside the bounds of the array
             //print(widthOfBoard)
-            if p2.0 <= 0 || p2.0 > widthOfBoard || p2.1 < 0 || p2.1 > heightOfBoard {
+            if p2.0 < 0 || p2.0 >= widthOfBoard || p2.1 < 0 || p2.1 >= heightOfBoard {
                 return p1
             }
             // otherwise remove and add
@@ -191,7 +191,8 @@ class Board {
     // initializes listeners
     func createNewElement (atPoint p1: (Int,Int), eltToCreate: Element) -> () {
         // if the location is insdie the array, just return
-        if p1.0 >= 0 || p1.0 < widthOfBoard || p1.1 >= 0 || p1.1 < heightOfBoard {
+        print(p1)
+        if p1.0 >= 0 && p1.0 < widthOfBoard && p1.1 >= 0 && p1.1 < heightOfBoard {
             self.addElement(atpoint: p1, eltToAdd: eltToCreate)
             self.listenToElement(eltToCreate)
             if eltToCreate is Player {
@@ -212,12 +213,12 @@ class Board {
     func listenToElement(elt: Element) {
         elt.events.listenTo("move", action: {
             if let nextDir = elt.nextDirection() {
-                //print(self.moveElementByDirection(fromPoint: elt.pos, toDirection: nextDir, eltToMove: elt))
+                self.moveElementByDirection(fromPoint: elt.pos, toDirection: nextDir, eltToMove: elt)
             }
         })
     }
     
-    // enemy listener
+    // player listener
     func listenToPlayer(player: Player) {
         player.events.listenTo("die", action: {
             self.removeElement(atPoint: player.pos, eltToRemove: player);

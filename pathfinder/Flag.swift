@@ -18,6 +18,9 @@ class Flag: Element {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func nextDirection() -> Direction? {
+        return Direction.West
+    }
     // Element methods
     override func isFlag() -> Bool {
         return true

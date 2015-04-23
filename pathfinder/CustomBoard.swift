@@ -12,7 +12,7 @@ class CustomBoard {
     
     // update this function to create custom boards
     func getBoard () -> [[Int]] {
-        return self.generator(5, height: 5, hero: (1,1), enemies: [(1,1), (2,1)], obstacles: [(2,4), (0,1)], flag: (2,2))
+        return self.generator(5, height: 5, hero: nil, enemies: [(1,1), (2,1)], obstacles: [(2,4), (0,1)], flag: (2,2))
     }
     
     // helper function to evaluate options
@@ -60,7 +60,6 @@ class CustomBoard {
                 returnArray.append(0)
             }
         }
-        //print(returnArray)
         return returnArray
     }
     
@@ -68,7 +67,7 @@ class CustomBoard {
     // only allows 1 element at each point
     private func generator (width: Int, height: Int, hero: (Int,Int)?, enemies: [(Int,Int)]?, obstacles: [(Int, Int)]?, flag: (Int,Int)?) -> [[Int]] {
         
-        var boardArray = [[Int]()]
+        var boardArray = [[Int]]()
         // invalid size
         if width == 0 || height == 0 {
             return boardArray
@@ -79,6 +78,7 @@ class CustomBoard {
                 boardArray.append(self.processRow(indexY, w: width, heroAtP: hero, enemiesAtP: enemies, obstaclesAtP: obstacles, flagAtP: flag))
                 //print(indexY)
             }
+            print(boardArray)
             return boardArray
         }
     }

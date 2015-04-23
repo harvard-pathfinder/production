@@ -26,16 +26,6 @@ class Player: Element {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // attack function
-    func attack() -> () {
-        return
-    }
-    
-    // die function
-    func dieEvent() -> () {
-        self.events.trigger("die", information: self)
-    }
-    
     // regenerates health slowly
     func restoreHealth () -> () {
         if life < maxHealth {
@@ -45,6 +35,16 @@ class Player: Element {
         else {
             return
         }
+    }
+    
+    // attack function
+    func attack() -> () {
+        return
+    }
+    
+    // die function
+    func dieEvent() -> () {
+        self.events.trigger("die", information: self)
     }
     
     // inflict damage on touch, fire die event if enemy has no health
