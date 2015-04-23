@@ -27,9 +27,10 @@ class BoardScene: SKScene {
         bNode.name = String(bNode.pos.x) + String(bNode.pos.y)
         self.addChild(bNode)
         
-        // event handler
+        // board node event handler
         gameBoard.listenToBNode(bNode)
         bNode.testEvent()
+        
     }
 
     override func didMoveToView(view: SKView) {
@@ -59,18 +60,18 @@ class BoardScene: SKScene {
             }
             else if node is Enemy {
                 let eNode = node as? Enemy
-                if eNode!.EnemyStatus == false {
-                    gameBoard.removeElement(atPoint: eNode!.pos, eltToRemove: eNode!)
+                gameBoard.listenToEnemy(eNode!)
+                eNode!.getHit()
                 }
             }
-        }
     }
-    
-    override func update(currentTime: CFTimeInterval) {
+
+
+     override func update(currentTime: CFTimeInterval) {
         if let a = self.childNodeWithName("11") {
             a.zRotation += 0.01
         }
-    } 
+    }
 }
 
 //        let elt = Element()

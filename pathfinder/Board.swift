@@ -135,10 +135,17 @@ class Board {
         }
     }
     
-    // event listener
+    // board node event listener
     func listenToBNode(node: BoardNode) {
         node.events.listenTo("created", action: {
             println("bishes")
+        })
+    }
+    
+    // enemy death listener
+    func listenToEnemy(enemy: Enemy) {
+        enemy.events.listenTo("enemyDeath", action: {
+            self.removeElement(atPoint: enemy.pos, eltToRemove: enemy)
         })
     }
     
