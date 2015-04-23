@@ -24,7 +24,7 @@ class BoardScene: SKScene {
         bNode.position = CGPointMake(CGFloat(bNode.pos.x) * (offsetX + 1), CGFloat(max.y - CGFloat(bNode.pos.y) * (offsetY + 1)))
         bNode.anchorPoint = CGPointMake(0.0, 1.0)
         bNode.name = String(bNode.pos.x) + String(bNode.pos.y)
-        self.addChild(bNode)
+        innerScene.addChild(bNode)
         
         // event handler for element events
         gameBoard.iterElements(function: insertElementEventsToBoardScene, boardNode: bNode)
@@ -43,15 +43,16 @@ class BoardScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         let innerScene = SKSpriteNode(imageNamed: "tile")
-        innerScene.anchorPoint = CGPointMake(0.5, 1.0)
-        innerScene.size.height = self.size.height
-        innerScene.size.height = self.size.width
+        innerScene.anchorPoint = CGPointMake(0.5, 1.1)
+        innerScene.size.height = self.size.height / 2
+        innerScene.size.width = self.size.width * 0.90
 //        innerScene.alpha = 0.0
         innerScene.position.x = CGRectGetMidX(self.frame)
         innerScene.position.y = CGRectGetMaxY(self.frame)
         innerScene.name = "innerScene"
         self.addChild(innerScene)
         gameBoard.iterBoardNodes(function: insertNodeToBoardScene)
+//        println(self.children)
     }
     
     
