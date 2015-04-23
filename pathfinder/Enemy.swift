@@ -45,7 +45,6 @@ class Enemy: Player {
                     func testEnemy () -> () {
                         self.events.trigger("enemyDeath", information: pos)
                     }
-
                 }
             }
         }
