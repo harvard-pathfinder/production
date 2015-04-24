@@ -22,12 +22,12 @@ class Board {
     
     // height of the gameBoard
     var heightOfBoard: Int {
-        return 5
+        return gameBoard.count
     }
     
     // width of the gameBoard
     var widthOfBoard: Int {
-        return 5
+        return gameBoard[0].count
     }
 
     // return the path from one Position to another
