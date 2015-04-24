@@ -59,7 +59,7 @@ class Board {
     // "gets" Bnode at point p
     func getBNode (atPoint p: (Int,Int)) -> BoardNode? {
         if p.0 >= 0 && p.0 < widthOfBoard && p.1 >= 0 && p.1 < heightOfBoard {
-            return gameBoard[p.0][p.1]
+            return gameBoard[p.1][p.0]
         }
         return nil
     }

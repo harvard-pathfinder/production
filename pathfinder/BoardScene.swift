@@ -93,8 +93,9 @@ class BoardScene: SKScene {
             else if node is BoardNode {
                 let bnode = node as? BoardNode
                 print(bnode!.name)
+                print(bnode!.pos)
                 // adds a NEW element to the gameboard
-                //gameBoard.createNewElement(atPoint: bnode!.pos, eltToCreate: Enemy(position: bnode!.pos))
+                gameBoard.createNewElement(atPoint: bnode!.pos, eltToCreate: Enemy(position: bnode!.pos))
             }
         }
     }
@@ -105,9 +106,9 @@ class BoardScene: SKScene {
             let previousLocation = touch.previousLocationInNode(self)
             gameBoard.iterBoardNodes(function: {
                 (let node) -> () in
-                node.position.x += location.x - previousLocation.x
-                node.position.y += location.y - previousLocation.y
-
+                // Can do parallax scrolling with various multipliers if we want to
+                node.position.x += 1.3 * (location.x - previousLocation.x)
+                node.position.y += 1.3 * (location.y - previousLocation.y)
             })
         }
     }
