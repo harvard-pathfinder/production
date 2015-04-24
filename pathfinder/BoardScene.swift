@@ -15,16 +15,16 @@ class BoardScene: SKScene {
     let innerScene = SKSpriteNode()
     
     override init (size: CGSize) {
-        let innerScene = SKSpriteNode(imageNamed: "tile")
+//        let innerScene = SKSpriteNode(imageNamed: "tile")
         super.init(size: size)
-        innerScene.anchorPoint = CGPointMake(0.5, 1.1)
-        innerScene.size.height = self.size.height / 2
-        innerScene.size.width = self.size.width * 0.90
-        innerScene.alpha = 0.5
-        innerScene.position.x = CGRectGetMidX(self.frame)
-        innerScene.position.y = CGRectGetMaxY(self.frame)
-        innerScene.name = "innerScene"
-        self.addChild(innerScene)
+//        innerScene.anchorPoint = CGPointMake(0.5, 1.1)
+//        innerScene.size.height = self.size.height / 2
+//        innerScene.size.width = self.size.width * 0.90
+//        innerScene.alpha = 0.5
+//        innerScene.position.x = CGRectGetMidX(self.frame)
+//        innerScene.position.y = CGRectGetMaxY(self.frame)
+//        innerScene.name = "innerScene"
+//        self.addChild(innerScene)
         gameBoard.iterBoardNodes(function: insertNodeToBoardScene)
         //        println(innerScene.children)
     }
@@ -32,13 +32,20 @@ class BoardScene: SKScene {
     private func insertNodeToBoardScene (bNode: BoardNode) -> () {
         //        let max = (x: innerScene.frame.maxX, y: innerScene.frame.maxY)
         let max = (x: self.frame.maxX, y: self.frame.maxY)
+        bNode.size.width = self.frame.width / (1.4 * CGFloat(gameBoard.widthOfBoard))
+        //bNode.size.height = self.frame.height / (2 * CGFloat(gameBoard.heightOfBoard))
+        // squares based on width for now
+        bNode.size.height = bNode.size.width
         let offsetX = bNode.frame.width
         let offsetY = bNode.frame.height
         
+        let h = bNode.pos.y
+        let w = bNode.pos.x        
+        
         // TODO: make positions percentages or fractions, based on the length of the array - maybe a gameboard.width element
         // TODO: possibly override this position variable in the BoardNode Class
-        // Check pos.y + 1 - why are y values starting at 1?
-        bNode.position = CGPointMake(CGFloat(bNode.pos.x + 1) * (offsetX + 1), CGFloat(max.y - CGFloat(bNode.pos.y + 1) * (offsetY + 1)))
+        // TODO: is this painting switched? height is width and vv
+        bNode.position = CGPointMake(CGFloat(w) * (offsetX + 1), CGFloat(max.y - (CGFloat(h) * (offsetY + 1))))
         bNode.anchorPoint = CGPointMake(0.0, 1.0)
         bNode.name = String(bNode.pos.x) + String(bNode.pos.y)
         //        innerScene.addChild(bNode)

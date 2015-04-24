@@ -11,8 +11,8 @@ import Foundation
 class CustomBoard {
     
     // update this function to create custom boards
-    func getBoard () -> [[Int]] {
-        return self.generator(5, height: 5, hero: nil, enemies: [(1,1), (2,1)], obstacles: [(2,4), (0,1)], flag: (2,2))
+    func getBoard (#width: Int, height: Int) -> [[Int]] {
+        return self.generator(width: width, height: height, hero: nil, enemies: [(1,1), (2,1)], obstacles: [(2,4), (0,1)], flag: (2,2))
     }
     
     // helper function to evaluate options
@@ -39,19 +39,19 @@ class CustomBoard {
     
     // processes a row
     // helper function for below
-    private func processRow (y: Int, w: Int, heroAtP: (Int,Int)?, enemiesAtP: [(Int,Int)]?, obstaclesAtP: [(Int, Int)]?, flagAtP: (Int,Int)?) -> [Int] {
+    private func processRow (#currentHeight: Int, width: Int, heroAtP: (Int,Int)?, enemiesAtP: [(Int,Int)]?, obstaclesAtP: [(Int, Int)]?, flagAtP: (Int,Int)?) -> [Int] {
         var returnArray = [Int]()
-        for var i = 0; i < w; ++i {
-            if checkOption(heroAtP, currentP: (i,y)) {
+        for var i = 0; i < width; ++i {
+            if checkOption(heroAtP, currentP: (i, currentHeight)) {
                 returnArray.append(1)
             }
-            else if checkOptionArr(enemiesAtP, currentP: (i,y)) {
+            else if checkOptionArr(enemiesAtP, currentP: (i, currentHeight)) {
                 returnArray.append(2)
             }
-            else if checkOptionArr(obstaclesAtP, currentP: (i,y)) {
+            else if checkOptionArr(obstaclesAtP, currentP: (i, currentHeight)) {
                 returnArray.append(3)
             }
-            else if checkOption(flagAtP, currentP: (i,y))
+            else if checkOption(flagAtP, currentP: (i, currentHeight))
             {
                 returnArray.append(4)
             }
@@ -65,7 +65,7 @@ class CustomBoard {
     
     // generates a board with integer representation of classes
     // only allows 1 element at each point
-    private func generator (width: Int, height: Int, hero: (Int,Int)?, enemies: [(Int,Int)]?, obstacles: [(Int, Int)]?, flag: (Int,Int)?) -> [[Int]] {
+    private func generator (#width: Int, height: Int, hero: (Int,Int)?, enemies: [(Int,Int)]?, obstacles: [(Int, Int)]?, flag: (Int,Int)?) -> [[Int]] {
         
         var boardArray = [[Int]]()
         // invalid size
@@ -75,7 +75,7 @@ class CustomBoard {
         else {
             // iterates through the rows
             for var indexY = 0; indexY < height; ++indexY {
-                boardArray.append(self.processRow(indexY, w: width, heroAtP: hero, enemiesAtP: enemies, obstaclesAtP: obstacles, flagAtP: flag))
+                boardArray.append(self.processRow(currentHeight: indexY, width: width, heroAtP: hero, enemiesAtP: enemies, obstaclesAtP: obstacles, flagAtP: flag))
                 //print(indexY)
             }
             print(boardArray)
