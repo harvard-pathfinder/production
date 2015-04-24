@@ -80,22 +80,35 @@ class BoardScene: SKScene {
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self)
             let node = nodeAtPoint(location)
-            
             if node is Player {
                 let player = node as? Player
-                player!.getHit(100)
+                //player!.getHit(100)
+                print(player!.pos)
             }
             else if node is Element {
-                print("here")
                 let elt = node as? Element
                 elt!.testMove()
                 
             }
             else if node is BoardNode {
                 let bnode = node as? BoardNode
+                print(bnode!.name)
                 // adds a NEW element to the gameboard
-                gameBoard.createNewElement(atPoint: bnode!.pos, eltToCreate: Enemy(position: bnode!.pos))
+                //gameBoard.createNewElement(atPoint: bnode!.pos, eltToCreate: Enemy(position: bnode!.pos))
             }
+        }
+    }
+    
+    override func touchesMoved(touches: Set <NSObject>, withEvent event: UIEvent) {
+        for touch: AnyObject in touches {
+            let location = touch.locationInNode(self)
+            let previousLocation = touch.previousLocationInNode(self)
+            gameBoard.iterBoardNodes(function: {
+                (let node) -> () in
+                node.position.x += location.x - previousLocation.x
+                node.position.y += location.y - previousLocation.y
+
+            })
         }
     }
     

@@ -206,7 +206,6 @@ class Board {
             // destination
             let p2 = movePoint(fromPoint: p1, direction)
             // if the destination is outside the bounds of the array
-            //print(widthOfBoard)
             if p2.0 < 0 || p2.0 >= widthOfBoard || p2.1 < 0 || p2.1 >= heightOfBoard {
                 return p1
             }
