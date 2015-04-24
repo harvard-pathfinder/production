@@ -93,6 +93,19 @@ class BoardScene: SKScene {
         }
     }
     
+    override func touchesMoved(touches: Set <NSObject>, withEvent event: UIEvent) {
+        for touch: AnyObject in touches {
+            let location = touch.locationInNode(self)
+            let previousLocation = touch.previousLocationInNode(self)
+            gameBoard.iterBoardNodes(function: {
+                (let node) -> () in
+                node.position.x += location.x - previousLocation.x
+                node.position.y += location.y - previousLocation.y
+
+            })
+        }
+    }
+    
     override func update(currentTime: CFTimeInterval) {
         if let a = self.childNodeWithName("11") {
             a.zRotation += 0.01
