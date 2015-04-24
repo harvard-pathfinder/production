@@ -112,6 +112,7 @@ class BoardScene: SKScene {
         }
     }
     
+    var ticker = 0
     override func update(currentTime: CFTimeInterval) {
         if ticker == 60 {
             for enemy in gameBoard.enemies {
