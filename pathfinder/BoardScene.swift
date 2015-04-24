@@ -82,18 +82,15 @@ class BoardScene: SKScene {
             let node = nodeAtPoint(location)
             if node is Player {
                 let player = node as? Player
-                //player!.getHit(100)
-                print(player!.pos)
+                player!.getHit(100)
             }
             else if node is Element {
                 let elt = node as? Element
-                elt!.testMove()
+                elt!.move()
                 
             }
             else if node is BoardNode {
                 let bnode = node as? BoardNode
-                print(bnode!.name)
-                print(bnode!.pos)
                 // adds a NEW element to the gameboard
                 gameBoard.createNewElement(atPoint: bnode!.pos, eltToCreate: Enemy(position: bnode!.pos))
             }
@@ -115,9 +112,9 @@ class BoardScene: SKScene {
     
     var ticker = 0
     override func update(currentTime: CFTimeInterval) {
-        if ticker == 60 {
+        if ticker == 30 {
             for enemy in gameBoard.enemies {
-                enemy.testMove()
+                enemy.move()
             }
             ticker = 0
         }

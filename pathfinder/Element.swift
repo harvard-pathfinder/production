@@ -44,7 +44,7 @@ class Element: SKSpriteNode {
     }
     
     // event firing
-    func testMove () -> () {
+    func move () -> () {
         self.events.trigger("move", information: nextDirection())
     }
     
