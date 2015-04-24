@@ -12,7 +12,7 @@ import Foundation
 class BoardGenerator {
     
     // 2D array of Ints
-    var intBoard = CustomBoard().getBoard()
+    var intBoard = CustomBoard().getBoard(width: 10, height: 1)
     
     // returns a 2d array BoardNodes
     func defaultBoard() -> [[BoardNode]] {
@@ -29,20 +29,20 @@ class BoardGenerator {
                 col = col + 1
                 // If there is a hero in a location
                 if i == 1  {
-                    return BoardNode(x: row, y: colHolder, elts: [Hero(position: (row,colHolder))])
+                    return BoardNode(x: colHolder, y: row, elts: [Hero(position: (colHolder,row))])
                 }
                 else if i == 2 {
-                    return BoardNode(x: row, y: colHolder, elts: [Enemy(position: (row,colHolder))])
+                    return BoardNode(x: colHolder, y: row, elts: [Enemy(position: (colHolder,row))])
                 }
                 else if i == 3 {
-                    return BoardNode(x: row, y: colHolder, elts: [Obstacle(position: (row,colHolder))])
+                    return BoardNode(x: colHolder, y: row, elts: [Obstacle(position: (colHolder,row))])
                 }
                 else if i == 4 {
-                    return BoardNode(x: row, y: colHolder, elts: [Flag(position: (row,colHolder))])
+                    return BoardNode(x: colHolder, y: row, elts: [Flag(position: (colHolder,row))])
                 }
                     // If there is not an element in a location
                 else {
-                    return BoardNode(x: row, y: colHolder, elts: nil)
+                    return BoardNode(x: colHolder, y: row, elts: nil)
                 }
             })
             col = 0
