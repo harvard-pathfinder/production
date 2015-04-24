@@ -59,7 +59,7 @@ func naturalDirection (fromPoint p1: (Int, Int), toPoint p2: (Int, Int)) -> Dire
         return Direction.South
     } else if p2.0 > p1.0 && p2.1 > p1.1  {
         return Direction.SouthEast
-    } else if p2.0 - p1.0 > 0 && p2.1 == p1.1 {
+    } else if p2.0 > p1.0 && p2.1 == p1.1 {
         return Direction.East
     } else if p2.0 > p1.0 && p2.1 < p1.1 {
         return Direction.NorthEast
