@@ -36,6 +36,6 @@ class Enemy: Player {
     // Element Methods
     // overrides NextDirection... will eventually be the accelerometer
     override func nextDirection() -> Direction? {
-        return Direction.NorthEast
+        return naturalDirection(fromPoint: self.pos, toPoint: (0,0))
     }
 }

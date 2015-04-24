@@ -13,27 +13,15 @@ class BoardScene: SKScene {
     let gameBoard = Board()
     let cropNode = SKCropNode()
     
-    //let innerScene = SKSpriteNode()
-    
     override init (size: CGSize) {
-//        let innerScene = SKSpriteNode(imageNamed: "tile")
         super.init(size: size)
-//        innerScene.anchorPoint = CGPointMake(0.5, 1.1)
-//        innerScene.size.height = self.size.height / 2
-//        innerScene.size.width = self.size.width * 0.90
-//        innerScene.alpha = 0.5
-//        innerScene.position.x = CGRectGetMidX(self.frame)
-//        innerScene.position.y = CGRectGetMaxY(self.frame)
-//        innerScene.name = "innerScene"
-//        self.addChild(innerScene)
         gameBoard.iterBoardNodes(function: insertNodeToBoardScene)
-        //        println(innerScene.children)
     }
     
     private func insertNodeToBoardScene (bNode: BoardNode) -> () {
         //        let max = (x: innerScene.frame.maxX, y: innerScene.frame.maxY)
         let max = (x: self.frame.maxX, y: self.frame.maxY)
-        bNode.size.width = self.frame.width / (1.4 * CGFloat(gameBoard.widthOfBoard))
+        bNode.size.width = self.frame.width / (CGFloat(gameBoard.widthOfBoard) / 1.5)
         //bNode.size.height = self.frame.height / (2 * CGFloat(gameBoard.heightOfBoard))
         // squares based on width for now
         bNode.size.height = bNode.size.width
@@ -77,7 +65,6 @@ class BoardScene: SKScene {
     }
     
     override func didMoveToView(view: SKView) {
-        //        println(innerScene.children)
     }
     
     override func touchesBegan(touches: Set <NSObject>, withEvent event: UIEvent) {
@@ -86,18 +73,15 @@ class BoardScene: SKScene {
             let node = nodeAtPoint(location)
             if node is Player {
                 let player = node as? Player
-                //player!.getHit(100)
-                print(player!.pos)
+                player!.getHit(100)
             }
             else if node is Element {
                 let elt = node as? Element
-                elt!.testMove()
+                elt!.move()
                 
             }
             else if node is BoardNode {
                 let bnode = node as? BoardNode
-                print(bnode!.name)
-                print(bnode!.pos)
                 // adds a NEW element to the gameboard
                 gameBoard.createNewElement(atPoint: bnode!.pos, eltToCreate: Enemy(position: bnode!.pos))
             }
@@ -119,9 +103,9 @@ class BoardScene: SKScene {
     
     var ticker = 0
     override func update(currentTime: CFTimeInterval) {
-        if ticker == 60 {
+        if ticker == 30 {
             for enemy in gameBoard.enemies {
-                enemy.testMove()
+                enemy.move()
             }
             ticker = 0
         }
