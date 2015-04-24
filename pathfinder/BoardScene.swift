@@ -48,7 +48,7 @@ class BoardScene: SKScene {
         // TODO: is this painting switched? height is width and vv
         bNode.position = CGPointMake(CGFloat(w) * (offsetX + 1), CGFloat(max.y - (CGFloat(h) * (offsetY + 1))))
         bNode.anchorPoint = CGPointMake(0.0, 1.0)
-        bNode.name = String(bNode.pos.x) + String(bNode.pos.y)
+        bNode.name = String(bNode.pos.x) + ", " + String(bNode.pos.y)
         //        innerScene.addChild(bNode)
         self.addChild(bNode)
         
