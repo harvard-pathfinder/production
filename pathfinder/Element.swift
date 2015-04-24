@@ -26,23 +26,6 @@ class Element: SKSpriteNode {
         super.init(texture: texture, color: nil, size: texture.size())
     }
     
-    //Doesn't work, but a decent representation of what we want
-    override func touchesBegan(touches: Set <NSObject>, withEvent event: UIEvent) {
-        for touch: AnyObject in touches {
-            let location = touch.locationInNode(self)
-            
-            if nodeAtPoint(location) == self {
-                self.runAction(
-                    SKAction.sequence(
-                        [SKAction.fadeAlphaTo(0.25, duration: 0.05),
-                            SKAction.fadeAlphaTo(0.75, duration: 0.3)]
-                    )
-                )
-            }
-        }
-        super.touchesBegan(touches, withEvent: event)
-    }
-    
     // event firing
     func move () -> () {
         self.events.trigger("move", information: nextDirection())

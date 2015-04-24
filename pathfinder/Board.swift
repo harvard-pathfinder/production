@@ -17,6 +17,9 @@ class Board {
     // enemies in the board
     var enemies = [Enemy]()
     
+    // hero in the board
+    var hero: Hero? = nil
+    
     // event manager
     var events = EventManager()
     
@@ -253,6 +256,15 @@ class Board {
     func listenToPlayer(player: Player) {
         player.events.listenTo("die", action: {
             self.removeElement(atPoint: player.pos, eltToRemove: player);
+        })
+    }
+    
+    // hero listener
+    func listenToHero(hero: Hero) {
+        hero.events.listenTo("shoot", action: { (information:Any?) -> () in
+            if let bullet = information as? Bullet {
+                self.createNewElement(atPoint: hero.pos, eltToCreate: bullet)
+            }
         })
     }
     
