@@ -10,10 +10,15 @@ import Foundation
 import SpriteKit
 
 
-
 class Board {
     // creates 2D array of arrays of BoardNodes
     private var gameBoard: [[BoardNode]] = BoardGenerator().defaultBoard()
+    
+    // enemies in the board
+    var enemies = [Enemy]()
+    
+    // event manager
+    var events = EventManager()
     
     // height of the gameBoard
     var heightOfBoard: Int {
@@ -83,10 +88,31 @@ class Board {
             f(bNode)
         }
     }
+
+    // if element is an enemy... adds enemy to gameBoard
+    func addEnemyToGameBoard (element: Element) -> () {
+        // if enemy, add to enemy array
+        if let enemy = element as? Enemy {
+            self.enemies.append(enemy)
+        }
+    }
+    
+    // if element is an enemt... remove enemy from gameBoard
+    func removeEnemyFromGameBoard (element: Element) -> () {
+        // if enemy, remove from enemy array
+        if let enemy = element as? Enemy {
+            for (var i = 0; i < self.enemies.count; ++i) {
+                if self.enemies[i] === enemy {
+                    self.enemies.removeAtIndex(i)
+                }
+            }
+        }
+    }
     
     // CORRECT
     // adds element BNodes at point p
     // adds element to SKSprite Tree
+    // adds enemy to gameBoard
     func addElement (atpoint p: (Int, Int), eltToAdd e: Element) -> () {
         self.modifyBNode(atPoint: p,
             function: {(var currentBNode: BoardNode) -> () in
@@ -98,6 +124,8 @@ class Board {
                     currentBNode.elements = [e]
                     // update pos in element
                     e.pos = currentBNode.pos
+                    // if enemy, add to enemy array
+                    self.addEnemyToGameBoard(e)
                 }
                 else {
                     // adds element to SpriteKit Tree
@@ -107,6 +135,8 @@ class Board {
                     currentBNode.elements! += [e]
                     // update pos in element
                     e.pos = currentBNode.pos
+                    // if enemy, add to enemy array
+                    self.addEnemyToGameBoard(e)
                 }
             }
         )
@@ -128,7 +158,8 @@ class Board {
     }
     
     // CORRECT
-    // removes element at point p
+    // removes element from boardNode
+    // removes element from SpriteTree
     func removeElement (atPoint p: (Int, Int), eltToRemove: Element) -> () {
         if elementExists(atPoint: p, eltToCheck: eltToRemove) {
             self.modifyBNode(atPoint: p,
@@ -141,6 +172,8 @@ class Board {
                                 // removes element from datastructure
                                 elementArray.removeAtIndex(index)
                                 currentBNode.elements = elementArray
+                                // if enemy, remove from enemy array
+                                self.removeEnemyFromGameBoard(eltToRemove)
                             }
                         }
                     }
@@ -190,8 +223,7 @@ class Board {
     // adds a new element to the board for the first time 
     // initializes listeners
     func createNewElement (atPoint p1: (Int,Int), eltToCreate: Element) -> () {
-        // if the location is insdie the array, just return
-        print(p1)
+        // if the location is inside the board, then add
         if p1.0 >= 0 && p1.0 < widthOfBoard && p1.1 >= 0 && p1.1 < heightOfBoard {
             self.addElement(atpoint: p1, eltToAdd: eltToCreate)
             self.listenToElement(eltToCreate)

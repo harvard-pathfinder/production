@@ -12,7 +12,8 @@ import SpriteKit
 class BoardScene: SKScene {
     let gameBoard = Board()
     let cropNode = SKCropNode()
-    let innerScene = SKSpriteNode()
+    
+    //let innerScene = SKSpriteNode()
     
     override init (size: CGSize) {
 //        let innerScene = SKSpriteNode(imageNamed: "tile")
@@ -61,8 +62,13 @@ class BoardScene: SKScene {
     
     private func insertElementEventsToBoardScene (elt: Element) -> () {
         gameBoard.listenToElement(elt)
+        // add listeners to the player class
         if let player = elt as? Player {
             gameBoard.listenToPlayer(player)
+            // add to array of enemies
+            if let enemy = player as? Enemy {
+                gameBoard.enemies.append(enemy)
+            }
         }
     }
     
@@ -107,9 +113,13 @@ class BoardScene: SKScene {
     }
     
     override func update(currentTime: CFTimeInterval) {
-        if let a = self.childNodeWithName("11") {
-            a.zRotation += 0.01
+        if ticker == 60 {
+            for enemy in gameBoard.enemies {
+                enemy.testMove()
+            }
+            ticker = 0
         }
+        ++ticker
     }
     
     required init?(coder aDecoder: NSCoder) {
