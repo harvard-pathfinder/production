@@ -76,9 +76,7 @@ class CustomBoard {
             // iterates through the rows
             for var indexY = 0; indexY < height; ++indexY {
                 boardArray.append(self.processRow(currentHeight: indexY, width: width, heroAtP: hero, enemiesAtP: enemies, obstaclesAtP: obstacles, flagAtP: flag))
-                //print(indexY)
             }
-            print(boardArray)
             return boardArray
         }
     }

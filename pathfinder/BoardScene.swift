@@ -12,7 +12,8 @@ import SpriteKit
 class BoardScene: SKScene {
     let gameBoard = Board()
     let cropNode = SKCropNode()
-    let innerScene = SKSpriteNode()
+    
+    //let innerScene = SKSpriteNode()
     
     override init (size: CGSize) {
 //        let innerScene = SKSpriteNode(imageNamed: "tile")
@@ -47,7 +48,7 @@ class BoardScene: SKScene {
         // TODO: is this painting switched? height is width and vv
         bNode.position = CGPointMake(CGFloat(w) * (offsetX + 1), CGFloat(max.y - (CGFloat(h) * (offsetY + 1))))
         bNode.anchorPoint = CGPointMake(0.0, 1.0)
-        bNode.name = String(bNode.pos.x) + String(bNode.pos.y)
+        bNode.name = String(bNode.pos.x) + ", " + String(bNode.pos.y)
         //        innerScene.addChild(bNode)
         self.addChild(bNode)
         
@@ -61,8 +62,13 @@ class BoardScene: SKScene {
     
     private func insertElementEventsToBoardScene (elt: Element) -> () {
         gameBoard.listenToElement(elt)
+        // add listeners to the player class
         if let player = elt as? Player {
             gameBoard.listenToPlayer(player)
+            // add to array of enemies
+            if let enemy = player as? Enemy {
+                gameBoard.enemies.append(enemy)
+            }
         }
     }
     
@@ -74,19 +80,20 @@ class BoardScene: SKScene {
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self)
             let node = nodeAtPoint(location)
-            
             if node is Player {
                 let player = node as? Player
-                player!.getHit(100)
+                //player!.getHit(100)
+                print(player!.pos)
             }
             else if node is Element {
-                print("here")
                 let elt = node as? Element
                 elt!.testMove()
                 
             }
             else if node is BoardNode {
                 let bnode = node as? BoardNode
+                print(bnode!.name)
+                print(bnode!.pos)
                 // adds a NEW element to the gameboard
                 gameBoard.createNewElement(atPoint: bnode!.pos, eltToCreate: Enemy(position: bnode!.pos))
             }
@@ -99,17 +106,22 @@ class BoardScene: SKScene {
             let previousLocation = touch.previousLocationInNode(self)
             gameBoard.iterBoardNodes(function: {
                 (let node) -> () in
-                node.position.x += location.x - previousLocation.x
-                node.position.y += location.y - previousLocation.y
-
+                // Can do parallax scrolling with various multipliers if we want to
+                node.position.x += 1.3 * (location.x - previousLocation.x)
+                node.position.y += 1.3 * (location.y - previousLocation.y)
             })
         }
     }
     
+    var ticker = 0
     override func update(currentTime: CFTimeInterval) {
-        if let a = self.childNodeWithName("11") {
-            a.zRotation += 0.01
+        if ticker == 60 {
+            for enemy in gameBoard.enemies {
+                enemy.testMove()
+            }
+            ticker = 0
         }
+        ++ticker
     }
     
     required init?(coder aDecoder: NSCoder) {
