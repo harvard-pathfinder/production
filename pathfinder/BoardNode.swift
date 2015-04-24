@@ -16,6 +16,9 @@ class BoardNode: SKSpriteNode {
     var elements: [Element]?
     // event manager
     var events = EventManager()
+
+    // the A* mapped direction
+    var path = randomDirection()
     
     // initializer
     init(x: Int, y: Int, var elts: [Element]?) {
