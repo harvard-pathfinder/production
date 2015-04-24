@@ -72,6 +72,10 @@ class BoardScene: SKScene {
         }
     }
     
+    private func insertHeroToEnemies (elt: Element) -> () {
+        
+    }
+    
     override func didMoveToView(view: SKView) {
         //        println(innerScene.children)
     }
