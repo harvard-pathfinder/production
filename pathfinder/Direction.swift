@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SpriteKit
 
 
 // directional
@@ -17,14 +18,14 @@ enum Direction {
 // gives a random direction
 func randomDirection () -> Direction {
     switch arc4random_uniform(7) {
-        case 0: return Direction.North
-        case 1: return Direction.NorthEast
-        case 2: return Direction.East
-        case 3: return Direction.SouthEast
-        case 4: return Direction.South
-        case 5: return Direction.SouthWest
-        case 6: return Direction.West
-        default: return Direction.NorthWest
+    case 0: return Direction.North
+    case 1: return Direction.NorthEast
+    case 2: return Direction.East
+    case 3: return Direction.SouthEast
+    case 4: return Direction.South
+    case 5: return Direction.SouthWest
+    case 6: return Direction.West
+    default: return Direction.NorthWest
     }
 }
 
@@ -88,4 +89,32 @@ func directPath (fromPoint p1: (Int, Int), toPoint p2: (Int,Int), var path: [(In
         return path
     }
 }
+
+// based on the unit circle, with east being 0
+func directionToCGFloat (#direction: Direction) -> CGFloat {
+    switch direction {
+    case Direction.North: return dtr(90)
+    case Direction.NorthEast: return dtr(45)
+    case Direction.East: return dtr(0)
+    case Direction.SouthEast: return dtr(315)
+    case Direction.South: return dtr(270)
+    case Direction.SouthWest: return dtr(225)
+    case Direction.West: return dtr(180)
+    case Direction.NorthWest: return dtr(135)
+    }
+}
+
+// degrees to radians helper function
+private func dtr (degrees: Int) -> CGFloat {
+    return CGFloat(degrees) * CGFloat(M_PI / 180.0)
+}
+
+
+
+
+
+
+
+
+
 

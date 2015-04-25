@@ -12,10 +12,17 @@ import SpriteKit
 class BoardScene: SKScene {
     let gameBoard = Board()
     let cropNode = SKCropNode()
+    let astar = AStar()
     
     override init (size: CGSize) {
         super.init(size: size)
         gameBoard.iterBoardNodes(function: insertNodeToBoardScene)
+        //        if let hero = self.childNodeWithName("hero") as? Element {
+        //            astar.map(board: gameBoard, destination: hero.pos)
+        //            astar.displayMap(board: gameBoard)
+        //
+        astar.map(board: gameBoard, destination: (10,5))
+        astar.displayMap(board: gameBoard)
     }
     
     private func insertNodeToBoardScene (bNode: BoardNode) -> () {
@@ -29,7 +36,7 @@ class BoardScene: SKScene {
         let offsetY = bNode.frame.height
         
         let h = bNode.pos.y
-        let w = bNode.pos.x        
+        let w = bNode.pos.x
         
         // TODO: make positions percentages or fractions, based on the length of the array - maybe a gameboard.width element
         // TODO: possibly override this position variable in the BoardNode Class
