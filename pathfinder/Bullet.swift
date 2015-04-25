@@ -34,6 +34,7 @@ class Bullet: Element {
         }
     }
     
+    // TODO:need to add the event listeners to bullets inside of BoardScene!!1
     // removes the bullet from the map
     func hitTarget() -> () {
         self.events.trigger("die", information: self)
