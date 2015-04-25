@@ -21,7 +21,7 @@ class Board {
     var events = EventManager()
     
     // hero on board
-    var value: Hero? = nil
+    var hero: Hero? = nil
     
     // height of the gameBoard
     var heightOfBoard: Int {
@@ -251,6 +251,7 @@ class Board {
             }
         })
     }
+    
     
     // player listener
     func listenToPlayer(player: Player) {

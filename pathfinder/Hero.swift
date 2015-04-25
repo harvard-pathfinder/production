@@ -14,6 +14,7 @@ class Hero: Player {
     override var damage: Int {
         return 50
     }
+    
     override var invSpeed: Int {
         return 1
     }
@@ -25,6 +26,14 @@ class Hero: Player {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // event firing
+    override func move () -> () {
+        self.events.trigger("move", information: nextDirection()
+        )
+        
+    }
+
     
     // Element Methods
     // overrides NextDirection... will eventually be the accelerometer

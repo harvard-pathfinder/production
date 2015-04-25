@@ -12,6 +12,7 @@ import SpriteKit
 class Enemy: Player {
     // instance variables
     var EnemyLife = 25
+    var hero: Hero? = nil
     
     override var damage: Int {
         return 50

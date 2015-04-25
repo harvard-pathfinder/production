@@ -57,12 +57,13 @@ class BoardScene: SKScene {
             if let enemy = player as? Enemy {
                 gameBoard.enemies.append(enemy)
             }
+            // add to hero varaible
+            else if let hero = player as? Hero {
+                gameBoard.hero = hero
+            }
         }
     }
     
-    private func insertHeroToEnemies (elt: Element) -> () {
-        
-    }
     
     override func didMoveToView(view: SKView) {
     }
