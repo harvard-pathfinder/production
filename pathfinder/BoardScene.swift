@@ -70,6 +70,10 @@ class BoardScene: SKScene {
     
     override func touchesBegan(touches: Set <NSObject>, withEvent event: UIEvent) {
         for touch: AnyObject in touches {
+            // on touch shoot gun
+            if let hero = gameBoard.hero {
+                hero.shootGun(gameBoard.enemies)
+            }
             let location = touch.locationInNode(self)
             let node = nodeAtPoint(location)
             if node is Player {
@@ -107,6 +111,11 @@ class BoardScene: SKScene {
         if ticker == 30 {
             for enemy in gameBoard.enemies {
                 enemy.move()
+            }
+            if let hero = gameBoard.hero {
+                for bullet in hero.bullets {
+                    bullet.move()
+                }
             }
             ticker = 0
         }

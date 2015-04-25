@@ -19,7 +19,7 @@ class Flag: Element {
     }
     
     override func nextDirection() -> Direction? {
-        return Direction.West
+        return nil
     }
     // Element methods
     override func isFlag() -> Bool {

@@ -20,13 +20,13 @@
 		300015F21AE2F73100870A05 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300015F11AE2F73100870A05 /* Board.swift */; };
 		300015F41AE2F83100870A05 /* BoardNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300015F31AE2F83100870A05 /* BoardNode.swift */; };
 		300015F61AE301A400870A05 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300015F51AE301A400870A05 /* Element.swift */; };
-		303CAC2B1AE9D68B0060ED8D /* AStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303CAC2A1AE9D68B0060ED8D /* AStar.swift */; };
 		3056DAD61AE74E5F005C6C52 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3056DAD51AE74E5F005C6C52 /* Events.swift */; };
 		307924E01AE60E080042159C /* Snippets.txt in Resources */ = {isa = PBXBuildFile; fileRef = 307924DF1AE60E080042159C /* Snippets.txt */; };
 		30C1B10B1AE44A4F0076BB43 /* BoardScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C1B10A1AE44A4F0076BB43 /* BoardScene.swift */; };
 		9F22C85B1AE7598600587FE5 /* CustomBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F22C85A1AE7598600587FE5 /* CustomBoard.swift */; };
 		9F37AEDC1AE45D9800679927 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F37AEDB1AE45D9800679927 /* Direction.swift */; };
 		9F6CBE281AE5EEFB00651AFF /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6CBE271AE5EEFB00651AFF /* Enemy.swift */; };
+		9FD4A9371AE9F70800EE652A /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD4A9361AE9F70800EE652A /* Bullet.swift */; };
 		9FF5E3451AE3689100279394 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF5E3441AE3689100279394 /* Player.swift */; };
 		9FF5E3471AE368A000279394 /* Flag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF5E3461AE368A000279394 /* Flag.swift */; };
 		9FF5E3491AE368AB00279394 /* Obstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF5E3481AE368AA00279394 /* Obstacle.swift */; };
@@ -62,13 +62,13 @@
 		300015F11AE2F73100870A05 /* Board.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		300015F31AE2F83100870A05 /* BoardNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardNode.swift; sourceTree = "<group>"; };
 		300015F51AE301A400870A05 /* Element.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
-		303CAC2A1AE9D68B0060ED8D /* AStar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AStar.swift; path = ../../../../Tester/Dev/pathfinder/pathfinder/AStar.swift; sourceTree = "<group>"; };
 		3056DAD51AE74E5F005C6C52 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		307924DF1AE60E080042159C /* Snippets.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Snippets.txt; sourceTree = "<group>"; };
 		30C1B10A1AE44A4F0076BB43 /* BoardScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardScene.swift; sourceTree = "<group>"; };
 		9F22C85A1AE7598600587FE5 /* CustomBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBoard.swift; sourceTree = "<group>"; };
 		9F37AEDB1AE45D9800679927 /* Direction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		9F6CBE271AE5EEFB00651AFF /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
+		9FD4A9361AE9F70800EE652A /* Bullet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
 		9FF5E3441AE3689100279394 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		9FF5E3461AE368A000279394 /* Flag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flag.swift; sourceTree = "<group>"; };
 		9FF5E3481AE368AA00279394 /* Obstacle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Obstacle.swift; sourceTree = "<group>"; };
@@ -166,6 +166,7 @@
 				9FF5E3461AE368A000279394 /* Flag.swift */,
 				9FF5E3481AE368AA00279394 /* Obstacle.swift */,
 				9F6CBE271AE5EEFB00651AFF /* Enemy.swift */,
+				9FD4A9361AE9F70800EE652A /* Bullet.swift */,
 			);
 			name = Elements;
 			sourceTree = "<group>";
@@ -176,7 +177,6 @@
 				300015EB1AE2F15800870A05 /* DefaultBoardRaw.swift */,
 				300015EF1AE2F5A100870A05 /* BoardGenerator.swift */,
 				9F22C85A1AE7598600587FE5 /* CustomBoard.swift */,
-				303CAC2A1AE9D68B0060ED8D /* AStar.swift */,
 				300015F31AE2F83100870A05 /* BoardNode.swift */,
 				300015F11AE2F73100870A05 /* Board.swift */,
 			);
@@ -297,6 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				300015CA1AE2EBC500870A05 /* GameScene.swift in Sources */,
+				9FD4A9371AE9F70800EE652A /* Bullet.swift in Sources */,
 				300015CC1AE2EBC500870A05 /* GameViewController.swift in Sources */,
 				9FF5E3491AE368AB00279394 /* Obstacle.swift in Sources */,
 				300015F61AE301A400870A05 /* Element.swift in Sources */,
@@ -310,7 +311,6 @@
 				300015F21AE2F73100870A05 /* Board.swift in Sources */,
 				9F6CBE281AE5EEFB00651AFF /* Enemy.swift in Sources */,
 				300015C61AE2EBC500870A05 /* AppDelegate.swift in Sources */,
-				303CAC2B1AE9D68B0060ED8D /* AStar.swift in Sources */,
 				3056DAD61AE74E5F005C6C52 /* Events.swift in Sources */,
 				9F22C85B1AE7598600587FE5 /* CustomBoard.swift in Sources */,
 				9FF5E3451AE3689100279394 /* Player.swift in Sources */,

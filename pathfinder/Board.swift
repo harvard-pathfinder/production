@@ -17,6 +17,9 @@ class Board {
     // enemies in the board
     var enemies = [Enemy]()
     
+    // hero in the board
+    var hero: Hero? = nil
+    
     // event manager
     var events = EventManager()
     
@@ -39,7 +42,6 @@ class Board {
         return [BoardNode(x: 0, y: 0, elts: nil)]
     }
     
-    // CORRECT
     // apply a function to every BoardNode in the Board
     func iterBoardNodes (function f: (BoardNode -> ())) -> () {
         for row in gameBoard {
@@ -58,7 +60,6 @@ class Board {
         }
     }
     
-    // CORRECT
     // "gets" Bnode at point p
     func getBNode (atPoint p: (Int,Int)) -> BoardNode? {
         if p.0 >= 0 && p.0 < widthOfBoard && p.1 >= 0 && p.1 < heightOfBoard {
@@ -67,7 +68,6 @@ class Board {
         return nil
     }
     
-    // CORRECT
     // "gets" EltArray at point p
     func getElt (atPoint p: (Int,Int)) -> [Element]? {
         if p.0 >= 0 && p.0 < widthOfBoard && p.1 >= 0 && p.1 < heightOfBoard {
@@ -76,7 +76,6 @@ class Board {
         return nil
     }
     
-    // CORRECT
     // "sets" array of BNodes at point p to be bNode
     func setBNode (atPoint p: (Int, Int), bNode: BoardNode) -> () {
         if p.0 >= 0 && p.0 < widthOfBoard && p.1 >= 0 && p.1 < heightOfBoard {
@@ -84,7 +83,6 @@ class Board {
         }
     }
     
-    // CORRECT
     // performs a function on a BNode atpoint
     func modifyBNode (atPoint p: (Int, Int), function f: (BoardNode -> ())) -> () {
         if let bNode = self.getBNode(atPoint: p) {
@@ -112,7 +110,13 @@ class Board {
         }
     }
     
-    // CORRECT
+    // if element is a hero.. remove hero from gameboard
+    func removeHeroGyroUpdates (element: Element) -> () {
+        if let hero = element as? Hero {
+            hero.motionManager.stopGyroUpdates()
+        }
+    }
+    
     // adds element BNodes at point p
     // adds element to SKSprite Tree
     // adds enemy to gameBoard
@@ -145,7 +149,6 @@ class Board {
         )
     }
     
-    // CORRECT
     // checks if element exists at point
     func elementExists (atPoint p: (Int, Int), eltToCheck: Element) -> Bool {
         if let bNode = self.getBNode(atPoint: p) {
@@ -160,7 +163,6 @@ class Board {
         return false
     }
     
-    // CORRECT
     // removes element from boardNode
     // removes element from SpriteTree
     func removeElement (atPoint p: (Int, Int), eltToRemove: Element) -> () {
@@ -177,6 +179,8 @@ class Board {
                                 currentBNode.elements = elementArray
                                 // if enemy, remove from enemy array
                                 self.removeEnemyFromGameBoard(eltToRemove)
+                                // if hero, stop Gyro Updates
+                                self.removeHeroGyroUpdates(eltToRemove)
                             }
                         }
                     }
@@ -185,7 +189,6 @@ class Board {
         }
     }
     
-    // CORRECT
     // moves element from point 1 to point 2
     // returns an option tuple (the location of the element after the function call)
     func moveElement (fromPoint p1: (Int, Int), toPoint p2: (Int, Int), eltToMove: Element) -> ((Int,Int)?) {
@@ -229,9 +232,17 @@ class Board {
         if p1.0 >= 0 && p1.0 < widthOfBoard && p1.1 >= 0 && p1.1 < heightOfBoard {
             self.addElement(atpoint: p1, eltToAdd: eltToCreate)
             self.listenToElement(eltToCreate)
-            if eltToCreate is Player {
-                let player = eltToCreate as? Player
-                self.listenToPlayer(player!)
+            // adds player listeners
+            if let player = eltToCreate as? Player {
+                self.listenToPlayer(player)
+                // add enemy to enemyArr inside bullet
+                if let enemy = player as? Enemy {
+                    if let hero1 = hero {
+                        for bullet in hero1.bullets {
+                            bullet.enemies.append(enemy)
+                        }
+                    }
+                }
             }
         }
     }
@@ -257,6 +268,15 @@ class Board {
     func listenToPlayer(player: Player) {
         player.events.listenTo("die", action: {
             self.removeElement(atPoint: player.pos, eltToRemove: player);
+        })
+    }
+    
+    // hero listener
+    func listenToHero(hero: Hero) {
+        hero.events.listenTo("shoot", action: { (information:Any?) -> () in
+            if let bullet = information as? Bullet {
+                self.createNewElement(atPoint: hero.pos, eltToCreate: bullet)
+            }
         })
     }
     
