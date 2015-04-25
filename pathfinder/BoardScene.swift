@@ -71,7 +71,7 @@ class BoardScene: SKScene {
         for touch: AnyObject in touches {
             // on touch shoot gun
             if let hero = gameBoard.hero {
-                hero.shootGun()
+                hero.shootGun(gameBoard.enemies)
             }
             let location = touch.locationInNode(self)
             let node = nodeAtPoint(location)
