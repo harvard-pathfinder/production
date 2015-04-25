@@ -12,7 +12,7 @@ import SpriteKit
 class BoardScene: SKScene {
     let gameBoard = Board()
     let cropNode = SKCropNode()
-        
+    
     override init (size: CGSize) {
         super.init(size: size)
         gameBoard.iterBoardNodes(function: insertNodeToBoardScene)
