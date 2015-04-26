@@ -53,10 +53,13 @@ class Hero: Player {
         
     }
     
+    // fire the gun 
     func shootGun(enemies: [Enemy]) -> () {
         let bullet = Bullet(position: pos, dir: self.nextDirection(), enemyArr: enemies)
         self.events.trigger("shoot", information: bullet)
         bullets.append(bullet)
+        print("shoot")
+        // TODO: add animations here
     }
     
     // Element Methods

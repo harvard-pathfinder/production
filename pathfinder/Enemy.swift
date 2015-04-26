@@ -12,6 +12,7 @@ import SpriteKit
 class Enemy: Player {
     // instance variables
     var EnemyLife = 25
+    var hero: Hero? = nil
     
     override var damage: Int {
         return 50
@@ -31,11 +32,27 @@ class Enemy: Player {
     // event trigger
     func attackEvent (hero : Hero) -> () {
         self.events.trigger("attack", information: hero)
+        print("attack")
+        // TODO: add animations here
     }
     
-    // Element Methods
-    // overrides NextDirection... will eventually be the accelerometer
+    // event firing
+    override func move () -> () {
+        self.events.trigger("move", information: nextDirection())
+        if let hero1 = hero {
+            if pos.0 == hero1.pos.0 && pos.1 == hero1.pos.1 {
+                self.attackEvent(hero1)
+            }
+        }
+    }
+    
+    // overrides nextDirection function
     override func nextDirection() -> Direction? {
-        return naturalDirection(fromPoint: self.pos, toPoint: (0,0))
+        if let hero1 = hero {
+            return naturalDirection(fromPoint: pos, toPoint: hero1.pos)
+        }
+        else {
+            return nil
+        }
     }
 }

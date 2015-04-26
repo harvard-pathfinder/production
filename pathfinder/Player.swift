@@ -37,11 +37,6 @@ class Player: Element {
         }
     }
     
-    // attack function
-    func attack() -> () {
-        return
-    }
-    
     // die function
     func dieEvent() -> () {
         self.events.trigger("die", information: self)
