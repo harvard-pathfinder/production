@@ -19,7 +19,7 @@ class BoardScene: SKScene {
     }
     
     private func insertNodeToBoardScene (bNode: BoardNode) -> () {
-        //        let max = (x: innerScene.frame.maxX, y: innerScene.frame.maxY)
+        // let max = (x: innerScene.frame.maxX, y: innerScene.frame.maxY)
         let max = (x: self.frame.maxX, y: self.frame.maxY)
         bNode.size.width = self.frame.width / (CGFloat(gameBoard.widthOfBoard) / 1.5)
         //bNode.size.height = self.frame.height / (2 * CGFloat(gameBoard.heightOfBoard))

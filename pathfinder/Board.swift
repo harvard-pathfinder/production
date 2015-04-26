@@ -236,7 +236,12 @@ class Board {
                 if let enemy = player as? Enemy {
                     if let hero1 = hero {
                         for bullet in hero1.bullets {
+                            // add bullet to enemy array
                             bullet.enemies.append(enemy)
+                            // add enemy listeners
+                            bullet.events.listenTo("die", action: {
+                                self.removeElement(atPoint: bullet.pos, eltToRemove: bullet)
+                            })
                         }
                     }
                 }
