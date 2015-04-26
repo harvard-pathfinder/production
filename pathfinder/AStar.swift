@@ -7,13 +7,27 @@
 //
 
 import Foundation
+import SpriteKit
 
 class AStar {
     
     func map (#board: Board, destination: (x: Int, y: Int)) -> () {
         board.iterBoardNodes(function: {
             (let node: BoardNode) -> () in
-                node.path = naturalDirection(fromPoint: node.pos, toPoint: destination)!
+            if let path = naturalDirection(fromPoint: node.pos, toPoint: destination) {
+                node.path = path
+            }
+        })
+    }
+    
+    func displayMap (#board: Board) -> () {
+        board.iterBoardNodes(function: {
+            (let node: BoardNode) -> () in
+            let arrow = SKSpriteNode(imageNamed: "arrow")
+            arrow.anchorPoint = CGPointMake(1.0, 0.5)
+            arrow.setScale(0.3)
+            arrow.zRotation = directionToCGFloat(direction: node.path)
+            node.addChild(arrow)
         })
     }
 }
