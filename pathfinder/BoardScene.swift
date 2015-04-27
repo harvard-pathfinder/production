@@ -75,6 +75,13 @@ class BoardScene: SKScene {
         }
     }
     
+    // passes the hero as an argument to the enemy
+    private func insertHeroArgumentToEnemy (enemy: Enemy) -> () {
+        if let hero = gameBoard.hero {
+            enemy.hero = hero
+        }
+    }
+    
     
     override func didMoveToView(view: SKView) {
     }

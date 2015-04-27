@@ -261,6 +261,17 @@ class Board {
         })
     }
     
+    // bullet listeners
+    func addBullet(bullets: [Bullet], enemy: Enemy) {
+        for bullet in bullets {
+            bullet.enemies.append(enemy)
+            bullet.events.listenTo("die", action: {
+                // remove bullet from the board variable
+                self.removeElement(atPoint: bullet.pos, eltToRemove: bullet)
+            })
+        }
+    }
+    
     
     // player listener
     func listenToPlayer(player: Player) {
