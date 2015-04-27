@@ -91,19 +91,15 @@ class BoardScene: SKScene {
             if let hero = gameBoard.hero {
                 // hero.shootGun(gameBoard.enemies)
                 // displays the A* for debug purposes
-                astar.map(board: gameBoard, destination: hero.pos)
-                let location = touch.locationInNode(self)
-                let node = nodeAtPoint(location)
-                
-                if let bnode = node as? BoardNode {
-                    astar.movementCostsOfAdjacent(board: gameBoard, startPoint: bnode.pos)
-                    for bNode in astar.getAdjacent(board: gameBoard, toPoint: bnode.pos) {
-                        astar.calculateFvalue(bNode)
+                if let destination = gameBoard.getBNode(atPoint: hero.pos) {
+                    let location = touch.locationInNode(self)
+                    let node = nodeAtPoint(location)
+                    if let bNode = node as? BoardNode {
+                        print((bNode.pos, bNode.name))
+                        astar.pathfind(board: gameBoard, startNode: bNode, destinationNode: destination)
+                        astar.displayMap(board: gameBoard)
                     }
-                    let minf = astar.getAdjWithLowestFValue(board: gameBoard, toPoint: bnode.pos)
-                    print(minf!.pos)
                 }
-                astar.displayMap(board: gameBoard)
             }
             
 //            if node is Player {

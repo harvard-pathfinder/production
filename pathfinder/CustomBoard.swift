@@ -12,7 +12,7 @@ class CustomBoard {
     
     // update this function to create custom boards
     func getBoard (#width: Int, height: Int) -> [[Int]] {
-        return self.generator(width: width, height: height, hero: (2,3), enemies: [/*(1,1), (2,1)*/], obstacles: [/*(2,4), (0,1)*/], flag: nil /*(2,2)*/)
+        return self.generator(width: width, height: height, hero: (2,3), enemies: [/*(1,1), (2,1)*/], obstacles: [(2,4), (1,1)], flag: nil /*(2,2)*/)
     }
     
     // helper function to evaluate options

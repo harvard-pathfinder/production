@@ -26,7 +26,7 @@ class BoardNode: SKSpriteNode {
     
     // movement cost
     // G value for A*
-    var gValue = 0
+    var gValue: Int = 0
     
     // G + H
     // F value for A*
