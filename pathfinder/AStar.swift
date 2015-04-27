@@ -16,15 +16,15 @@ class AStar {
     var path = [BoardNode]()
     
     
-    func displayMap (#board: Board) -> () {
+    func displayMap (#board: Board) (width: CGFloat) (height: CGFloat)-> () {
         print(path)
         board.iterBoardNodes(function: {
             (let bnode: BoardNode) -> () in
             for node in self.path {
                 if bnode === node {
                     let pathnode = SKSpriteNode(imageNamed: "A*")
-                    pathnode.size = CGSizeMake(20, 20)
-                    pathnode.anchorPoint = CGPointMake(0,1.5)
+                    pathnode.size = CGSizeMake(width, height)
+                    pathnode.anchorPoint = CGPointMake(-0.1,1.1)
                     node.addChild(pathnode)
                 }
             }

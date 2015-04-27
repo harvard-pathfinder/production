@@ -98,7 +98,7 @@ class BoardScene: SKScene {
                     if let bNode = node as? BoardNode {
                         print((bNode.pos, bNode.name))
                         astar.pathfind(board: gameBoard, startNode: bNode, destinationNode: destination)
-                        astar.displayMap(board: gameBoard)
+                        astar.displayMap(board: gameBoard) (width: bNode.size.width - 5) (height: bNode.size.height - 5)
                     }
                 }
             }
