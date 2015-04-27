@@ -57,8 +57,8 @@ class BoardScene: SKScene {
             if let enemy = player as? Enemy {
                 gameBoard.enemies.append(enemy)
             }
-            // add to hero varaible
-            else if let hero = player as? Hero {
+            if let hero = player as? Hero {
+                gameBoard.listenToHero(hero)
                 gameBoard.hero = hero
             }
         }

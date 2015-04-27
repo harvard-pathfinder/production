@@ -43,13 +43,23 @@ class Hero: Player {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // event firing
-    override func move () -> () {
-        self.events.trigger("move", information: nextDirection()
-        )
+    // tilt handler
+    // TODO: process tilt data
+    func tiltHandler() -> () {
+        let rotation = motionManager.gyroData.rotationRate
+//        if rotation.x > 1.0 && rotation.y > 1.0 {
+//            direction = Direction.
+//            self.move()
+//        }
         
     }
 
+    
+    func shootGun(enemies: [Enemy]) -> () {
+        let bullet = Bullet(position: pos, dir: self.nextDirection(), enemyArr: enemies)
+        self.events.trigger("shoot", information: bullet)
+        bullets.append(bullet)
+    }
     
     // Element Methods
     // overrides NextDirection... will eventually be the accelerometer
