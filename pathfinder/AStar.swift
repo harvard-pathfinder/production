@@ -16,7 +16,7 @@ class AStar {
     var path = [BoardNode]()
     
     
-    func displayMap (#board: Board) -> () {
+    func displayMap (#board: Board) (width: CGFloat) (height: CGFloat)-> () {
         board.iterBoardNodes(function: {
             (let bnode: BoardNode) -> () in
             for node in self.path {
@@ -46,17 +46,18 @@ class AStar {
     }
     
     func pathfind(#board: Board, startNode: BoardNode, destinationNode: BoardNode) -> [BoardNode] {
+        // reset Open, Closed, and path
         openList = [BoardNode]()
         closedList = [BoardNode]()
         path = [BoardNode]()
-        // reset the board each time ... this will need to be changed!!
-        board.iterBoardNodes(function: {(bNode) -> () in
-            bNode.parentNode = nil
-            bNode.gValue = 0
-            bNode.hValue = 0
-            bNode.fValue = 0 })
-         //TODO: remove sprites
         
+        // reset startnode
+        startNode.hValue = 0
+        startNode.gValue = 0
+        startNode.fValue = 0
+        startNode.parentNode = nil
+        
+        // if start = destination, we are done
         if startNode === destinationNode {
             path = [BoardNode]()
             return [BoardNode]()
@@ -92,6 +93,14 @@ class AStar {
                     }
                     // if node is not yet in the open list
                     else {
+                        // reset G and F values, as well as parents to reuse them
+                        // since they are nto in the open list or closed list their values should be set to 0
+                        // because the boardNodes will have different values for each enemy's start point, this reset is necessary
+                        // this step reduces the cost of iterating through all bNodes and fixing the values at the start
+                        bNode.gValue = 0
+                        bNode.fValue = 0
+                        bNode.parentNode = nil
+                        
                         // only visit BoardNodes that are "empty"
                         if bNode.elements == nil {
                             self.addBNodeToOpenList(bNode)
@@ -140,8 +149,10 @@ class AStar {
     
     // maps the HValues of each individual node
     func mapHValues(#board: Board, destination: (x: Int, y: Int)) -> () {
-        board.iterBoardNodes(function: {
-            (bNode: BoardNode) -> () in bNode.hValue = self.manhattenFormat(bNode, destination: (destination.x, destination.y))
+        board.iterBoardNodes(function: { (bNode: BoardNode) -> () in
+            // reset hValue to 0 (as pathfinder will be called multipe times
+            bNode.hValue = 0
+            bNode.hValue = self.manhattenFormat(bNode, destination: (destination.x, destination.y))
         })
     }
     
