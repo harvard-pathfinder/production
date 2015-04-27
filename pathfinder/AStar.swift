@@ -22,8 +22,8 @@ class AStar {
             for node in self.path {
                 if bnode === node {
                     let pathnode = SKSpriteNode(imageNamed: "A*")
-                    pathnode.size = CGSizeMake(20, 20)
-                    pathnode.anchorPoint = CGPointMake(0,1.5)
+                    pathnode.size = CGSizeMake(width, height)
+                    pathnode.anchorPoint = CGPointMake(-0.1,1.1)
                     node.addChild(pathnode)
                 }
             }
