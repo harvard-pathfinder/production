@@ -86,8 +86,20 @@ class BoardScene: SKScene {
     override func didMoveToView(view: SKView) {
     }
     
+    var i: Int = 10
+    
     override func touchesBegan(touches: Set <NSObject>, withEvent event: UIEvent) {
         for touch: AnyObject in touches {
+            while (i > 0) {
+                let location1 = touch.locationInNode(self)
+                let node1 = nodeAtPoint(location1)
+                if let bnode = node1 as? BoardNode {
+                    gameBoard.createNewElement(atPoint: bnode.pos, eltToCreate: Obstacle(position: bnode.pos))
+                    --i
+                    return
+                }
+            }
+            
             // on touch shoot gun
             if let hero = gameBoard.hero {
                 // hero.shootGun(gameBoard.enemies)
@@ -96,7 +108,6 @@ class BoardScene: SKScene {
                     let location = touch.locationInNode(self)
                     let node = nodeAtPoint(location)
                     if let bNode = node as? BoardNode {
-                        print((bNode.pos, bNode.name))
                         astar.pathfind(board: gameBoard, startNode: bNode, destinationNode: destination)
                         astar.displayMap(board: gameBoard)
                     }

@@ -17,7 +17,6 @@ class AStar {
     
     
     func displayMap (#board: Board) -> () {
-        print(path)
         board.iterBoardNodes(function: {
             (let bnode: BoardNode) -> () in
             for node in self.path {
@@ -50,12 +49,13 @@ class AStar {
         openList = [BoardNode]()
         closedList = [BoardNode]()
         path = [BoardNode]()
-//        // reset the board each time ... this will need to be changed!!
-//        board.iterBoardNodes(function: {(bNode) -> () in
-//            bNode.gValue = 0
-//            bNode.hValue = 0
-//            bNode.fValue = 0 })
-        // TODO: remove sprites
+        // reset the board each time ... this will need to be changed!!
+        board.iterBoardNodes(function: {(bNode) -> () in
+            bNode.parentNode = nil
+            bNode.gValue = 0
+            bNode.hValue = 0
+            bNode.fValue = 0 })
+         //TODO: remove sprites
         
         if startNode === destinationNode {
             path = [BoardNode]()
@@ -111,14 +111,12 @@ class AStar {
             }
         }) {
             // base case: get the first move by going up the path
-            print("here")
             return self.getPath(currentNode: startNode, path: [destinationNode])
         }
             // otherwise continue with the recursion
         else {
             // get OpenList member with lowest FValue
             let next = self.getOpenListMemberWithLowestFValue()
-            print(next!.pos)
             return self.algorithmHelper(board: board, startNode: next!, destinationNode: destinationNode)
         }
     }
