@@ -23,9 +23,6 @@ class Board {
     // event manager
     var events = EventManager()
     
-    // hero on board
-    var hero: Hero? = nil
-    
     // height of the gameBoard
     var heightOfBoard: Int {
         return gameBoard.count
