@@ -24,8 +24,6 @@ class Bullet: Element {
         self.events.trigger("move", information: nextDirection())
         // if the result of the motion puts the enemy and the bullet in the same location
         for enemy in enemies {
-            print(enemy.pos)
-            print(pos)
             if enemy.pos.0 == pos.0 && enemy.pos.1 == pos.1 {
                 // fire event
                 enemy.getHit(damage)
@@ -38,16 +36,8 @@ class Bullet: Element {
     // removes the bullet from the map
     func hitTarget() -> () {
         self.events.trigger("die", information: self)
-    }
-    
-    // event trigger
-    func hitEnemy() -> () {
-        for enemy in enemies {
-            if enemy.pos.0 == pos.0 && enemy.pos.1 == pos.1 {
-                // fire event
-                enemy.getHit(damage)
-            }
-        }
+        print("hit")
+        // TODO: add animation here
     }
     
     required init?(coder aDecoder: NSCoder) {

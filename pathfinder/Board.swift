@@ -235,12 +235,13 @@ class Board {
             // adds player listeners
             if let player = eltToCreate as? Player {
                 self.listenToPlayer(player)
-                // add enemy to enemyArr inside bullet
                 if let enemy = player as? Enemy {
+                    self.listenToEnemy(enemy)
                     if let hero1 = hero {
-                        for bullet in hero1.bullets {
-                            bullet.enemies.append(enemy)
-                        }
+                        // give the enemy access to the hero instance
+                        enemy.hero = hero1
+                        // add enemy to enemyArr inside bullet
+                        self.addBullet(hero1.bullets, enemy: enemy)
                     }
                 }
             }
@@ -267,7 +268,37 @@ class Board {
     // player listener
     func listenToPlayer(player: Player) {
         player.events.listenTo("die", action: {
+            // remove from the board
             self.removeElement(atPoint: player.pos, eltToRemove: player);
+      
+            // if player is hero, remove hero from hero variable in enemies, board
+            if let hero = player as? Hero {
+                for enemy in self.enemies {
+                    enemy.hero = nil
+                    self.hero = nil
+                }
+            // if player is enemy, remove enemy from enemy arrays in bullets
+            } else if let enemy = player as? Enemy {
+                if let hero = self.hero {
+                    for bullet in hero.bullets {
+                        for var i = 0; i < bullet.enemies.count; ++i {
+                            if bullet.enemies[i] == enemy {
+                                bullet.enemies.removeAtIndex(i)
+                            }
+                        }
+                    }
+                }
+            }
+        })
+    }
+    
+    // enemy listener
+    func listenToEnemy(enemy: Enemy) {
+        enemy.events.listenTo("attack", action: { (information:Any?) -> () in
+            if let hero = information as? Hero {
+                // hero dies
+                hero.dieEvent()
+            }
         })
     }
     

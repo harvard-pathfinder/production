@@ -20,6 +20,21 @@ class BoardNode: SKSpriteNode {
     // the A* mapped direction
     var path = randomDirection()
     
+    // H value for A*
+    // distance from the node to target node
+    var hValue = 0
+    
+    // movement cost
+    // G value for A*
+    var gValue: Int = 0
+    
+    // G + H
+    // F value for A*
+    var fValue = 0
+    
+    // parent for A*
+    var parentNode: BoardNode? = nil
+    
     // initializer
     init(x: Int, y: Int, var elts: [Element]?) {
         pos = (x,y)
