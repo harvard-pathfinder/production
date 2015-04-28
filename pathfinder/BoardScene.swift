@@ -38,7 +38,7 @@ class BoardScene: SKScene {
         bNode.position = CGPointMake(CGFloat(w) * (offsetX + 1), CGFloat(max.y - (CGFloat(h) * (offsetY + 1))))
         bNode.anchorPoint = CGPointMake(0.0, 1.0)
         bNode.name = String(bNode.pos.x) + ", " + String(bNode.pos.y)
-        //        innerScene.addChild(bNode)
+        // innerScene.addChild(bNode)
         self.addChild(bNode)
         
         // event handler for element events
