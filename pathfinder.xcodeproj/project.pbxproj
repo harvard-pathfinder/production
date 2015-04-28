@@ -193,7 +193,6 @@
 			children = (
 				3056DAD51AE74E5F005C6C52 /* Events.swift */,
 				9F37AEDB1AE45D9800679927 /* Direction.swift */,
-				F233BCA01AE6BBFF002B885D /* Touchables.swift */,
 				30FE03CB1AEC1D9400C470D1 /* AStar.swift */,
 			);
 			name = "Helper Files";
@@ -308,7 +307,6 @@
 				9FF5E3491AE368AB00279394 /* Obstacle.swift in Sources */,
 				300015F61AE301A400870A05 /* Element.swift in Sources */,
 				300015F01AE2F5A100870A05 /* BoardGenerator.swift in Sources */,
-				F233BCA11AE6BBFF002B885D /* Touchables.swift in Sources */,
 				300015F41AE2F83100870A05 /* BoardNode.swift in Sources */,
 				300015EC1AE2F15800870A05 /* DefaultBoardRaw.swift in Sources */,
 				30FE03CC1AEC1D9400C470D1 /* AStar.swift in Sources */,

@@ -20,6 +20,9 @@ class Hero: Player {
         return 1
     }
     
+    // obstacles on the map
+    var obstacles = [Obstacle]()
+    
     // bullets shot by the hero
     var bullets = [Bullet]()
     
@@ -53,7 +56,21 @@ class Hero: Player {
 //        }
         
     }
-
+    
+    // move function
+    override func move () -> () {
+        self.events.trigger("move", information: nextDirection())
+//        for obstacle in obstacles {
+//            if obstacle.pos.0 == pos.0 && obstacle.pos.1 == pos.1 {
+//                obstacle.obstaclePickedUp(self.nextDirection())
+//            }
+//        }
+    }
+    
+    // die function
+    override func dieEvent() -> () {
+        self.events.trigger("die", information: self)
+    }
     
     // fire the gun 
     func shootGun(enemies: [Enemy]) -> () {
@@ -67,6 +84,6 @@ class Hero: Player {
     // Element Methods
     // overrides NextDirection... will eventually be the accelerometer
     override func nextDirection() -> Direction? {
-        return Direction.North
+        return Direction.East
     }
 }

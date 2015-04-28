@@ -18,7 +18,7 @@ class BoardNode: SKSpriteNode {
     var events = EventManager()
 
     // the A* mapped direction
-    var path = randomDirection()
+    var next = randomDirection()
     
     // H value for A*
     // distance from the node to target node
