@@ -109,10 +109,11 @@ class BoardScene: SKScene {
                     let location = touch.locationInNode(self)
                     let node = nodeAtPoint(location)
                     if let bNode = node as? BoardNode {
-                        print((bNode.pos, bNode.name))
-                        astar.pathfind(board: gameBoard, startNode: bNode, destinationNode: destination)
-                        //astar.mapNexts(board: gameBoard, destination: destination.pos)
-                        astar.displayMap(board: gameBoard)
+                        for enemy in gameBoard.enemies {
+                            enemy.path = astar.pathfind(board: gameBoard, startNode: gameBoard.getBNode(atPoint: enemy.pos)!, destinationNode: gameBoard.getBNode(atPoint: hero.pos)!)
+                        }
+                        //astar.pathfind(board: gameBoard, startNode: bNode, destinationNode: destination)
+                        //astar.displayMap(board: gameBoard) (width: bNode.size.width - 5) (height: bNode.size.height - 5)
                     }
                 }
             }

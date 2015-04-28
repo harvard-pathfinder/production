@@ -21,10 +21,10 @@ class AStar {
             (let bnode: BoardNode) -> () in
             for node in self.path {
                 if bnode === node {
-                    //                    let pathnode = SKSpriteNode(imageNamed: "A*")
-                    //                    pathnode.setScale(0.3)
-                    //                    pathnode.anchorPoint = CGPointMake(0,1.5)
-                    //                    node.addChild(pathnode)
+                    //let pathnode = SKSpriteNode(imageNamed: "A*")
+                    //pathnode.size = CGSizeMake(width, height)
+                    //pathnode.anchorPoint = CGPointMake(-0.1,1.1)
+                    //node.addChild(pathnode)
                     bnode.alpha = 0.3
                 }
             }
