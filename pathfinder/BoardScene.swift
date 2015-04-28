@@ -10,19 +10,13 @@ import Foundation
 import SpriteKit
 
 class BoardScene: SKScene {
-    let gameBoard = Board()
+    let gameBoard = Board(heroArg: Hero(position: (2,6)))
     let cropNode = SKCropNode()
     let astar = AStar()
     
     override init (size: CGSize) {
         super.init(size: size)
         gameBoard.iterBoardNodes(function: insertNodeToBoardScene)
-        //        if let hero = self.childNodeWithName("hero") as? Element {
-        //            astar.map(board: gameBoard, destination: hero.pos)
-        //            astar.displayMap(board: gameBoard)
-        //
-        //astar.map(board: gameBoard, destination: (10,5))
-        //astar.displayMap(board: gameBoard)
     }
     
     private func insertNodeToBoardScene (bNode: BoardNode) -> () {
@@ -52,11 +46,15 @@ class BoardScene: SKScene {
         
         // event handler for bNode events
         gameBoard.listenToBNode(bNode)
-        bNode.testEvent()
     }
     
     // called at initialization of the BoardScene
     private func insertElementToBoardScene (elt: Element) -> () {
+        if let hero = elt as? Hero {
+            // do not add the hero to the board
+            // the hero is added at the start
+            return
+        }
         gameBoard.listenToElement(elt)
         // add listeners to the player class
         if let player = elt as? Player {
@@ -67,67 +65,27 @@ class BoardScene: SKScene {
                 gameBoard.enemies.append(enemy)
                 insertHeroArgumentToEnemy(enemy)
             }
-            // add listeners to the hero class
-            if let hero = player as? Hero {
-                gameBoard.listenToHero(hero)
-                gameBoard.hero = hero
-            }
+        }
+        // add obstacles to the hero arr, create listener
+        else if let obstacle = elt as? Obstacle {
+            // add obstacle to hero's obstacle array
+            gameBoard.hero.obstacles.append(obstacle)
         }
     }
     
     // passes the hero as an argument to the enemy
     private func insertHeroArgumentToEnemy (enemy: Enemy) -> () {
-        if let hero = gameBoard.hero {
-            enemy.hero = hero
-        }
+        enemy.hero = gameBoard.hero
     }
     
     
     override func didMoveToView(view: SKView) {
     }
-
- //  var i: Int = 10
     
     override func touchesBegan(touches: Set <NSObject>, withEvent event: UIEvent) {
         for touch: AnyObject in touches {
-//            while (i > 0) {
-//                let location1 = touch.locationInNode(self)
-//                let node1 = nodeAtPoint(location1)
-//                if let bnode = node1 as? BoardNode {
-//                    gameBoard.createNewElement(atPoint: bnode.pos, eltToCreate: Obstacle(position: bnode.pos))
-//                    --i
-//                    print(i)
-//                    return
-//                }
-//            }
-            
             // on touch shoot gun
-            if let hero = gameBoard.hero {
-                // hero.shootGun(gameBoard.enemies)
-                // displays the A* for debug purposes
-                if let destination = gameBoard.getBNode(atPoint: hero.pos) {
-                    let location = touch.locationInNode(self)
-                    let node = nodeAtPoint(location)
-                    if let bNode = node as? BoardNode {
-                        for enemy in gameBoard.enemies {
-                            enemy.path = astar.pathfind(board: gameBoard, startNode: gameBoard.getBNode(atPoint: enemy.pos)!, destinationNode: gameBoard.getBNode(atPoint: hero.pos)!)
-                        }
-                        //astar.pathfind(board: gameBoard, startNode: bNode, destinationNode: destination)
-                        //astar.displayMap(board: gameBoard) (width: bNode.size.width - 5) (height: bNode.size.height - 5)
-                    }
-                }
-            }
-            
-//            if node is Player {
-//                let player = node as? Player
-//                player!.getHit(100)
-//            }
-//                
-//            else if node is BoardNode {
-//                let bnode = node as? BoardNode
-//                // adds a NEW element to the gameboard
-//                gameBoard.createNewElement(atPoint: bnode!.pos, eltToCreate: Enemy(position: bnode!.pos))
-//            }
+            gameBoard.hero.shootGun(gameBoard.enemies)
         }
     }
     
@@ -145,20 +103,18 @@ class BoardScene: SKScene {
     }
     
     var ticker = 0
-    override func update(currentTime: CFTimeInterval) { 
+    override func update(currentTime: CFTimeInterval) {
+        // shoot gun evert tick
+        for bullet in gameBoard.hero.bullets {
+            bullet.move()
+        }
+        
         if ticker == 10 || ticker == 19 {
             for enemy in gameBoard.enemies {
                 enemy.move()
             }
-            if let hero = gameBoard.hero {
-                for bullet in hero.bullets {
-                    bullet.move()
-                }
-            }
         } else if ticker == 20 {
-            if let hero = gameBoard.hero {
-                hero.move()
-            }
+            gameBoard.hero.move()
             ticker = 0
         }
         ++ticker

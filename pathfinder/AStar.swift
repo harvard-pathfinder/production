@@ -101,8 +101,16 @@ class AStar {
                         bNode.fValue = 0
                         bNode.parentNode = nil
                         
-                        // only visit BoardNodes that are "empty"
+                        // visit BoardNodes that are "empty"
                         if bNode.elements == nil {
+                            self.addBNodeToOpenList(bNode)
+                            bNode.gValue = newMoveCost
+                            bNode.parentNode = startNode
+                            self.calculateFvalue(bNode)
+                        }
+                        // can unwrap here because we know elements is not nil
+                        // if the elt array does not contain an obstacle, add
+                        else if board.eltArrayIsFreePath(bNode.elements!) {
                             self.addBNodeToOpenList(bNode)
                             bNode.gValue = newMoveCost
                             bNode.parentNode = startNode
@@ -110,7 +118,7 @@ class AStar {
                         }
                     }
                 }
-                
+        
                 // add startNode to ClosedList, remove from OpenList
                 self.removeFromOpenList(startNode)
                 self.addBNodeToClosedList(startNode)

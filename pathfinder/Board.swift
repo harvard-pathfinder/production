@@ -19,7 +19,7 @@ class Board {
     var enemies = [Enemy]()
     
     // hero in the board
-    var hero: Hero? = nil
+    var hero: Hero
     
     // event manager
     var events = EventManager()
@@ -32,6 +32,13 @@ class Board {
     // width of the gameBoard
     var widthOfBoard: Int {
         return gameBoard[0].count
+    }
+    
+    init(heroArg: Hero) {
+        hero = heroArg
+        // add hero to the board
+        self.createNewElement(atPoint: (0,0), eltToCreate: hero)
+        self.listenToHero(hero)
     }
 
     // return the path from one Position to another
@@ -86,6 +93,16 @@ class Board {
         if let bNode = self.getBNode(atPoint: p) {
             f(bNode)
         }
+    }
+    
+    // checks if element list contains an obstacle
+    func eltArrayIsFreePath (eltArray: [Element]) -> Bool {
+        for elt in eltArray {
+            if elt.isObstacle() {
+                return false
+            }
+        }
+        return true
     }
 
     // if element is an enemy... adds enemy to gameBoard
@@ -235,12 +252,10 @@ class Board {
                 self.listenToPlayer(player)
                 if let enemy = player as? Enemy {
                     self.listenToEnemy(enemy)
-                    if let hero1 = hero {
-                        // give the enemy access to the hero instance
-                        enemy.hero = hero1
-                        // add enemy to enemyArr inside bullet
-                        self.addBullet(hero1.bullets, enemy: enemy)
-                    }
+                    // give the enemy access to the hero instance
+                    enemy.hero = hero
+                    // add enemy to enemyArr inside bullet
+                    self.addBullet(hero.bullets, enemy: enemy)
                 }
             }
         }
@@ -291,16 +306,13 @@ class Board {
             if let hero = player as? Hero {
                 for enemy in self.enemies {
                     enemy.hero = nil
-                    self.hero = nil
                 }
             // if player is enemy, remove enemy from enemy arrays in bullets
             } else if let enemy = player as? Enemy {
-                if let hero = self.hero {
-                    for bullet in hero.bullets {
-                        for var i = 0; i < bullet.enemies.count; ++i {
-                            if bullet.enemies[i] == enemy {
-                                bullet.enemies.removeAtIndex(i)
-                            }
+                for bullet in self.hero.bullets {
+                    for var i = 0; i < bullet.enemies.count; ++i {
+                        if bullet.enemies[i] == enemy {
+                            bullet.enemies.removeAtIndex(i)
                         }
                     }
                 }

@@ -9,6 +9,8 @@
 import Foundation
 
 class Obstacle: Element {
+    var nextDir: Direction?
+    
     init(position: (Int,Int)) {
         super.init(textureName: "obstacle", position: position)
     }
@@ -17,8 +19,19 @@ class Obstacle: Element {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // pickup an obstacle
+    func obstaclePickedUp(heroDir: Direction?) -> () {
+        // next Direction = Hero Direction
+        nextDir = heroDir
+    }
+    
+    func obstacleDropped() -> () {
+        // next Direction = nil
+        nextDir = nil
+    }
+    
     override func nextDirection() -> Direction? {
-        return Direction.SouthWest
+        return nextDir
     }
     
     // Element Methods
