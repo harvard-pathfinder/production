@@ -15,6 +15,7 @@ class Hero: Player {
     override var damage: Int {
         return 50
     }
+    
     override var invSpeed: Int {
         return 1
     }
@@ -65,6 +66,6 @@ class Hero: Player {
     // Element Methods
     // overrides NextDirection... will eventually be the accelerometer
     override func nextDirection() -> Direction? {
-        return Direction.North
+        return Direction.East
     }
 }

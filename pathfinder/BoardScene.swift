@@ -82,11 +82,25 @@ class BoardScene: SKScene {
         }
     }
     
+    
     override func didMoveToView(view: SKView) {
     }
+
+ //  var i: Int = 10
     
     override func touchesBegan(touches: Set <NSObject>, withEvent event: UIEvent) {
         for touch: AnyObject in touches {
+//            while (i > 0) {
+//                let location1 = touch.locationInNode(self)
+//                let node1 = nodeAtPoint(location1)
+//                if let bnode = node1 as? BoardNode {
+//                    gameBoard.createNewElement(atPoint: bnode.pos, eltToCreate: Obstacle(position: bnode.pos))
+//                    --i
+//                    print(i)
+//                    return
+//                }
+//            }
+            
             // on touch shoot gun
             if let hero = gameBoard.hero {
                 // hero.shootGun(gameBoard.enemies)
@@ -131,7 +145,7 @@ class BoardScene: SKScene {
     
     var ticker = 0
     override func update(currentTime: CFTimeInterval) { 
-        if ticker == 30 {
+        if ticker == 10 || ticker == 19 {
             for enemy in gameBoard.enemies {
                 enemy.move()
             }
@@ -139,6 +153,10 @@ class BoardScene: SKScene {
                 for bullet in hero.bullets {
                     bullet.move()
                 }
+            }
+        } else if ticker == 20 {
+            if let hero = gameBoard.hero {
+                hero.move()
             }
             ticker = 0
         }

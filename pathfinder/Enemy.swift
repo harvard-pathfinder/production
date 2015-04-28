@@ -13,6 +13,7 @@ class Enemy: Player {
     // instance variables
     var EnemyLife = 25
     var hero: Hero? = nil
+    var path = [BoardNode]()
     
     override var damage: Int {
         return 50
@@ -49,7 +50,21 @@ class Enemy: Player {
     // overrides nextDirection function
     override func nextDirection() -> Direction? {
         if let hero1 = hero {
-            return naturalDirection(fromPoint: pos, toPoint: hero1.pos)
+            if path.count > 0 {
+                // calculate next direction of motion
+                let next = naturalDirection(fromPoint: pos, toPoint: path[0].pos)
+                print(pos)
+                print(path[0].pos)
+                if next == Direction.West {
+                    print("hi")
+                }
+                path.removeAtIndex(0)
+                // update path
+                return next
+            }
+            else {
+                return nil
+            }
         }
         else {
             return nil

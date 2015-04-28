@@ -13,6 +13,7 @@ import SpriteKit
 class Board {
     // creates 2D array of arrays of BoardNodes
     private var gameBoard: [[BoardNode]] = BoardGenerator().defaultBoard()
+    let astar = AStar()
     
     // enemies in the board
     var enemies = [Enemy]()
@@ -254,9 +255,16 @@ class Board {
     
     // element listener
     func listenToElement(elt: Element) {
-        elt.events.listenTo("move", action: {
-            if let nextDir = elt.nextDirection() {
+        elt.events.listenTo("move", action: { (information: Any?) -> () in
+            // move the elt
+            if let nextDir = information as? Direction {
                 self.moveElementByDirection(fromPoint: elt.pos, toDirection: nextDir, eltToMove: elt)
+            }
+            // if it is a hero, update the enemy motion
+            if let hero1 = elt as? Hero {
+                for enemy in self.enemies {
+                    enemy.path = self.astar.pathfind(board: self, startNode: self.getBNode(atPoint: enemy.pos)!, destinationNode: self.getBNode(atPoint: hero1.pos)!)
+                }
             }
         })
     }
@@ -271,6 +279,7 @@ class Board {
             })
         }
     }
+    
     
     // player listener
     func listenToPlayer(player: Player) {
