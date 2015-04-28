@@ -22,38 +22,49 @@ class AStar {
             (let bnode: BoardNode) -> () in
             for node in self.path {
                 if bnode === node {
-                    let pathnode = SKSpriteNode(imageNamed: "A*")
-                    pathnode.anchorPoint = CGPointMake(0,1.5)
-                    node.addChild(pathnode)
+                    //                    let pathnode = SKSpriteNode(imageNamed: "A*")
+                    //                    pathnode.setScale(0.3)
+                    //                    pathnode.anchorPoint = CGPointMake(0,1.5)
+                    //                    node.addChild(pathnode)
+                    bnode.alpha = 0.3
                 }
             }
         })
         
         //        board.iterBoardNodes(function: {
         //
-        ////            (let node: BoardNode) -> () in
-        ////            if node.hValue > 0 && node.hValue < 12 {
-        ////                let hVal = SKSpriteNode(imageNamed: String(node.hValue))
-        ////                hVal.anchorPoint = CGPointMake(-1, 1)
-        ////                node.addChild(hVal)
-        ////            }
-        ////            let arrow = SKSpriteNode(imageNamed: "Arrow")
-        ////            arrow.anchorPoint = CGPointMake(1.0, 0.5)
-        ////            arrow.setScale(0.3)
-        ////            arrow.zRotation = directionToCGFloat(direction: node.path)
-        ////            node.addChild(arrow)
+        //            (let node: BoardNode) -> () in
+        //            if node.hValue > 0 && node.hValue < 12 {
+        //                let hVal = SKSpriteNode(imageNamed: String(node.hValue))
+        //                hVal.anchorPoint = CGPointMake(-1, 1)
+        //                node.addChild(hVal)
+        //            }
+        //            let arrow = SKSpriteNode(imageNamed: "arrow")
+        //            arrow.anchorPoint = CGPointMake(1.0, 0.5) // Tip
+        //            arrow.setScale(0.3)
+        //            arrow.zRotation = directionToCGFloat(direction: node.next)
+        //            node.addChild(arrow)
         //        })
+    }
+    
+    func mapNexts (#board: Board, destination: (x: Int, y: Int)) -> () {
+        board.iterBoardNodes(function: {
+            (let node: BoardNode) -> () in
+            if let nextMove = naturalDirection(fromPoint: node.pos, toPoint: destination) {
+                node.next = nextMove
+            }
+        })
     }
     
     func pathfind(#board: Board, startNode: BoardNode, destinationNode: BoardNode) -> [BoardNode] {
         openList = [BoardNode]()
         closedList = [BoardNode]()
         path = [BoardNode]()
-//        // reset the board each time ... this will need to be changed!!
-//        board.iterBoardNodes(function: {(bNode) -> () in
-//            bNode.gValue = 0
-//            bNode.hValue = 0
-//            bNode.fValue = 0 })
+        //        // reset the board each time ... this will need to be changed!!
+        //        board.iterBoardNodes(function: {(bNode) -> () in
+        //            bNode.gValue = 0
+        //            bNode.hValue = 0
+        //            bNode.fValue = 0 })
         // TODO: remove sprites
         
         if startNode === destinationNode {
@@ -89,7 +100,7 @@ class AStar {
                             self.calculateFvalue(bNode)
                         }
                     }
-                    // if node is not yet in the open list
+                        // if node is not yet in the open list
                     else {
                         // only visit BoardNodes that are "empty"
                         if bNode.elements == nil {
@@ -161,7 +172,8 @@ class AStar {
             case Direction.NorthEast, Direction.SouthEast, Direction.SouthWest, Direction.NorthWest: return 14
             }
         }
-        return 0
+        // should never fire, but if it does this value will be prohibitively large so nothing will go down this path
+        return 100
     }
     
     // gets movement costs of AdjacentNodes
