@@ -254,8 +254,12 @@ class Board {
     
     // element listener
     func listenToElement(elt: Element) {
-        elt.events.listenTo("move", action: {
-            if let nextDir = elt.nextDirection() {
+        elt.events.listenTo("move", action: { (information: Any?) -> () in
+            // if any in
+            if let nextDir = information as? Direction {
+                self.moveElementByDirection(fromPoint: elt.pos, toDirection: nextDir, eltToMove: elt)
+            }
+            else if let nextDir = elt.nextDirection() {
                 self.moveElementByDirection(fromPoint: elt.pos, toDirection: nextDir, eltToMove: elt)
             }
         })

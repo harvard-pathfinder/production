@@ -86,7 +86,7 @@ class BoardScene: SKScene {
     override func didMoveToView(view: SKView) {
     }
 
-//    var i: Int = 10
+ //  var i: Int = 10
     
     override func touchesBegan(touches: Set <NSObject>, withEvent event: UIEvent) {
         for touch: AnyObject in touches {
@@ -96,6 +96,7 @@ class BoardScene: SKScene {
 //                if let bnode = node1 as? BoardNode {
 //                    gameBoard.createNewElement(atPoint: bnode.pos, eltToCreate: Obstacle(position: bnode.pos))
 //                    --i
+//                    print(i)
 //                    return
 //                }
 //            }
@@ -108,8 +109,11 @@ class BoardScene: SKScene {
                     let location = touch.locationInNode(self)
                     let node = nodeAtPoint(location)
                     if let bNode = node as? BoardNode {
-                        astar.pathfind(board: gameBoard, startNode: bNode, destinationNode: destination)
-                        astar.displayMap(board: gameBoard) (width: bNode.size.width - 5) (height: bNode.size.height - 5)
+                        for enemy in gameBoard.enemies {
+                            enemy.path = astar.pathfind(board: gameBoard, startNode: gameBoard.getBNode(atPoint: enemy.pos)!, destinationNode: gameBoard.getBNode(atPoint: hero.pos)!)
+                        }
+                        //astar.pathfind(board: gameBoard, startNode: bNode, destinationNode: destination)
+                        //astar.displayMap(board: gameBoard) (width: bNode.size.width - 5) (height: bNode.size.height - 5)
                     }
                 }
             }
