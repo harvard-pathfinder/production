@@ -32,6 +32,7 @@
 		9FF5E3471AE368A000279394 /* Flag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF5E3461AE368A000279394 /* Flag.swift */; };
 		9FF5E3491AE368AB00279394 /* Obstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF5E3481AE368AA00279394 /* Obstacle.swift */; };
 		9FF5E34B1AE3FC8400279394 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF5E34A1AE3FC8400279394 /* Hero.swift */; };
+		F22441EF1AEEF048002880BB /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22441EE1AEEF048002880BB /* GameOverScene.swift */; };
 		F233BCA11AE6BBFF002B885D /* Touchables.swift in Sources */ = {isa = PBXBuildFile; fileRef = F233BCA01AE6BBFF002B885D /* Touchables.swift */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +76,7 @@
 		9FF5E3461AE368A000279394 /* Flag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flag.swift; sourceTree = "<group>"; };
 		9FF5E3481AE368AA00279394 /* Obstacle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Obstacle.swift; sourceTree = "<group>"; };
 		9FF5E34A1AE3FC8400279394 /* Hero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
+		F22441EE1AEEF048002880BB /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		F233BCA01AE6BBFF002B885D /* Touchables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Touchables.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -123,6 +125,7 @@
 				300015C51AE2EBC500870A05 /* AppDelegate.swift */,
 				300015C91AE2EBC500870A05 /* GameScene.swift */,
 				30C1B10A1AE44A4F0076BB43 /* BoardScene.swift */,
+				F22441EE1AEEF048002880BB /* GameOverScene.swift */,
 				300015CB1AE2EBC500870A05 /* GameViewController.swift */,
 				300015C71AE2EBC500870A05 /* GameScene.sks */,
 				300015E91AE2ECF300870A05 /* TODOs.rtf */,
@@ -315,6 +318,7 @@
 				300015F21AE2F73100870A05 /* Board.swift in Sources */,
 				9F6CBE281AE5EEFB00651AFF /* Enemy.swift in Sources */,
 				300015C61AE2EBC500870A05 /* AppDelegate.swift in Sources */,
+				F22441EF1AEEF048002880BB /* GameOverScene.swift in Sources */,
 				3056DAD61AE74E5F005C6C52 /* Events.swift in Sources */,
 				9F22C85B1AE7598600587FE5 /* CustomBoard.swift in Sources */,
 				9FF5E3451AE3689100279394 /* Player.swift in Sources */,
