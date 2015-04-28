@@ -53,7 +53,6 @@ class Hero: Player {
 //        }
         
     }
-
     
     // fire the gun 
     func shootGun(enemies: [Enemy]) -> () {
@@ -67,6 +66,6 @@ class Hero: Player {
     // Element Methods
     // overrides NextDirection... will eventually be the accelerometer
     override func nextDirection() -> Direction? {
-        return Direction.North
+        return Direction.East
     }
 }

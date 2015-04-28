@@ -146,7 +146,7 @@ class BoardScene: SKScene {
     
     var ticker = 0
     override func update(currentTime: CFTimeInterval) { 
-        if ticker == 30 {
+        if ticker == 10 || ticker == 19 {
             for enemy in gameBoard.enemies {
                 enemy.move()
             }
@@ -154,6 +154,10 @@ class BoardScene: SKScene {
                 for bullet in hero.bullets {
                     bullet.move()
                 }
+            }
+        } else if ticker == 20 {
+            if let hero = gameBoard.hero {
+                hero.move()
             }
             ticker = 0
         }
