@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-class GaameOverScene: SKScene {
+class GameOverScene: SKScene {
     let gameOver = SKLabelNode (fontNamed:"Times New Roman")
     let playAgainButton = SKLabelNode(fontNamed:"Times New Roman")
     
