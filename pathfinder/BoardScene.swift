@@ -135,6 +135,14 @@ class BoardScene: SKScene {
         ++ticker
     }
     
+
+//    // send to game over scene
+//    var transition:SKTransition = SKTransition.fadeWithDuration(1)
+//    let skView = self.view as SKView!
+//    var scene = GameOverScene(size: skView.bounds.size)
+//    skView.presentScene(scene, transition: transition)
+
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
