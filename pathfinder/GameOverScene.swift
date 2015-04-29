@@ -32,6 +32,7 @@ class GameOverScene: SKScene {
         gameOver.physicsBody!.restitution = 0.8
         gameOver.physicsBody!.mass = 0.5
         
+        
         playAgainButton.text = "Play Again";
         playAgainButton.fontSize = 20
         playAgainButton.position = CGPoint(x:CGRectGetMidX(self.frame), y: 50);
@@ -47,15 +48,20 @@ class GameOverScene: SKScene {
             // if the user touches the play again button
             if nodeAtPoint(location) == playAgainButton {
                 
+                playAgainButton.fontColor = UIColor.redColor()
+                
                 // create a new scene
+                var transition:SKTransition = SKTransition.fadeWithDuration(2)
                 let skView = self.view as SKView!
                 var scene = BoardScene(size: skView.bounds.size)
                 
                 // go to the new scene
-                skView.presentScene(scene)
+                skView.presentScene(scene, transition: transition)
             }
         }
     }
+    
+    
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
