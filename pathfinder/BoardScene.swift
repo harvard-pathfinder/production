@@ -102,20 +102,20 @@ class BoardScene: SKScene {
         }
     }
     
-//    override func touchesMoved(touches: Set <NSObject>, withEvent event: UIEvent) {
-//        for touch: AnyObject in touches {
-//            let location = touch.locationInNode(gameBoard.world)
-//            let previousLocation = touch.previousLocationInNode(gameBoard.world)
-//            gameBoard.world.position.x += (location.x - previousLocation.x)
-//            gameBoard.world.position.y += (location.y - previousLocation.y)
-//            gameBoard.iterBoardNodes(function: {
-//                (let node) -> () in
-//                // Can do parallax scrolling with various multipliers if we want to
-//                node.position.x += (location.x - previousLocation.x)
-//                node.position.y += (location.y - previousLocation.y)
-//            })
-//        }
-//    }
+    override func touchesMoved(touches: Set <NSObject>, withEvent event: UIEvent) {
+        for touch: AnyObject in touches {
+            let location = touch.locationInNode(gameBoard.world)
+            let previousLocation = touch.previousLocationInNode(gameBoard.world)
+            gameBoard.world.position.x += (location.x - previousLocation.x)
+            gameBoard.world.position.y += (location.y - previousLocation.y)
+            gameBoard.iterBoardNodes(function: {
+                (let node) -> () in
+                // Can do parallax scrolling with various multipliers if we want to
+                node.position.x += (location.x - previousLocation.x)
+                node.position.y += (location.y - previousLocation.y)
+            })
+        }
+    }
     
 
     var ticker = 0
