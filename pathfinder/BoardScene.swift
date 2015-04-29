@@ -8,6 +8,7 @@
 
 import Foundation
 import SpriteKit
+import CoreMotion
 
 class BoardScene: SKScene {
     let gameBoard = Board(heroArg: Hero(position: (5,8)))
@@ -19,13 +20,14 @@ class BoardScene: SKScene {
     }
     
     private func insertNodeToBoardScene (bNode: BoardNode) -> () {
+        
+        // draw board to scale
         let max = (x: gameBoard.world.frame.maxX, y: gameBoard.world.frame.maxY)
         let min = (x: gameBoard.world.frame.minX, y: gameBoard.world.frame.minY)
         bNode.size.width = gameBoard.world.frame.width / (CGFloat(gameBoard.widthOfBoard))
         bNode.size.height = gameBoard.world.frame.height / (CGFloat(gameBoard.heightOfBoard))
         let offsetX = bNode.frame.width
         let offsetY = bNode.frame.height
-        
         let h = bNode.pos.y
         let w = bNode.pos.x
         
@@ -64,7 +66,7 @@ class BoardScene: SKScene {
                 listenToGameOverEventFromBoard()
             }
         }
-        // add obstacles to the hero arr, create listener
+            // add obstacles to the hero arr, create listener
         else if let obstacle = elt as? Obstacle {
             // add obstacle to hero's obstacle array
             gameBoard.hero.obstacles.append(obstacle)
@@ -86,6 +88,19 @@ class BoardScene: SKScene {
         self.addChild(gameBoard.world)
         
         gameBoard.iterBoardNodes(function: insertNodeToBoardScene)
+        
+        if motionManager.accelerometerAvailable == true {
+            // 2
+            motionManager.startAccelerometerUpdatesToQueue(NSOperationQueue.currentQueue(), withHandler:{
+                data, error in
+                    if self.ticker == 9 {
+                        if let dir = vectorToDirection(CGFloat(data.acceleration.x), CGFloat(data.acceleration.y)) {
+                            self.gameBoard.moveElementByDirection(fromPoint: self.gameBoard.hero.pos, toDirection: dir, eltToMove: self.gameBoard.hero)
+                        }
+                    }
+                }
+            )
+        }
     }
     
     override func touchesBegan(touches: Set <NSObject>, withEvent event: UIEvent) {
@@ -97,23 +112,6 @@ class BoardScene: SKScene {
         }
     }
     
-    override func touchesMoved(touches: Set <NSObject>, withEvent event: UIEvent) {
-        for touch: AnyObject in touches {
-            let location = touch.locationInNode(gameBoard.world)
-            let previousLocation = touch.previousLocationInNode(gameBoard.world)
-            gameBoard.world.position.x += (location.x - previousLocation.x)
-            gameBoard.world.position.y += (location.y - previousLocation.y)
-            gameBoard.iterBoardNodes(function: {
-                (let node) -> () in
-                // Can do parallax scrolling with various multipliers if we want to
-                node.position.x += (location.x - previousLocation.x)
-                node.position.y += (location.y - previousLocation.y)
-            })
-        }
-    }
-    
-
-    var ticker = 0
     override func update(currentTime: CFTimeInterval) {
         // shoot gun every tick
         for bullet in gameBoard.hero.bullets {
@@ -123,11 +121,27 @@ class BoardScene: SKScene {
             for enemy in gameBoard.enemies {
                 enemy.move()
             }
-        } else if ticker == 11 {
-            gameBoard.hero.move()
             ticker = 0
         }
+//        } else if ticker == 11 {
+//            gameBoard.hero.move()
+//            ticker = 0
+//        }
         ++ticker
+        
+        //accelerate()
+    }
+    
+    private func accelerate() {
+        if motionManager.accelerometerAvailable
+        {
+            if let data = motionManager.accelerometerData {
+//                if var hero = self.childNodeWithName("hero") {
+//                    hero.position.x = CGFloat(data.acceleration.x * 100)
+//                }
+                print(data.acceleration.x)
+            }
+        }
     }
     
     func listenToGameOverEventFromBoard() {
@@ -144,3 +158,19 @@ class BoardScene: SKScene {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+
+//    override func touchesMoved(touches: Set <NSObject>, withEvent event: UIEvent) {
+//        for touch: AnyObject in touches {
+//            let location = touch.locationInNode(gameBoard.world)
+//            let previousLocation = touch.previousLocationInNode(gameBoard.world)
+//            gameBoard.world.position.x += (location.x - previousLocation.x)
+//            gameBoard.world.position.y += (location.y - previousLocation.y)
+//            gameBoard.iterBoardNodes(function: {
+//                (let node) -> () in
+//                // Can do parallax scrolling with various multipliers if we want to
+//                node.position.x += (location.x - previousLocation.x)
+//                node.position.y += (location.y - previousLocation.y)
+//            })
+//        }
+//    }
