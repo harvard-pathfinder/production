@@ -100,8 +100,10 @@ class BoardScene: SKScene {
                     if self.ticker == 9 {
                         if let dir = vectorToDirection(CGFloat(data.acceleration.x), CGFloat(data.acceleration.y)) {
                             self.gameBoard.moveElementByDirection(fromPoint: self.gameBoard.hero.pos, toDirection: dir, eltToMove: self.gameBoard.hero)
+                            self.gameBoard.hero.move()
                         }
                     }
+                    ++self.ticker
                 }
             )
         }
@@ -121,7 +123,7 @@ class BoardScene: SKScene {
         for bullet in gameBoard.hero.bullets {
             bullet.move()
         }
-        if ticker <= 10 {
+        if ticker >= 20 {
             for enemy in gameBoard.enemies {
                 enemy.move()
             }
