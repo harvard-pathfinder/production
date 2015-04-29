@@ -30,16 +30,21 @@ func randomDirection () -> Direction {
 }
 
 // changes a direction into a vector quantity
-func directionToVector (d: Direction) -> (Int,Int) {
-    switch d {
-    case Direction.North: return (0,-1)
-    case Direction.NorthEast: return (1,-1)
-    case Direction.East: return (1,0)
-    case Direction.SouthEast: return (1,1)
-    case Direction.South: return (0,1)
-    case Direction.SouthWest: return (-1,1)
-    case Direction.West: return (-1,0)
-    case Direction.NorthWest: return (-1,-1)
+func directionToVector (dir: Direction?) -> (Int,Int) {
+    if let d = dir {
+        switch d {
+        case Direction.North: return (0,-1)
+        case Direction.NorthEast: return (1,-1)
+        case Direction.East: return (1,0)
+        case Direction.SouthEast: return (1,1)
+        case Direction.South: return (0,1)
+        case Direction.SouthWest: return (-1,1)
+        case Direction.West: return (-1,0)
+        case Direction.NorthWest: return (-1,-1)
+        }
+    }
+    else {
+            return (0,0)
     }
 }
 
