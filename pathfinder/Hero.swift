@@ -60,11 +60,6 @@ class Hero: Player {
     // move function
     override func move () -> () {
         self.events.trigger("move", information: nextDirection())
-//        for obstacle in obstacles {
-//            if obstacle.pos.0 == pos.0 && obstacle.pos.1 == pos.1 {
-//                obstacle.obstaclePickedUp(self.nextDirection())
-//            }
-//        }
     }
     
     // die function
@@ -84,6 +79,14 @@ class Hero: Player {
     // Element Methods
     // overrides NextDirection... will eventually be the accelerometer
     override func nextDirection() -> Direction? {
-        return Direction.East
+        let returnDirection: Direction? = Direction.South
+        for obstacle in obstacles {
+          // if obstacle in the way, do not move there!!
+          let newPoint = movePoint(fromPoint: pos, returnDirection)
+                if newPoint.0 == obstacle.pos.0 && newPoint.1 == obstacle.pos.1 {
+                return nil
+            }
+        }
+        return returnDirection
     }
 }

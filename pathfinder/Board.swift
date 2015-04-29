@@ -11,6 +11,10 @@ import SpriteKit
 
 
 class Board {
+    
+    // the world!!
+    var world = SKShapeNode()
+    
     // creates 2D array of arrays of BoardNodes
     private var gameBoard: [[BoardNode]] = BoardGenerator().defaultBoard()
     let astar = AStar()
@@ -37,7 +41,7 @@ class Board {
     init(heroArg: Hero) {
         hero = heroArg
         // add hero to the board
-        self.createNewElement(atPoint: (0,0), eltToCreate: hero)
+        self.createNewElement(atPoint: (hero.pos), eltToCreate: hero)
         self.listenToHero(hero)
     }
 
@@ -64,7 +68,7 @@ class Board {
             }
         }
     }
-    
+
     // "gets" Bnode at point p
     func getBNode (atPoint p: (Int,Int)) -> BoardNode? {
         if p.0 >= 0 && p.0 < widthOfBoard && p.1 >= 0 && p.1 < heightOfBoard {
