@@ -10,13 +10,11 @@ import Foundation
 import SpriteKit
 
 class BoardScene: SKScene {
-    let gameBoard = Board(heroArg: Hero(position: (2,6)))
+    let gameBoard = Board(heroArg: Hero(position: (5,8)))
     let cropNode = SKCropNode()
     let astar = AStar()
-//  var hero: Hero
     
     override init (size: CGSize) {
-//        hero = gameBoard.hero
         super.init(size: size)
     }
     
@@ -31,10 +29,7 @@ class BoardScene: SKScene {
         let h = bNode.pos.y
         let w = bNode.pos.x
         
-        // TODO: make positions percentages or fractions, based on the length of the array - maybe a gameboard.width element
-        // TODO: possibly override this position variable in the BoardNode Class
-        // TODO: is this painting switched? height is width and vv
-        bNode.position = CGPointMake(min.x + (CGFloat(w) * (offsetX + 1)), CGFloat(max.y - (CGFloat(h) * (offsetY + 1))))
+        bNode.position = CGPointMake(min.x + (CGFloat(w) * (offsetX )), CGFloat(max.y - (CGFloat(h) * (offsetY))))
         bNode.anchorPoint = CGPointMake(0.0, 1.0)
         bNode.name = String(bNode.pos.x) + ", " + String(bNode.pos.y)
         gameBoard.world.addChild(bNode)
@@ -138,7 +133,6 @@ class BoardScene: SKScene {
     func listenToGameOverEventFromBoard() {
         gameBoard.events.listenTo("gameOverFromBoard", action: {
             // send to game over scene
-            println("yupyuiuu")
             var transition:SKTransition = SKTransition.fadeWithDuration(1)
             let skView = self.view as SKView!
             var scene = GameOverScene(size: skView.bounds.size)
