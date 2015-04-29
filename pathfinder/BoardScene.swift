@@ -101,8 +101,10 @@ class BoardScene: SKScene {
                     if self.ticker == 9 {
                         if let dir = vectorToDirection(CGFloat(data.acceleration.x), CGFloat(data.acceleration.y)) {
                             self.gameBoard.moveElementByDirection(fromPoint: self.gameBoard.hero.pos, toDirection: dir, eltToMove: self.gameBoard.hero)
+                            self.gameBoard.hero.move()
                         }
                     }
+                    ++self.ticker
                 }
             )
         }
@@ -124,31 +126,13 @@ class BoardScene: SKScene {
         for bullet in gameBoard.hero.bullets {
             bullet.move()
         }
-        if ticker == 10 {
+        if ticker >= 20 {
             for enemy in gameBoard.enemies {
                 enemy.move()
             }
             ticker = 0
         }
-//        } else if ticker == 11 {
-//            gameBoard.hero.move()
-//            ticker = 0
-//        }
         ++ticker
-        
-        //accelerate()
-    }
-    
-    private func accelerate() {
-        if motionManager.accelerometerAvailable
-        {
-            if let data = motionManager.accelerometerData {
-//                if var hero = self.childNodeWithName("hero") {
-//                    hero.position.x = CGFloat(data.acceleration.x * 100)
-//                }
-                print(data.acceleration.x)
-            }
-        }
     }
     
     func listenToGameOverEventFromBoard() {

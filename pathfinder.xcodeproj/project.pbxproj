@@ -33,7 +33,6 @@
 		9FF5E3491AE368AB00279394 /* Obstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF5E3481AE368AA00279394 /* Obstacle.swift */; };
 		9FF5E34B1AE3FC8400279394 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF5E34A1AE3FC8400279394 /* Hero.swift */; };
 		F22441EF1AEEF048002880BB /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22441EE1AEEF048002880BB /* GameOverScene.swift */; };
-		F233BCA11AE6BBFF002B885D /* Touchables.swift in Sources */ = {isa = PBXBuildFile; fileRef = F233BCA01AE6BBFF002B885D /* Touchables.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,7 +76,6 @@
 		9FF5E3481AE368AA00279394 /* Obstacle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Obstacle.swift; sourceTree = "<group>"; };
 		9FF5E34A1AE3FC8400279394 /* Hero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
 		F22441EE1AEEF048002880BB /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
-		F233BCA01AE6BBFF002B885D /* Touchables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Touchables.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
