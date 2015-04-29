@@ -64,6 +64,7 @@ class BoardScene: SKScene {
                 gameBoard.listenToEnemy(enemy)
                 gameBoard.enemies.append(enemy)
                 insertHeroArgumentToEnemy(enemy)
+                listenToGameOverEventFromBoard()
             }
         }
         // add obstacles to the hero arr, create listener
@@ -120,13 +121,16 @@ class BoardScene: SKScene {
         ++ticker
     }
     
-
-//    // send to game over scene
-//    var transition:SKTransition = SKTransition.fadeWithDuration(1)
-//    let skView = self.view as SKView!
-//    var scene = GameOverScene(size: skView.bounds.size)
-//    skView.presentScene(scene, transition: transition)
-
+    func listenToGameOverEventFromBoard() {
+        gameBoard.events.listenTo("gameOverFromBoard", action: {
+            // send to game over scene
+            println("yupyuiuu")
+            var transition:SKTransition = SKTransition.fadeWithDuration(1)
+            let skView = self.view as SKView!
+            var scene = GameOverScene(size: skView.bounds.size)
+            skView.presentScene(scene, transition: transition)
+        })
+    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

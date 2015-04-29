@@ -34,7 +34,13 @@ class Enemy: Player {
     func attackEvent (hero : Hero) -> () {
         self.events.trigger("attack", information: hero)
         print("attack")
+        self.gameOverEvent()
         // TODO: add animations here
+    }
+    
+    // event trigger to boardScene to change to GameOverScene
+    func gameOverEvent () -> (){
+        self.events.trigger ("gameOver")
     }
     
     // event firing
@@ -43,6 +49,7 @@ class Enemy: Player {
         if let hero1 = hero {
             if pos.0 == hero1.pos.0 && pos.1 == hero1.pos.1 {
                 self.attackEvent(hero1)
+                self.gameOverEvent()
             }
         }
     }

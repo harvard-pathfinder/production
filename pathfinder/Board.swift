@@ -326,6 +326,7 @@ class Board {
             if let hero = information as? Hero {
                 // hero dies
                 hero.dieEvent()
+                self.events.trigger("gameOverFromBoard")
             }
         })
     }
