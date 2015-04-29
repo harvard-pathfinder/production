@@ -16,12 +16,14 @@ class GameOverScene: SKScene {
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         gameOver.text = "Game Over"
-        gameOver.fontSize = 40
+        gameOver.fontSize = 50
+        gameOver.fontColor = UIColor.redColor()
         gameOver.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
-        playAgainButton.text = "Start Pathfinder";
+        playAgainButton.text = "Play Again";
         playAgainButton.fontSize = 20
         playAgainButton.position = CGPoint(x:CGRectGetMidX(self.frame), y: 50);
         self.addChild(playAgainButton)
+        self.addChild(gameOver)
     }
     
     override func touchesBegan(touches: Set <NSObject>, withEvent event: UIEvent) {
