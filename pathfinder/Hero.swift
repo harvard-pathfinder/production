@@ -36,6 +36,7 @@ class Hero: Player {
     // intializes the gyro data
     init(position: (Int,Int)) {
         super.init(nameOfTexture: "hero1", position: position)
+        self.anchorPoint = CGPointMake(0.0,0.0)
 //        motionManager.gyroUpdateInterval = 0.1
 //        if motionManager.gyroAvailable {
 //            motionManager.startGyroUpdates()
@@ -69,6 +70,9 @@ class Hero: Player {
     
     // fire the gun 
     func shootGun(enemies: [Enemy]) -> () {
+        if self.nextDirection() == nil {
+            return
+        }
         let bullet = Bullet(position: pos, dir: self.nextDirection(), enemyArr: enemies)
         self.events.trigger("shoot", information: bullet)
         bullets.append(bullet)
@@ -86,6 +90,10 @@ class Hero: Player {
                 if newPoint.0 == obstacle.pos.0 && newPoint.1 == obstacle.pos.1 {
                 return nil
             }
+        }
+        switch returnDirection! {
+        case Direction.East: self.zRotation = CGFloat(0)
+        default: self.zRotation = CGFloat(3.0 * 3.1415 / 2.0)
         }
         return returnDirection
     }

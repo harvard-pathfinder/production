@@ -251,6 +251,12 @@ class Board {
         if p1.0 >= 0 && p1.0 < widthOfBoard && p1.1 >= 0 && p1.1 < heightOfBoard {
             self.addElement(atpoint: p1, eltToAdd: eltToCreate)
             self.listenToElement(eltToCreate)
+            if let bullet = eltToCreate as? Bullet {
+                bullet.events.listenTo("die", action: {
+                    // remove bullet from the board variable
+                    self.removeElement(atPoint: bullet.pos, eltToRemove: bullet)
+                })
+            }
             // adds player listeners
             if let player = eltToCreate as? Player {
                 self.listenToPlayer(player)
@@ -296,13 +302,8 @@ class Board {
     func addBullet(bullets: [Bullet], enemy: Enemy) {
         for bullet in bullets {
             bullet.enemies.append(enemy)
-            bullet.events.listenTo("die", action: {
-                // remove bullet from the board variable
-                self.removeElement(atPoint: bullet.pos, eltToRemove: bullet)
-            })
         }
     }
-    
     
     // player listener
     func listenToPlayer(player: Player) {

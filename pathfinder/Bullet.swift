@@ -38,8 +38,14 @@ class Bullet: Element {
     // removes the bullet from the map
     func hitTarget() -> () {
         self.events.trigger("die", information: self)
+        self.dieEvent()
         print("hit")
         // TODO: add animation here
+    }
+    
+    // die function
+    func dieEvent() -> () {
+        self.events.trigger("die", information: self)
     }
     
     required init?(coder aDecoder: NSCoder) {
