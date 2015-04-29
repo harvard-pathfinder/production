@@ -7,12 +7,14 @@
 //
 
 import Foundation
+import SpriteKit
 
 class Obstacle: Element {
     var nextDir: Direction?
     
     init(position: (Int,Int)) {
         super.init(textureName: "obstacle", position: position)
+        self.zPosition = CGFloat(2)
     }
 
     required init?(coder aDecoder: NSCoder) {

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SpriteKit
 
 class Bullet: Element {
     var direction: Direction?
@@ -17,6 +18,7 @@ class Bullet: Element {
         super.init(textureName: "bullet1", position: position)
         direction = dir
         enemies = enemyArr
+        self.zPosition = CGFloat(1)
     }
     
     // move function overriden

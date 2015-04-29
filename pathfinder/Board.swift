@@ -12,7 +12,7 @@ import SpriteKit
 
 class Board {
     
-    // the world!!
+    // the world
     var world = SKShapeNode()
     
     // creates 2D array of arrays of BoardNodes
@@ -315,8 +315,14 @@ class Board {
                 for enemy in self.enemies {
                     enemy.hero = nil
                 }
-            // if player is enemy, remove enemy from enemy arrays in bullets
+                
+            // if player is enemy, remove enemy from enemy arrays in bullets, from enemy array in self
             } else if let enemy = player as? Enemy {
+                for var i = 0; i < self.enemies.count; ++i {
+                    if self.enemies[i] == enemy {
+                        self.enemies.removeAtIndex(i)
+                    }
+                }
                 for bullet in self.hero.bullets {
                     for var i = 0; i < bullet.enemies.count; ++i {
                         if bullet.enemies[i] == enemy {
