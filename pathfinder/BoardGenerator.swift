@@ -12,7 +12,7 @@ import Foundation
 class BoardGenerator {
     
     // 2D array of Ints
-    var intBoard = CustomBoard().getBoard(width: 20, height: 30)
+    var intBoard = CustomBoard().getBoard(width: 10, height: (10 * 7)/4)
     
     // returns a 2d array BoardNodes
     func defaultBoard() -> [[BoardNode]] {

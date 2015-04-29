@@ -44,7 +44,7 @@ func directionToVector (d: Direction) -> (Int,Int) {
 }
 
 // moves a point from p1 by a direction
-func movePoint (fromPoint p: (Int,Int), direction: Direction?) -> (Int, Int){
+func movePoint (fromPoint p: (Int,Int), direction: Direction?) -> (Int, Int) {
     if let directionToMove = direction {
         let (x,y) = directionToVector(directionToMove)
         return(p.0 + x, p.1 + y)
