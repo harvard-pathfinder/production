@@ -91,10 +91,6 @@ class Hero: Player {
                 return nil
             }
         }
-        switch returnDirection! {
-        case Direction.East: self.zRotation = CGFloat(0)
-        default: self.zRotation = CGFloat(3.0 * 3.1415 / 2.0)
-        }
         return returnDirection
     }
 }
