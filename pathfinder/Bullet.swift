@@ -14,7 +14,7 @@ class Bullet: Element {
     var damage = 100
     
     init(position: (Int,Int), dir: Direction?, enemyArr: [Enemy]) {
-        super.init(textureName: "bullet", position: position)
+        super.init(textureName: "bullet1", position: position)
         direction = dir
         enemies = enemyArr
     }

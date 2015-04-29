@@ -35,7 +35,7 @@ class Hero: Player {
     
     // intializes the gyro data
     init(position: (Int,Int)) {
-        super.init(nameOfTexture: "hero", position: position)
+        super.init(nameOfTexture: "hero1", position: position)
 //        motionManager.gyroUpdateInterval = 0.1
 //        if motionManager.gyroAvailable {
 //            motionManager.startGyroUpdates()

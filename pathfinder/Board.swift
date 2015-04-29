@@ -281,8 +281,12 @@ class Board {
             }
             // if it is a hero, update the enemy motion
             if let hero1 = elt as? Hero {
-                for enemy in self.enemies {
-                    enemy.path = self.astar.pathfind(board: self, startNode: self.getBNode(atPoint: enemy.pos)!, destinationNode: self.getBNode(atPoint: hero1.pos)!)
+                if let bNode = self.getBNode(atPoint: hero1.pos) {
+                    // only map the hValues once
+                    self.astar.mapHValues(board: self, destination: bNode.pos)
+                    for enemy in self.enemies {
+                        enemy.path = self.astar.pathfind(board: self, startNode: self.getBNode(atPoint: enemy.pos)!, destinationNode: bNode)
+                    }
                 }
             }
         })
