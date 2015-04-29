@@ -14,13 +14,17 @@ class BoardScene: SKScene {
     let gameBoard = Board(heroArg: Hero(position: (5,8)))
     let cropNode = SKCropNode()
     let astar = AStar()
+    let motionManager = CMMotionManager()
+    var nextX = CGFloat(0.0)
+    var ticker = 0
+    //  var hero: Hero
     
     override init (size: CGSize) {
+        //        hero = gameBoard.hero
         super.init(size: size)
     }
     
     private func insertNodeToBoardScene (bNode: BoardNode) -> () {
-        
         // draw board to scale
         let max = (x: gameBoard.world.frame.maxX, y: gameBoard.world.frame.maxY)
         let min = (x: gameBoard.world.frame.minX, y: gameBoard.world.frame.minY)
@@ -45,6 +49,7 @@ class BoardScene: SKScene {
     
     // called at initialization of the BoardScene
     private func insertElementToBoardScene (elt: Element) -> () {
+    
         elt.size.width = gameBoard.world.frame.width / (CGFloat(gameBoard.widthOfBoard))
         elt.size.height = gameBoard.world.frame.height / (CGFloat(gameBoard.heightOfBoard))
         
@@ -78,7 +83,7 @@ class BoardScene: SKScene {
         enemy.hero = gameBoard.hero
     }
     
-    
+    // motion manager
     override func didMoveToView(view: SKView) {
         self.anchorPoint = CGPointMake(0.5, 0.5)
         self.size = CGSizeMake(view.bounds.size.width, view.bounds.size.height)
@@ -103,6 +108,8 @@ class BoardScene: SKScene {
         }
     }
     
+    
+    // shoot on touch
     override func touchesBegan(touches: Set <NSObject>, withEvent event: UIEvent) {
         for touch: AnyObject in touches {
             // on touch shoot gun
@@ -157,7 +164,6 @@ class BoardScene: SKScene {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-}
 
 
 //    override func touchesMoved(touches: Set <NSObject>, withEvent event: UIEvent) {
@@ -174,3 +180,4 @@ class BoardScene: SKScene {
 //            })
 //        }
 //    }
+}
