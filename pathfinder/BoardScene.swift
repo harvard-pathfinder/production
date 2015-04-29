@@ -118,8 +118,7 @@ class BoardScene: SKScene {
     
     var ticker = 0
     override func update(currentTime: CFTimeInterval) {
-        
-        // shoot gun evert tick
+        // shoot gun every tick
         for bullet in gameBoard.hero.bullets {
             bullet.move()
         }
