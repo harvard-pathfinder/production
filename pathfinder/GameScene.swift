@@ -28,7 +28,7 @@ class GameScene: SKScene {
                 
                 // create a new scene
                 let skView = self.view as SKView!
-                print(skView.bounds.size)
+                //print(skView.bounds.size)
                 var scene = BoardScene(size: skView.bounds.size)
                 // go to the new scene
                 skView.presentScene(scene)
