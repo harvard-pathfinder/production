@@ -17,7 +17,7 @@ class GameOverScene: SKScene {
         /* Setup your scene here */
         gameOver.text = "Game Over"
         gameOver.fontSize = 50
-        gameOver.color = UIColor.redColor()
+        gameOver.fontColor = UIColor.redColor()
         gameOver.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
         playAgainButton.text = "Play Again";
         playAgainButton.fontSize = 20
