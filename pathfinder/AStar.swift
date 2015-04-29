@@ -60,15 +60,9 @@ class AStar {
         openList = [BoardNode]()
         closedList = [BoardNode]()
         path = [BoardNode]()
-        //        // reset the board each time ... this will need to be changed!!
-        //        board.iterBoardNodes(function: {(bNode) -> () in
-        //            bNode.gValue = 0
-        //            bNode.hValue = 0
-        //            bNode.fValue = 0 })
-        // TODO: remove sprites
-        
+
         // reset startnode
-        startNode.hValue = 0
+//        startNode.hValue = 0
         startNode.gValue = 0
         startNode.fValue = 0
         startNode.parentNode = nil
@@ -79,7 +73,7 @@ class AStar {
             return [BoardNode]()
         }
         // map the HValues of the entire board (only needs to be done once)
-        self.mapHValues(board: board, destination: destinationNode.pos)
+//       self.mapHValues(board: board, destination: destinationNode.pos)
         // recursively go through the map and find path
         path = algorithmHelper(board: board, startNode: startNode, destinationNode: destinationNode)
         return path
