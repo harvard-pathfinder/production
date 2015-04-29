@@ -30,7 +30,7 @@ class GameOverScene: SKScene {
         gameOver.physicsBody = SKPhysicsBody(circleOfRadius: gameOver.frame.size.width/2)
         gameOver.physicsBody!.friction = 0.3
         gameOver.physicsBody!.restitution = 0.8
-        gameOver.physicsBody!.mass = 0.3
+        gameOver.physicsBody!.mass = 0.5
         
         playAgainButton.text = "Play Again";
         playAgainButton.fontSize = 20
