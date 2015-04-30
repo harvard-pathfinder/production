@@ -15,6 +15,8 @@ class Bullet: Element {
     var damage = 100
     
     init(position: (Int,Int), dir: Direction?, enemyArr: [Enemy]) {
+        //source for the bullet dot on public domain
+        //http://commons.wikimedia.org/wiki/File:Black_dot.png
         super.init(textureName: "bullet1", position: position)
         direction = dir
         enemies = enemyArr

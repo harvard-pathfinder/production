@@ -35,6 +35,8 @@ class Hero: Player {
     
     // intializes the gyro data
     init(position: (Int,Int)) {
+        //source for the hero image on public domain
+        //https://openclipart.org/detail/24566/simple-space-platform-game-stuff-6
         super.init(nameOfTexture: "hero1", position: position)
         self.anchorPoint = CGPointMake(0.0,0.0)
 //        motionManager.gyroUpdateInterval = 0.1
