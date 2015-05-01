@@ -8,19 +8,13 @@
 
 import Foundation
 import SpriteKit
-import CoreMotion
 
 class BoardScene: SKScene {
     let gameBoard = Board(heroArg: Hero(position: (5,8)))
-    let cropNode = SKCropNode()
-    let astar = AStar()
-    let motionManager = CMMotionManager()
     var nextX = CGFloat(0.0)
     var ticker = 0
     var score = 0
     let scoreButton = SKLabelNode(fontNamed:"Times New Roman")
-    let invMoveSpeed = 5
-    //  var hero: Hero
     
     override init (size: CGSize) {
         super.init(size: size)
@@ -97,20 +91,9 @@ class BoardScene: SKScene {
         
         gameBoard.iterBoardNodes(function: insertNodeToBoardScene)
         
-//        if motionManager.accelerometerAvailable == true {
-//            motionManager.startAccelerometerUpdatesToQueue(NSOperationQueue.currentQueue(), withHandler:{
-//                data, error in
-//                // we had trouble with the mod operator here
-//                    if self.ticker == self.invMoveSpeed / 3 || self.ticker == 2 * self.invMoveSpeed / 3 || self.ticker == self.invMoveSpeed {
-//                        if let dir = vectorToDirection(CGFloat(data.acceleration.x), CGFloat(data.acceleration.y), CGFloat(M_PI_4)) {
-//                            self.gameBoard.hero.direction = dir
-//                            self.gameBoard.hero.move()
-//                        }
-//                    }
-//                    ++self.ticker
-//                }
-//            )
-//        }
+        for enemy in gameBoard.enemies {
+            enemy.path = gameBoard.astar.pathfind(board: gameBoard, startNode: gameBoard.getBNode(atPoint: enemy.pos)!, destinationNode: gameBoard.getBNode(atPoint: gameBoard.hero.pos)!)
+        }
     }
     
     
@@ -128,6 +111,7 @@ class BoardScene: SKScene {
         }
     }
     
+    // allows for hero motion
     override func touchesMoved(touches: Set <NSObject>, withEvent event: UIEvent) {
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self)
@@ -140,16 +124,12 @@ class BoardScene: SKScene {
                     gameBoard.hero.direction = nextDir
                     gameBoard.hero.move()
                 }
-//                else if let elt = node1 as? Element {
-//                    let nextDir = naturalDirection(fromPoint: gameBoard.hero.pos, toPoint: elt.pos)
-//                    gameBoard.hero.direction = nextDir
-//                    gameBoard.hero.move()
-//                }
             }
             
         }
     }
     
+    // continous loop
     override func update(currentTime: CFTimeInterval) {
         //add to score every 3 times
         scoreButton.text = String(score)
@@ -160,7 +140,7 @@ class BoardScene: SKScene {
         for bullet in gameBoard.hero.bullets {
             bullet.move()
         }
-        if ticker > 5 {
+        if ticker == 10 {
             for enemy in gameBoard.enemies {
                 enemy.move()
             }

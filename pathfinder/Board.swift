@@ -301,6 +301,7 @@ class Board {
         player.events.listenTo("die", action: {
             // remove from the board
             self.removeElement(atPoint: player.pos, eltToRemove: player);
+            
             // if player is hero, remove hero from hero variable in enemies, board
             if let hero = player as? Hero {
                 for enemy in self.enemies {

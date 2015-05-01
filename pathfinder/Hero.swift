@@ -8,7 +8,6 @@
 
 import Foundation
 import SpriteKit
-import CoreMotion
 
 class Hero: Player {
     // instance variables
@@ -21,10 +20,6 @@ class Hero: Player {
     
     // direction variable
     var direction : Direction? = nil
-    
-    // some help from http://nshipster.com/cmdevicemotion/ on this device motion
-    // accelerometer
-    var motionManager = CMMotionManager()
     
     // intializes the gyro data
     init(position: (Int,Int)) {
