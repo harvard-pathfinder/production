@@ -101,7 +101,7 @@ class BoardScene: SKScene {
             // 2
             motionManager.startAccelerometerUpdatesToQueue(NSOperationQueue.currentQueue(), withHandler:{
                 data, error in
-                    if self.ticker == 9 || self.ticker == 18 {
+                    if self.ticker == 9 || self.ticker == 18 || self.ticker == 27 || self.ticker == 36 {
                         if let dir = vectorToDirection(CGFloat(data.acceleration.x), CGFloat(data.acceleration.y)) {
                             self.gameBoard.moveElementByDirection(fromPoint: self.gameBoard.hero.pos, toDirection: dir, eltToMove: self.gameBoard.hero)
                             self.gameBoard.hero.move()
@@ -134,7 +134,7 @@ class BoardScene: SKScene {
         for bullet in gameBoard.hero.bullets {
             bullet.move()
         }
-        if ticker >= 30 {
+        if ticker >= 40 {
             for enemy in gameBoard.enemies {
                 enemy.move()
             }
