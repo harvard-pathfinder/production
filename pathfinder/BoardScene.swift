@@ -140,6 +140,11 @@ class BoardScene: SKScene {
                     gameBoard.hero.direction = nextDir
                     gameBoard.hero.move()
                 }
+//                else if let elt = node1 as? Element {
+//                    let nextDir = naturalDirection(fromPoint: gameBoard.hero.pos, toPoint: elt.pos)
+//                    gameBoard.hero.direction = nextDir
+//                    gameBoard.hero.move()
+//                }
             }
             
         }
@@ -155,7 +160,7 @@ class BoardScene: SKScene {
         for bullet in gameBoard.hero.bullets {
             bullet.move()
         }
-        if ticker >= 8 {
+        if ticker >= 10 {
             for enemy in gameBoard.enemies {
                 enemy.move()
             }
