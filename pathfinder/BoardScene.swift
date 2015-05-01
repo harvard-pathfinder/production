@@ -153,7 +153,7 @@ class BoardScene: SKScene {
             // send to game over scene
             var transition:SKTransition = SKTransition.fadeWithDuration(1)
             let skView = self.view as SKView!
-            var scene = GameOverScene(size: skView.bounds.size)
+            var scene = GameOverScene(time: self.score, size: skView.bounds.size)
             skView.presentScene(scene, transition: transition)
         })
     }
