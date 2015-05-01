@@ -19,6 +19,7 @@ class BoardScene: SKScene {
     var ticker = 0
     var score = 0
     let scoreButton = SKLabelNode(fontNamed:"Times New Roman")
+    let invMoveSpeed = 40
     //  var hero: Hero
     
     override init (size: CGSize) {
@@ -51,7 +52,7 @@ class BoardScene: SKScene {
     
     // called at initialization of the BoardScene
     private func insertElementToBoardScene (elt: Element) -> () {
-    
+        
         elt.size.width = gameBoard.world.frame.width / (CGFloat(gameBoard.widthOfBoard))
         elt.size.height = gameBoard.world.frame.height / (CGFloat(gameBoard.heightOfBoard))
         
@@ -98,11 +99,10 @@ class BoardScene: SKScene {
         gameBoard.iterBoardNodes(function: insertNodeToBoardScene)
         
         if motionManager.accelerometerAvailable == true {
-            // 2
             motionManager.startAccelerometerUpdatesToQueue(NSOperationQueue.currentQueue(), withHandler:{
                 data, error in
-                    // we had trouble with the mod operator here
-                    if self.ticker == 5 || self.ticker == 10 || self.ticker == 15 || self.ticker == 20 || self.ticker == 25|| self.ticker == 30 || self.ticker == 35 || self.ticker == 39 {
+                // we had trouble with the mod operator here
+                    if self.ticker == self.invMoveSpeed / 3 || self.ticker == 2 * self.invMoveSpeed / 3 || self.ticker == self.invMoveSpeed {
                         if let dir = vectorToDirection(CGFloat(data.acceleration.x), CGFloat(data.acceleration.y), CGFloat(M_PI_4)) {
                             self.gameBoard.hero.direction = dir
                             self.gameBoard.hero.move()
@@ -135,7 +135,7 @@ class BoardScene: SKScene {
         for bullet in gameBoard.hero.bullets {
             bullet.move()
         }
-        if ticker >= 40 {
+        if ticker > invMoveSpeed {
             for enemy in gameBoard.enemies {
                 enemy.move()
             }
@@ -161,5 +161,5 @@ class BoardScene: SKScene {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
 }
