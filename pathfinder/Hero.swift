@@ -52,7 +52,6 @@ class Hero: Player {
         let bullet = Bullet(position: pos, dir: self.nextDirection(), enemyArr: enemies)
         self.events.trigger("shoot", information: bullet)
         bullets.append(bullet)
-        print("shoot")
     }
     
     // Element Methods

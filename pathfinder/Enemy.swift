@@ -35,7 +35,6 @@ class Enemy: Player {
     // event trigger
     func attackEvent (hero : Hero) -> () {
         self.events.trigger("attack", information: hero)
-        print("attack")
         self.gameOverEvent()
         // TODO: add animations here
     }
