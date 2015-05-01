@@ -95,30 +95,38 @@ func directPath (fromPoint p1: (Int, Int), toPoint p2: (Int,Int), var path: [(In
     }
 }
 
-func vectorToDirection (x: CGFloat, y: CGFloat) -> Direction? {
-    let z = CGFloat(0)
+func vectorToDirection (x: CGFloat, y: CGFloat, max: CGFloat) -> Direction? {
+    let xp = x/max
+    let yp = y/max
+    let tip = CGFloat(0.3)
     
-    if x > 0 {
-        if y > 0 {
+    if xp > tip {
+        if yp > tip {
             return Direction.NorthEast
         }
-        else if y < 0 {
+        else if yp < -tip {
             return Direction.SouthEast
         }
         else {
             return Direction.East
         }
     }
-    else if x < 0 {
-        if y > 0 {
+    else if xp < -tip {
+        if yp > tip {
             return Direction.NorthWest
         }
-        else if y < 0 {
+        else if yp < -tip {
             return Direction.SouthWest
         }
         else {
             return Direction.West
         }
+    }
+    else if yp > tip {
+        return Direction.North
+    }
+    else if yp < -tip {
+        return Direction.South
     }
     else {
         return nil

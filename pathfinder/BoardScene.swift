@@ -101,9 +101,10 @@ class BoardScene: SKScene {
             // 2
             motionManager.startAccelerometerUpdatesToQueue(NSOperationQueue.currentQueue(), withHandler:{
                 data, error in
-                    if self.ticker == 9 || self.ticker == 18 {
-                        if let dir = vectorToDirection(CGFloat(data.acceleration.x), CGFloat(data.acceleration.y)) {
-                            self.gameBoard.moveElementByDirection(fromPoint: self.gameBoard.hero.pos, toDirection: dir, eltToMove: self.gameBoard.hero)
+                    if self.ticker == 5 || self.ticker == 10 || self.ticker == 15 || self.ticker == 19 {
+                        if let dir = vectorToDirection(CGFloat(data.acceleration.x), CGFloat(data.acceleration.y), CGFloat(M_PI_4)) {
+                            self.gameBoard.hero.direction = dir
+                            //self.gameBoard.moveElementByDirection(fromPoint: self.gameBoard.hero.pos, toDirection: dir, eltToMove: self.gameBoard.hero)
                             self.gameBoard.hero.move()
                         }
                     }
@@ -141,6 +142,10 @@ class BoardScene: SKScene {
             ticker = 0
         }
         ++ticker
+        
+        if let dir = gameBoard.hero.direction {
+            gameBoard.hero.zRotation = directionToCGFloat(direction: dir)
+        }
     }
     
     func listenToGameOverEventFromBoard() {
