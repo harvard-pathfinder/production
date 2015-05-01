@@ -21,17 +21,6 @@ class Obstacle: Element {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // pickup an obstacle
-    func obstaclePickedUp(heroDir: Direction?) -> () {
-        // next Direction = Hero Direction
-        nextDir = heroDir
-    }
-    
-    func obstacleDropped() -> () {
-        // next Direction = nil
-        nextDir = nil
-    }
-    
     override func nextDirection() -> Direction? {
         return nextDir
     }

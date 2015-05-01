@@ -29,21 +29,7 @@ class AStar {
                 }
             }
         })
-        
-        //        board.iterBoardNodes(function: {
-        //
-        //            (let node: BoardNode) -> () in
-        //            if node.hValue > 0 && node.hValue < 12 {
-        //                let hVal = SKSpriteNode(imageNamed: String(node.hValue))
-        //                hVal.anchorPoint = CGPointMake(-1, 1)
-        //                node.addChild(hVal)
-        //            }
-        //            let arrow = SKSpriteNode(imageNamed: "arrow")
-        //            arrow.anchorPoint = CGPointMake(1.0, 0.5) // Tip
-        //            arrow.setScale(0.3)
-        //            arrow.zRotation = directionToCGFloat(direction: node.next)
-        //            node.addChild(arrow)
-        //        })
+
     }
     
     func mapNexts (#board: Board, destination: (x: Int, y: Int)) -> () {
@@ -62,7 +48,6 @@ class AStar {
         path = [BoardNode]()
 
         // reset startnode
-//        startNode.hValue = 0
         startNode.gValue = 0
         startNode.fValue = 0
         startNode.parentNode = nil
@@ -73,7 +58,6 @@ class AStar {
             return [BoardNode]()
         }
         // map the HValues of the entire board (only needs to be done once)
-//       self.mapHValues(board: board, destination: destinationNode.pos)
         // recursively go through the map and find path
         path = algorithmHelper(board: board, startNode: startNode, destinationNode: destinationNode)
         return path

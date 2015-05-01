@@ -12,13 +12,13 @@ class CustomBoard {
     
     // update this function to create custom boards
     func getBoard (#width: Int, height: Int) -> [[Int]] {
-        return self.generator(width: width, height: height, enemies: [(1,1), (width-2,1), (1,height-2), (width-2,height-2)], obstacles: [
+        return self.generator(width: width, height: height, enemies: [(1,1), (width-2,height-2)], obstacles: [
             (0,0), (1,0), (2,0), (3,0), (4,0), (5,0), (6,0), (7,0), (8,0), (9,0), (10,0), (11,0), (12,0),
             (0,1), (0,2), (0,3), (0,4), (0,5), (0,6), (0,7), (0,8), (0,9), (0,10), (0,11), (0,12), (0,13), (0,14), (0,15), (0,16), (0,17), (0,18), (0,19), (0,20),
             (width-1,1), (width-1,2), (width-1,3), (width-1,4), (width-1,5), (width-1,6), (width-1,7), (width-1,8), (width-1,9), (width-1,10), (width-1,11), (width-1,12), (width-1,13), (width-1,14), (width-1,15), (width-1,16), (width-1,17), (width-1,18), (width-1,19), (width-1,20),
             (1, height-1), (2, height-1), (3, height-1), (4, height-1), (5, height-1), (6, height-1), (7, height-1), (8, height-1), (9, height-1), (10, height-1),
-            (2,2), (2,height-3), (width-3,2), (width-3,height-3), (5,5), (6,5), (7,5), (8,5), (9,5), (10,5),
-            (1,12), (2,12), (3,12), (4,12), (5,12), (6,12), (5,14), (6,14), (7,14), (8,8)
+            (2,2), (2,height-3), (width-3,2), (width-3,height-3), (5,5), (6,5), (7,5), (8,5),
+            (1,12), (2,12), (6,12), (5,14), (6,14), (7,14), (8,8)
             ], flag: nil)
     }
     

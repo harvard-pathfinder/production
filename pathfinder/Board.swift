@@ -129,13 +129,6 @@ class Board {
         }
     }
     
-    // if element is a hero.. remove hero from gameboard
-    func removeHeroGyroUpdates (element: Element) -> () {
-        if let hero = element as? Hero {
-            hero.motionManager.stopGyroUpdates()
-        }
-    }
-    
     // adds element BNodes at point p
     // adds element to SKSprite Tree
     // adds enemy to gameBoard
@@ -198,8 +191,6 @@ class Board {
                                 currentBNode.elements = elementArray
                                 // if enemy, remove from enemy array
                                 self.removeEnemyFromGameBoard(eltToRemove)
-                                // if hero, stop Gyro Updates
-                                self.removeHeroGyroUpdates(eltToRemove)
                             }
                         }
                     }
@@ -310,7 +301,6 @@ class Board {
         player.events.listenTo("die", action: {
             // remove from the board
             self.removeElement(atPoint: player.pos, eltToRemove: player);
-      
             // if player is hero, remove hero from hero variable in enemies, board
             if let hero = player as? Hero {
                 for enemy in self.enemies {
@@ -318,12 +308,15 @@ class Board {
                 }
                 
             // if player is enemy, remove enemy from enemy arrays in bullets, from enemy array in self
+            // generate new enemy on death
             } else if let enemy = player as? Enemy {
-                for var i = 0; i < self.enemies.count; ++i {
-                    if self.enemies[i] == enemy {
-                        self.enemies.removeAtIndex(i)
-                    }
-                }
+                // spawn a new enemy
+                let newEnemy = Enemy(position: (1,1))
+                newEnemy.size.width = self.world.frame.width / (CGFloat(self.widthOfBoard))
+                newEnemy.size.height = self.world.frame.height / (CGFloat(self.heightOfBoard))
+                
+                self.createNewElement(atPoint: (1,1), eltToCreate: newEnemy)
+                 
                 for bullet in self.hero.bullets {
                     for var i = 0; i < bullet.enemies.count; ++i {
                         if bullet.enemies[i] == enemy {

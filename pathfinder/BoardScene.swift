@@ -19,10 +19,8 @@ class BoardScene: SKScene {
     var ticker = 0
     var score = 0
     let scoreButton = SKLabelNode(fontNamed:"Times New Roman")
-    //  var hero: Hero
     
     override init (size: CGSize) {
-        //        hero = gameBoard.hero
         super.init(size: size)
     }
     
@@ -97,21 +95,21 @@ class BoardScene: SKScene {
         
         gameBoard.iterBoardNodes(function: insertNodeToBoardScene)
         
-        if motionManager.accelerometerAvailable == true {
-            // 2
-            motionManager.startAccelerometerUpdatesToQueue(NSOperationQueue.currentQueue(), withHandler:{
-                data, error in
-                    // we had trouble with the mod operator here
-                    if self.ticker == 5 || self.ticker == 10 || self.ticker == 15 || self.ticker == 20 || self.ticker == 25 || self.ticker == 30 || self.ticker == 35 || self.ticker == 39 {
-                        if let dir = vectorToDirection(CGFloat(data.acceleration.x), CGFloat(data.acceleration.y), CGFloat(M_PI_4)) {
-                            self.gameBoard.hero.direction = dir
-                            self.gameBoard.hero.move()
-                        }
-                    }
-                    ++self.ticker
-                }
-            )
-        }
+//        if motionManager.accelerometerAvailable == true {
+//            // 2
+//            motionManager.startAccelerometerUpdatesToQueue(NSOperationQueue.currentQueue(), withHandler:{
+//                data, error in
+//                    // we had trouble with the mod operator here
+//                    if self.ticker == 5 || self.ticker == 10 || self.ticker == 15 || self.ticker == 20 || self.ticker == 25 || self.ticker == 30 || self.ticker == 35 || self.ticker == 39 {
+//                        if let dir = vectorToDirection(CGFloat(data.acceleration.x), CGFloat(data.acceleration.y), CGFloat(M_PI_4)) {
+//                            self.gameBoard.hero.direction = dir
+//                            self.gameBoard.hero.move()
+//                        }
+//                    }
+//                    ++self.ticker
+//                }
+//            )
+//        }
     }
     
     
@@ -119,9 +117,31 @@ class BoardScene: SKScene {
     override func touchesBegan(touches: Set <NSObject>, withEvent event: UIEvent) {
         for touch: AnyObject in touches {
             // on touch shoot gun
-            gameBoard.hero.shootGun(gameBoard.enemies)
             let location = touch.locationInNode(gameBoard.world)
             let node = nodeAtPoint(location)
+            if let bNode = node as? BoardNode {
+                let nextDir = naturalDirection(fromPoint: gameBoard.hero.pos, toPoint: bNode.pos)
+                gameBoard.hero.direction = nextDir
+                gameBoard.hero.shootGun(gameBoard.enemies)
+            }
+        }
+    }
+    
+    // move on a dragged touch
+    override func touchesMoved(touches: Set <NSObject>, withEvent event: UIEvent) {
+        for touch: AnyObject in touches {
+            let location = touch.locationInNode(self)
+            let node1 = nodeAtPoint(location)
+            let previousLocation = touch.previousLocationInNode(self)
+            let node2 = nodeAtPoint(previousLocation)
+            if let hero = node2 as? Hero {
+                if let newBNode = node1 as? BoardNode {
+                    let nextDir = naturalDirection(fromPoint: gameBoard.hero.pos, toPoint: newBNode.pos)
+                    gameBoard.hero.direction = nextDir
+                    gameBoard.hero.move()
+                }
+            }
+            
         }
     }
     
@@ -135,17 +155,13 @@ class BoardScene: SKScene {
         for bullet in gameBoard.hero.bullets {
             bullet.move()
         }
-        if ticker >= 40 {
+        if ticker >= 8 {
             for enemy in gameBoard.enemies {
                 enemy.move()
             }
             ticker = 0
         }
         ++ticker
-        
-        if let dir = gameBoard.hero.direction {
-            gameBoard.hero.zRotation = directionToCGFloat(direction: dir)
-        }
     }
     
     func listenToGameOverEventFromBoard() {

@@ -28,30 +28,16 @@ class Hero: Player {
     
     // intializes the gyro data
     init(position: (Int,Int)) {
+        direction = Direction.East
         //source for the hero image on public domain
         //https://openclipart.org/detail/24566/simple-space-platform-game-stuff-6
         super.init(nameOfTexture: "hero1", position: position)
-        self.anchorPoint = CGPointMake(0.0,0.0)
-//        motionManager.gyroUpdateInterval = 0.1
-//        if motionManager.gyroAvailable {
-//            motionManager.startGyroUpdates()
-//        }
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // tilt handler
-    // TODO: process tilt data
-    func tiltHandler() -> () {
-        let rotation = motionManager.gyroData.rotationRate
-//        if rotation.x > 1.0 && rotation.y > 1.0 {
-//            direction = Direction.
-//            self.move()
-//        }
-        
-    }
     
     // move function
     override func move () -> () {
@@ -72,7 +58,6 @@ class Hero: Player {
         self.events.trigger("shoot", information: bullet)
         bullets.append(bullet)
         print("shoot")
-        // TODO: add animations here
     }
     
     // Element Methods
