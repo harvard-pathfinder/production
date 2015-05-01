@@ -127,7 +127,6 @@ class BoardScene: SKScene {
         }
     }
     
-    // move on a dragged touch
     override func touchesMoved(touches: Set <NSObject>, withEvent event: UIEvent) {
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self)
