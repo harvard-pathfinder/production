@@ -95,20 +95,20 @@ class BoardScene: SKScene {
         
         gameBoard.iterBoardNodes(function: insertNodeToBoardScene)
         
-        if motionManager.accelerometerAvailable == true {
-            motionManager.startAccelerometerUpdatesToQueue(NSOperationQueue.currentQueue(), withHandler:{
-                data, error in
-                // we had trouble with the mod operator here
-                if self.ticker == self.invMoveSpeed / 3 || self.ticker == 2 * self.invMoveSpeed / 3 || self.ticker == self.invMoveSpeed {
-                    if let dir = vectorToDirection(CGFloat(data.acceleration.x), CGFloat(data.acceleration.y), CGFloat(M_PI_4)) {
-                        self.gameBoard.hero.direction = dir
-                        self.gameBoard.hero.move()
-                    }
-                }
-                ++self.ticker
-                }
-            )
-        }
+//        if motionManager.accelerometerAvailable == true {
+//            motionManager.startAccelerometerUpdatesToQueue(NSOperationQueue.currentQueue(), withHandler:{
+//                data, error in
+//                // we had trouble with the mod operator here
+//                if self.ticker == self.invMoveSpeed / 3 || self.ticker == 2 * self.invMoveSpeed / 3 || self.ticker == self.invMoveSpeed {
+//                    if let dir = vectorToDirection(CGFloat(data.acceleration.x), CGFloat(data.acceleration.y), CGFloat(M_PI_4)) {
+//                        self.gameBoard.hero.direction = dir
+//                        self.gameBoard.hero.move()
+//                    }
+//                }
+//                ++self.ticker
+//                }
+//            )
+//        }
     }
     
     
