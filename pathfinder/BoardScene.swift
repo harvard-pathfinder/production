@@ -102,7 +102,7 @@ class BoardScene: SKScene {
             motionManager.startAccelerometerUpdatesToQueue(NSOperationQueue.currentQueue(), withHandler:{
                 data, error in
                     if self.ticker == 9 || self.ticker == 18 {
-                        if let dir = vectorToDirection(CGFloat(data.acceleration.x), CGFloat(data.acceleration.y)) {
+                        if let dir = vectorToDirection(CGFloat(data.acceleration.x), CGFloat(data.acceleration.y), CGFloat(M_PI_4)) {
                             self.gameBoard.moveElementByDirection(fromPoint: self.gameBoard.hero.pos, toDirection: dir, eltToMove: self.gameBoard.hero)
                             self.gameBoard.hero.move()
                         }
