@@ -95,7 +95,37 @@ func directPath (fromPoint p1: (Int, Int), toPoint p2: (Int,Int), var path: [(In
     }
 }
 
-// based on the unit circle, with east being 0
+func vectorToDirection (x: CGFloat, y: CGFloat) -> Direction? {
+    let z = CGFloat(0)
+    
+    if x > 0 {
+        if y > 0 {
+            return Direction.NorthEast
+        }
+        else if y < 0 {
+            return Direction.SouthEast
+        }
+        else {
+            return Direction.East
+        }
+    }
+    else if x < 0 {
+        if y > 0 {
+            return Direction.NorthWest
+        }
+        else if y < 0 {
+            return Direction.SouthWest
+        }
+        else {
+            return Direction.West
+        }
+    }
+    else {
+        return nil
+    }
+}
+
+    // based on the unit circle, with east being 0
 func directionToCGFloat (#direction: Direction) -> CGFloat {
     switch direction {
     case Direction.North: return dtr(90)

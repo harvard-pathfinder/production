@@ -12,7 +12,7 @@ import SpriteKit
 
 class Board {
     
-    // the world!!
+    // the world
     var world = SKShapeNode()
     
     // creates 2D array of arrays of BoardNodes
@@ -251,6 +251,12 @@ class Board {
         if p1.0 >= 0 && p1.0 < widthOfBoard && p1.1 >= 0 && p1.1 < heightOfBoard {
             self.addElement(atpoint: p1, eltToAdd: eltToCreate)
             self.listenToElement(eltToCreate)
+            if let bullet = eltToCreate as? Bullet {
+                bullet.events.listenTo("die", action: {
+                    // remove bullet from the board variable
+                    self.removeElement(atPoint: bullet.pos, eltToRemove: bullet)
+                })
+            }
             // adds player listeners
             if let player = eltToCreate as? Player {
                 self.listenToPlayer(player)
@@ -296,13 +302,8 @@ class Board {
     func addBullet(bullets: [Bullet], enemy: Enemy) {
         for bullet in bullets {
             bullet.enemies.append(enemy)
-            bullet.events.listenTo("die", action: {
-                // remove bullet from the board variable
-                self.removeElement(atPoint: bullet.pos, eltToRemove: bullet)
-            })
         }
     }
-    
     
     // player listener
     func listenToPlayer(player: Player) {
@@ -315,8 +316,14 @@ class Board {
                 for enemy in self.enemies {
                     enemy.hero = nil
                 }
-            // if player is enemy, remove enemy from enemy arrays in bullets
+                
+            // if player is enemy, remove enemy from enemy arrays in bullets, from enemy array in self
             } else if let enemy = player as? Enemy {
+                for var i = 0; i < self.enemies.count; ++i {
+                    if self.enemies[i] == enemy {
+                        self.enemies.removeAtIndex(i)
+                    }
+                }
                 for bullet in self.hero.bullets {
                     for var i = 0; i < bullet.enemies.count; ++i {
                         if bullet.enemies[i] == enemy {

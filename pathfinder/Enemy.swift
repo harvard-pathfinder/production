@@ -23,6 +23,8 @@ class Enemy: Player {
     }
     
     init(position: (Int,Int)) {
+        //source for the enemy image from public domain
+        //http://pixabay.com/en/video-game-8-bit-old-school-retro-175621/
         super.init(nameOfTexture: "enemy1", position: position)
     }
     
@@ -60,8 +62,8 @@ class Enemy: Player {
             if path.count > 0 {
                 // calculate next direction of motion
                 let next = naturalDirection(fromPoint: pos, toPoint: path[0].pos)
-                print(pos)
-                print(path[0].pos)
+                //print(pos)
+                //print(path[0].pos)
                 if next == Direction.West {
                     print("hi")
                 }

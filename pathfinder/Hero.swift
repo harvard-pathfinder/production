@@ -35,7 +35,10 @@ class Hero: Player {
     
     // intializes the gyro data
     init(position: (Int,Int)) {
+        //source for the hero image on public domain
+        //https://openclipart.org/detail/24566/simple-space-platform-game-stuff-6
         super.init(nameOfTexture: "hero1", position: position)
+        self.anchorPoint = CGPointMake(0.0,0.0)
 //        motionManager.gyroUpdateInterval = 0.1
 //        if motionManager.gyroAvailable {
 //            motionManager.startGyroUpdates()
@@ -69,6 +72,9 @@ class Hero: Player {
     
     // fire the gun 
     func shootGun(enemies: [Enemy]) -> () {
+        if self.nextDirection() == nil {
+            return
+        }
         let bullet = Bullet(position: pos, dir: self.nextDirection(), enemyArr: enemies)
         self.events.trigger("shoot", information: bullet)
         bullets.append(bullet)

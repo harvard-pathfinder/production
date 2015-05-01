@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SpriteKit
 
 class Bullet: Element {
     var direction: Direction?
@@ -14,9 +15,12 @@ class Bullet: Element {
     var damage = 100
     
     init(position: (Int,Int), dir: Direction?, enemyArr: [Enemy]) {
+        //source for the bullet dot on public domain
+        //http://commons.wikimedia.org/wiki/File:Black_dot.png
         super.init(textureName: "bullet1", position: position)
         direction = dir
         enemies = enemyArr
+        self.zPosition = CGFloat(1)
     }
     
     // move function overriden
@@ -36,8 +40,14 @@ class Bullet: Element {
     // removes the bullet from the map
     func hitTarget() -> () {
         self.events.trigger("die", information: self)
+        self.dieEvent()
         print("hit")
         // TODO: add animation here
+    }
+    
+    // die function
+    func dieEvent() -> () {
+        self.events.trigger("die", information: self)
     }
     
     required init?(coder aDecoder: NSCoder) {
