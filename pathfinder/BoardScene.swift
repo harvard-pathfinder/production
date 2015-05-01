@@ -17,6 +17,8 @@ class BoardScene: SKScene {
     let motionManager = CMMotionManager()
     var nextX = CGFloat(0.0)
     var ticker = 0
+    var score = 0
+    let scoreButton = SKLabelNode(fontNamed:"Times New Roman")
     //  var hero: Hero
     
     override init (size: CGSize) {
@@ -87,6 +89,7 @@ class BoardScene: SKScene {
     override func didMoveToView(view: SKView) {
         self.anchorPoint = CGPointMake(0.5, 0.5)
         self.size = CGSizeMake(view.bounds.size.width, view.bounds.size.height)
+        self.addChild(scoreButton)
         
         gameBoard.world = SKShapeNode(rectOfSize: CGSizeMake(self.size.width, self.size.height))
         gameBoard.world.fillColor = SKColor.redColor()
@@ -122,6 +125,11 @@ class BoardScene: SKScene {
     }
     
     override func update(currentTime: CFTimeInterval) {
+        //add to score every 3 times
+        scoreButton.text = String(score)
+        if ticker % 4 == 0 {
+            score++
+        }
         // shoot gun every tick
         for bullet in gameBoard.hero.bullets {
             bullet.move()
