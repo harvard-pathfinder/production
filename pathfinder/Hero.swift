@@ -12,13 +12,6 @@ import CoreMotion
 
 class Hero: Player {
     // instance variables
-    override var damage: Int {
-        return 50
-    }
-    
-    override var invSpeed: Int {
-        return 1
-    }
     
     // obstacles on the map
     var obstacles = [Obstacle]()
@@ -85,7 +78,7 @@ class Hero: Player {
     // Element Methods
     // overrides NextDirection... will eventually be the accelerometer
     override func nextDirection() -> Direction? {
-        let returnDirection: Direction? = Direction.South
+        let returnDirection: Direction? = direction 
         for obstacle in obstacles {
           // if obstacle in the way, do not move there!!
           let newPoint = movePoint(fromPoint: pos, returnDirection)
