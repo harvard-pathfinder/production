@@ -142,6 +142,10 @@ class BoardScene: SKScene {
             ticker = 0
         }
         ++ticker
+        
+        if let dir = gameBoard.hero.direction {
+            gameBoard.hero.zRotation = directionToCGFloat(direction: dir)
+        }
     }
     
     func listenToGameOverEventFromBoard() {
