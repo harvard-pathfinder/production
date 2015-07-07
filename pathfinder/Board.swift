@@ -38,6 +38,7 @@ class Board {
         return gameBoard[0].count
     }
     
+    // initialization
     init(heroArg: Hero) {
         hero = heroArg
         // add hero to the board
